@@ -7,61 +7,17 @@ using UnityEngine.UI;
 
 public class ChartReader : MonoBehaviour
 {
+    // Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½É¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    public GameObject chart;
-    public GameObject gridList;
-    public float gridCount;
-
-    public bool isPlaying = false;
-    
-    void Awake()
+    void Start()
     {
-        // ÃÊ±âÈ­
-        gridCount = 0;
+        
     }
 
     void Update()
     {
-        /*// ±×¸®µå ÇÑÄ­ ¿Ã¸®±â -> ¸ŞÀÎÄ«¸Ş¶ó°¡ ÀÌµ¿ÇÏµµ·Ï ¸ŞÀÎ Ä«¸Ş¶ó¿¡ ½ºÅ©¸³Æ® ÀÛ¼º
-        if (Input.GetKeyDown(KeyCode.W) && gridCount < EditorManager.instance.maxGridCount)
-        {
-            gridList.transform.Translate(0f, -8f, 0f);
-            gridCount++;
-        }
-        // ±×¸®µå ÇÑÄ­ ³»¸®±â -> ¸ŞÀÎÄ«¸Ş¶ó°¡ ÀÌµ¿ÇÏµµ·Ï ¸ŞÀÎ Ä«¸Ş¶ó¿¡ ½ºÅ©¸³Æ® ÀÛ¼º
-        if (Input.GetKeyDown(KeyCode.S) && gridCount > 0)
-        {
-            gridList.transform.Translate(0f, 8f, 0f);
-            gridCount--;
-        }*/
-
-        // ±×¸®µå ±âº» ¼Óµµ·Î Àç»ı ¹× ¸ØÃã -> ¸ŞÀÎÄ«¸Ş¶ó°¡ ÀÌµ¿ÇÏµµ·Ï ¸ŞÀÎ Ä«¸Ş¶ó¿¡ ½ºÅ©¸³Æ® ÀÛ¼º
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    if (isPlaying) 
-        //        isPlaying = false;
-        //    else 
-        //        isPlaying = true;
-
-        //}
-        //if (isPlaying) gridList.transform.Translate(0f, -EditorManager.instance.defaultChartSpeed 
-        //    * EditorManager.instance.userChartSpeed * Time.deltaTime, 0f);
-
-        //// ¸¶¿ì½º ÈÙ¿¡ µû¸¥ ½ºÅ©·Ñ ±â´É -> ¸ŞÀÎÄ«¸Ş¶ó°¡ ÀÌµ¿ÇÏµµ·Ï ¸ŞÀÎ Ä«¸Ş¶ó¿¡ ½ºÅ©¸³Æ® ÀÛ¼º
-        //float wheelInput = Input.GetAxis("Mouse ScrollWheel"); 
-        //if (wheelInput > 0 && gridCount < EditorManager.instance.maxGridCount )
-        //{
-        //    gridList.transform.Translate(0f, -wheelInput * 3, 0f);
-        //}
-        //else if (wheelInput < 0 && gridCount >= 0 ) 
-        //{
-        //    gridList.transform.Translate(0f, -wheelInput * 3, 0f);
-        //}
-
-        ////±×¸®µå Ä«¿îÆ® °è»ê -> ¸ŞÀÎÄ«¸Ş¶ó°¡ ÀÌµ¿ÇÏµµ·Ï ¸ŞÀÎ Ä«¸Ş¶ó¿¡ ½ºÅ©¸³Æ® ÀÛ¼º
-        //gridCount = -gridList.transform.position.y / (8 * EditorManager.instance.userChartSpeed);
-
-        //// À¯ÀúÀÇ ¹è¼Ó¿¡ µû¶ó ±×¸®µåÀÇ ³ôÀÌ Àç±¸¼º
-
+        
     }
+
+    
 }

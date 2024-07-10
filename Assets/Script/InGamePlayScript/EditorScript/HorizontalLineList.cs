@@ -13,8 +13,8 @@ public class HorizontalLineList : MonoBehaviour
     {
         transform.localPosition = Vector3.zero;
 
-        // 2°³ÀÇ ¼öÆò¼±ÀÇ °£°ÝÀº 1ÃÊ¸¦ ÀÇ¹ÌÇÏ°Ô²û »ý¼ºÇØ¾ßÇÔ
-        // ( ±×¸®µåÀÇ ³ôÀÌ * ÃÖ´ë ±×¸®µå °³¼ö ) / ( ±âº» Ã¤º¸ ¼Óµµ )
+        // 2ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½Ê¸ï¿½ ï¿½Ç¹ï¿½ï¿½Ï°Ô²ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
+        // ( ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ * ï¿½Ö´ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ) / ( ï¿½âº» Ã¤ï¿½ï¿½ ï¿½Óµï¿½ )
         for (int i = 0; i < ( EditorManager.instance.maxGridCount * 4f ); i++)
         {
             var tempLine = Instantiate(horizontalLine) as GameObject;

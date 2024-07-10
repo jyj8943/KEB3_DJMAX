@@ -9,6 +9,9 @@ public class EditorCamera : MonoBehaviour
 
     public HorizontalLineList horizontalLineList;
     public GridList gridList;
+    public NoteList noteList;
+
+    public AudioManager audioManager;
 
     void Start()
     {
@@ -17,13 +20,13 @@ public class EditorCamera : MonoBehaviour
 
     void Update()
     {
-        // Å×½ºÆ®¿ë ´Ù½Ã½ÃÀÛ ¹öÆ°
+        // ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½Ù½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("Editor");
         }
 
-        // Ä«¸Þ¶ó ¿òÁ÷ÀÌ±â
+        // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½
         if (Input.GetKeyDown(KeyCode.W) && transform.position.y < EditorManager.instance.maxGridCount * 8)
         {
             transform.Translate(0f, 8f, 0f);
@@ -33,42 +36,53 @@ public class EditorCamera : MonoBehaviour
             transform.Translate(0f, -8f, 0f);
         }
 
-        // Àç»ý ±â´É
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (isPlaying)
+            {
                 isPlaying = false;
+                audioManager.pauseSong();
+            }
             else
+            {
                 isPlaying = true;
+                audioManager.playSong();
+            }
 
         }
         if (isPlaying) transform.Translate(0f, EditorManager.instance.defaultChartSpeed
             * EditorManager.instance.userChartSpeed * Time.deltaTime, 0f);
 
-        // ¸¶¿ì½º ÈÙ¿¡ µû¸¥ ½ºÅ©·Ñ ±â´É
+        // ï¿½ï¿½ï¿½ì½º ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
-        if (wheelInput > 0 && transform.position.y <= EditorManager.instance.maxGridCount * 8)
+        if (wheelInput > 0 && transform.position.y < EditorManager.instance.maxGridCount * 8 - 7)
         {
             transform.Translate(0f, wheelInput * 3, 0f);
         }
-        else if (wheelInput < 0 && transform.position.y >= 0)
+        else if (wheelInput < 0 && transform.position.y > 0)
         {
             transform.Translate(0f, wheelInput * 3, 0f);
         }
 
-        // userChartSpeed¸¦ 0.5¸¸Å­ ºü¸£°Ô
+        // userChartSpeedï¿½ï¿½ 0.5ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.E) && EditorManager.instance.userChartSpeed < EditorManager.instance.maxUserChartSpeed)
         {
             EditorManager.instance.changeUserChartSpeed(0.5f);
             horizontalLineList.changeHorizontalLineHeight();
             gridList.changeGridHeight();
+            noteList.changeNotePosY();
         }
-        // userChartSpeed¸¦ 0.5¸¸Å­ ´À¸®°Ô
+        // userChartSpeedï¿½ï¿½ 0.5ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.D) && EditorManager.instance.userChartSpeed > 1f)
         {
             EditorManager.instance.changeUserChartSpeed(-0.5f);
             horizontalLineList.changeHorizontalLineHeight();
             gridList.changeGridHeight();
+            noteList.changeNotePosY();
         }
+
+        //ï¿½ë·¡ ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ï´ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½Û¼ï¿½ ï¿½Ê¿ï¿½ï¿½Òµï¿½
+
     }
 }

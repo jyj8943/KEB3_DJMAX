@@ -35,41 +35,41 @@ public class JudgementBar : MonoBehaviour
 
     public void checkJudege(GameObject nearNote)
     {
-        if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.99f)
-            && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.01f))
-        {
-            Debug.Log("MAX 100%");
-            Destroy(nearNote);
-        }
-        else if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.97f)
-            && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.03f))
-        {
-            Debug.Log("MAX 90%");
-            Destroy(nearNote);
-        }
-        else if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.95f)
-            && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.05f))
-        {
-            Debug.Log("MAX 80%");
-            Destroy(nearNote);
-        }
-        else if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.90f)
-            && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.10f))
-        {
-            Debug.Log("MAX 70%");
-            Destroy(nearNote);
-        }
-        else if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.80f)
-            && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.20f))
-        {
-            Debug.Log("MAX 1%");
-            Destroy(nearNote);
-        }
-        else
-        {
-            Debug.Log("BREAK");
-            Destroy(nearNote);
-        }
+        //if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.99f)
+        //    && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.01f))
+        //{
+        //    Debug.Log("MAX 100%");
+        //    Destroy(nearNote);
+        //}
+        //else if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.97f)
+        //    && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.03f))
+        //{
+        //    Debug.Log("MAX 90%");
+        //    Destroy(nearNote);
+        //}
+        //else if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.95f)
+        //    && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.05f))
+        //{
+        //    Debug.Log("MAX 80%");
+        //    Destroy(nearNote);
+        //}
+        //else if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.90f)
+        //    && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.10f))
+        //{
+        //    Debug.Log("MAX 70%");
+        //    Destroy(nearNote);
+        //}
+        //else if (nearNote.GetComponent<ShortNote>().noteTimer > (nearNote.GetComponent<ShortNote>().noteArriveTime * 0.80f)
+        //    && nearNote.GetComponent<ShortNote>().noteTimer < (nearNote.GetComponent<ShortNote>().noteArriveTime * 1.20f))
+        //{
+        //    Debug.Log("MAX 1%");
+        //    Destroy(nearNote);
+        //}
+        //else
+        //{
+        //    Debug.Log("BREAK");
+        //    Destroy(nearNote);
+        //}
     }
 
 }

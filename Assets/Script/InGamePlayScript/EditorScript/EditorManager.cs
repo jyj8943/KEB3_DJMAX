@@ -9,12 +9,12 @@ public class EditorManager : MonoBehaviour
 
     public TextMeshProUGUI userChartSpeedText;
 
-    // ±×¸®µå´Â ÃÊ´ç defaultChartSpeed * userChartSpeed ¸¸Å­ ¾Æ·¡·Î ¿òÁ÷ÀÌ¸ç, ±×¸®µå ÇÏ³ª°¡ ÀÇ¹ÌÇÏ´Â ½Ã°£Àº °á±¹ 4ÃÊ¸¦ ÀÇ¹ÌÇØ¾ßÇÑ´Ù.
-    // ´ÙÀ½ ±×¸®µå·Î ³Ñ¾î°¡´Â ½Ã°£Àº ( 1¹è¼ÓÀÇ ±×¸®µå ³ôÀÌ * userChartSpeed )  / ( defaultChartSpeed * userChartSpeed )ÃÊ
+    // ï¿½×¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ defaultChartSpeed * userChartSpeed ï¿½ï¿½Å­ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½, ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½ï¿½Ï´ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½á±¹ 4ï¿½Ê¸ï¿½ ï¿½Ç¹ï¿½ï¿½Ø¾ï¿½ï¿½Ñ´ï¿½.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ( 1ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ * userChartSpeed )  / ( defaultChartSpeed * userChartSpeed )ï¿½ï¿½
     public float defaultChartSpeed;
     public float userChartSpeed;
 
-    // À¯Àú 1¹è¼Ó ¶§ÀÇ ±×¸®µå ³ôÀÌ, ¼öÆò¹Ù °£°Ý
+    // ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float defaultGridHeight = 8f;
     public float defaultVerticalLineHeight = 2f;
 
@@ -23,7 +23,16 @@ public class EditorManager : MonoBehaviour
 
     public float maxUserChartSpeed = 5f;
 
-    public int maxGridCount = 10;
+    public int maxGridCount;
+
+    public bool isInsertShortNote = false;
+    //public bool isDeleteNote = false; -> ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
+    public float minNotePosY = -3f;
+    public float minNotePosX = -2f;
+    public float maxNotePosX = 2f;
+
+    public int songTime = 128;
 
     private void Awake()
     {
@@ -31,6 +40,7 @@ public class EditorManager : MonoBehaviour
 
         gridHeight = defaultGridHeight * userChartSpeed;
         verticalLineHeight = defaultVerticalLineHeight * userChartSpeed;
+        maxGridCount = songTime / 4;
     }
 
     private void Update()
