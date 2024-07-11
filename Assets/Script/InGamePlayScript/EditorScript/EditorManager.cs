@@ -26,6 +26,7 @@ public class EditorManager : MonoBehaviour
     public int maxGridCount;
 
     public bool isInsertShortNote = false;
+    public bool isInsertLongNote = false; 
     //public bool isDeleteNote = false; -> ��ӿ� ���� ��Ʈ Y�� ���� ��� �ϼ� �� ���� ��� ����
 
     public float minNotePosY = -3f;
