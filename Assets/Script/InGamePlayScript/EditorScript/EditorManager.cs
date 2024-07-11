@@ -27,7 +27,7 @@ public class EditorManager : MonoBehaviour
 
     public bool isInsertShortNote = false;
     public bool isInsertLongNote = false; 
-    //public bool isDeleteNote = false; -> ��ӿ� ���� ��Ʈ Y�� ���� ��� �ϼ� �� ���� ��� ����
+    public bool isDeleteNote = false;
 
     public float minNotePosY = -3f;
     public float minNotePosX = -2f;

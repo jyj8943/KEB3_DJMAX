@@ -22,12 +22,9 @@ public class NoteList : MonoBehaviour
         mousePos = Input.mousePosition;
         targetPos = Camera.main.ScreenToWorldPoint(mousePos + new Vector3(0f, 0f, 10f));
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertShortNote)
         {
-            if (EditorManager.instance.isInsertShortNote)
-            {
-                insertShortNote();
-            }
+            insertShortNote();
         }
 
         if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertLongNote)
@@ -40,6 +37,25 @@ public class NoteList : MonoBehaviour
                 insertLongNoteUp();
         }
 
+        if (Input.GetMouseButtonDown(0) && EditorManager.instance.isDeleteNote)
+        {
+            deleteNote();
+        }
+    }
+
+    public void deleteNote()
+    {
+        Vector2 rayPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(rayPoint, Vector2.zero);
+
+        if (hit.transform == null) return;
+
+        if (hit.transform.tag == "ShortNote" || hit.transform.tag == "LongNote")
+        {
+            Debug.Log(hit.transform.name);
+            Destroy(hit.transform.gameObject);
+        }
+        
     }
 
     public void insertShortNote()
@@ -66,6 +82,8 @@ public class NoteList : MonoBehaviour
 
         noteList.Add(tempLongNote);
 
+        tempLongNote.GetComponent<LongNote>().InitLongNote(targetPos.y);
+
         tempLongNote = null;
     }
 
@@ -81,7 +99,6 @@ public class NoteList : MonoBehaviour
             isMaking = true;
         }
     }
-
 
     public void correctPosX(float posX)
     {
@@ -105,34 +122,6 @@ public class NoteList : MonoBehaviour
             return;
     }
 
-    public void clickInsertLongNoteButton()
-    {
-        if (EditorManager.instance.isInsertLongNote)
-        {
-            EditorManager.instance.isInsertLongNote = false;
-            EditorManager.instance.isInsertShortNote = false;
-        }
-        else if (!EditorManager.instance.isInsertLongNote)
-        {
-            EditorManager.instance.isInsertLongNote = true;
-            EditorManager.instance.isInsertShortNote = false;
-        }
-    }
-
-    public void clickInsertButton()
-    {
-        if (EditorManager.instance.isInsertShortNote)
-        {
-            EditorManager.instance.isInsertShortNote = false;
-            EditorManager.instance.isInsertLongNote = false;
-        }
-        else if (!EditorManager.instance.isInsertShortNote)
-        {
-            EditorManager.instance.isInsertShortNote = true;
-            EditorManager.instance.isInsertLongNote = false;
-        }
-    }
-
     public void changeNotePosY()
     {
         for (int i = noteList.Count - 1; i >= 0; i--)
@@ -142,14 +131,72 @@ public class NoteList : MonoBehaviour
             if (tempNote.tag == "ShortNote")
             {
                 tempNote.GetComponent<Transform>().position = new Vector3(tempNote.transform.position.x,
-                        EditorManager.instance.minNotePosY + tempNote.GetComponent<ShortNote>().arrvieDist *
-                        EditorManager.instance.userChartSpeed, tempNote.transform.position.x);
+                        EditorManager.instance.minNotePosY + tempNote.GetComponent<ShortNote>().defaultDist *
+                        EditorManager.instance.userChartSpeed, tempNote.transform.position.z);
             }
             else if (tempNote.tag == "LongNote")
             {
-                //tempNote.transform.position = new Vector3
-            }
+                tempNote.transform.position = new Vector3(tempNote.transform.position.x,
+                    EditorManager.instance.minNotePosY + tempNote.GetComponent<LongNote>().defaultArrivePosY *
+                    EditorManager.instance.userChartSpeed, tempNote.transform.position.z);
 
+                tempNote.transform.localScale = new Vector3(1f, tempNote.GetComponent<LongNote>().defaultScale *
+                    EditorManager.instance.userChartSpeed, 1f);
+            }
+        }
+    }
+
+    public void clickInsertLongNoteButton()
+    {
+        if (EditorManager.instance.isInsertLongNote)
+        {
+            EditorManager.instance.isInsertLongNote = false;
+
+            EditorManager.instance.isInsertShortNote = false;
+            EditorManager.instance.isDeleteNote = false;
+        }
+        else if (!EditorManager.instance.isInsertLongNote)
+        {
+            EditorManager.instance.isInsertLongNote = true;
+
+            EditorManager.instance.isInsertShortNote = false;
+            EditorManager.instance.isDeleteNote = false;
+        }
+    }
+
+    public void clickInsertButton()
+    {
+        if (EditorManager.instance.isInsertShortNote)
+        {
+            EditorManager.instance.isInsertShortNote = false;
+
+            EditorManager.instance.isInsertLongNote = false;
+            EditorManager.instance.isDeleteNote = false;
+        }
+        else if (!EditorManager.instance.isInsertShortNote)
+        {
+            EditorManager.instance.isInsertShortNote = true;
+
+            EditorManager.instance.isInsertLongNote = false;
+            EditorManager.instance.isDeleteNote = false;
+        }
+    }
+
+    public void clickDeleteButton()
+    {
+        if (EditorManager.instance.isDeleteNote)
+        {
+            EditorManager.instance.isDeleteNote = false;
+
+            EditorManager.instance.isInsertShortNote = false;
+            EditorManager.instance.isInsertLongNote = false;
+        }
+        else if (!EditorManager.instance.isDeleteNote)
+        {
+            EditorManager.instance.isDeleteNote = true;
+
+            EditorManager.instance.isInsertShortNote = false;
+            EditorManager.instance.isInsertLongNote = false;
         }
     }
 }
