@@ -7,7 +7,7 @@ public class ShortNote : MonoBehaviour {
     public float PosX;
     public float PosY;
     public int noteID; //noteid는 일반노트가 0, 롱노트가 1
-    public float arrvieDist; // <- PosY / 2
+    public float arrvieDist; // 판정선까지의 거리
 
     private void Start()
     {

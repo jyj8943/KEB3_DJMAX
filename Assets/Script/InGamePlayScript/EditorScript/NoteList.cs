@@ -79,23 +79,6 @@ public class NoteList : MonoBehaviour
             correctPosX(targetPos.x);
             tempLongNote = Instantiate(longNote, targetPos, Quaternion.identity);
             isMaking = true;
-            
-            //tempLongNote.transform.SetParent(transform, false);
-
-            //while (isMaking)
-            //{
-            //    var tempRate = targetPos.y / tempLongNote.transform.position.y;
-
-            //    tempLongNote.GetComponent<LongNote>().changeScale(tempRate);
-
-            //    if (Input.GetMouseButtonDown(0))
-            //    {
-            //        isMaking = false;
-            //        break;
-            //    }
-            //}
-
-            //noteList.Add(tempLongNote);
         }
     }
 
@@ -156,9 +139,17 @@ public class NoteList : MonoBehaviour
         {
             var tempNote = noteList[i];
 
-            tempNote.GetComponent<Transform>().position = new Vector3(tempNote.transform.position.x,
-                EditorManager.instance.minNotePosY + tempNote.GetComponent<ShortNote>().arrvieDist * 
-                EditorManager.instance.userChartSpeed, tempNote.transform.position.x);
+            if (tempNote.tag == "ShortNote")
+            {
+                tempNote.GetComponent<Transform>().position = new Vector3(tempNote.transform.position.x,
+                        EditorManager.instance.minNotePosY + tempNote.GetComponent<ShortNote>().arrvieDist *
+                        EditorManager.instance.userChartSpeed, tempNote.transform.position.x);
+            }
+            else if (tempNote.tag == "LongNote")
+            {
+                //tempNote.transform.position = new Vector3
+            }
+
         }
     }
 }
