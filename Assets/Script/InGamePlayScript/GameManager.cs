@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Escape))
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
         }
     }
 
