@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class NoteList : MonoBehaviour
@@ -24,17 +26,36 @@ public class NoteList : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertShortNote)
         {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                SnapNotePosY();
+            }
+
             insertShortNote();
         }
 
         if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertLongNote)
         {
-            if (!isMaking) 
+            if (!isMaking)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    SnapNotePosY();
+                }
+
                 // 첫 번째 클릭
                 InsertLongNoteDown();
-            else 
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    SnapNotePosY();
+                }
+
                 //2번째 클릭
                 insertLongNoteUp();
+            }
         }
 
         if (Input.GetMouseButtonDown(0) && EditorManager.instance.isDeleteNote)
@@ -43,6 +64,71 @@ public class NoteList : MonoBehaviour
         }
     }
 
+    // 스내핑 기능 -> shortNote에만 반응하도록 구현하였는데 longNote에도 반응해도록 해야함
+    // longNote의 경우 위 또는 아래 거리에 따라 달리 해야함
+    public void SnapNotePosY()
+    {
+        if (noteList == null) return;
+        
+        Debug.Log("snapping");
+
+        var minDist = EditorManager.instance.gridHeight * EditorManager.instance.maxGridCount;
+        int checkNote = -1;
+        GameObject tempNote = null;
+
+        foreach (var note in noteList)
+        {
+            if (note.transform.tag == "ShortNote")
+            {
+                var tempDist = Mathf.Abs(note.transform.position.y - targetPos.y);
+
+                if (tempDist < minDist)
+                {
+                    minDist = tempDist;
+                    tempNote = note;
+                    checkNote = 1;
+                }
+            }
+            else if (note.transform.tag == "LongNote")
+            {
+                var tempDist1 = Mathf.Abs(note.transform.position.y - targetPos.y);
+                var tempDist2 = Mathf.Abs(note.GetComponent<LongNote>().defaultUpPosY  - targetPos.y);
+
+                if (tempDist1 < tempDist2)
+                {
+                    if (tempDist1 < minDist)
+                    {
+                        minDist = tempDist1;
+                        tempNote = note;
+                        checkNote = 1;
+                    }
+                }
+                else if (tempDist2 < tempDist1)
+                {
+                    if (tempDist2 < minDist)
+                    {
+                        Debug.Log("tempdist2");
+                        minDist = tempDist2;
+                        tempNote = note;
+                        checkNote = 2;
+                    }
+                }
+            }
+        }
+
+        switch (checkNote)
+        {
+            case 1:
+                targetPos.y = tempNote.transform.position.y;
+                break;
+            case 2:
+                targetPos.y = tempNote.transform.position.y + tempNote.GetComponent<LongNote>().defaultScale
+                    * EditorManager.instance.userChartSpeed - 0.2f;
+                break;
+        }
+    }
+
+    // 노트를 삭제하는 기능
     public void deleteNote()
     {
         Vector2 rayPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -53,7 +139,16 @@ public class NoteList : MonoBehaviour
         if (hit.transform.tag == "ShortNote" || hit.transform.tag == "LongNote")
         {
             Debug.Log(hit.transform.name);
-            Destroy(hit.transform.gameObject);
+
+            // Destroy할 때 리스트에 빈 공간이 남아 빈 공간도 제거해야함
+            for (int i = noteList.Count - 1; i >= 0; i--)
+            {
+                if (noteList[i] == hit.transform.gameObject)
+                {
+                    Destroy(hit.transform.gameObject);
+                    noteList.RemoveAt(i);
+                }
+            }
         }
         
     }

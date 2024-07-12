@@ -837,6 +837,7 @@ MonoBehaviour:
   maxGridCount: 10
   isInsertShortNote: 0
   isInsertLongNote: 0
+  isDeleteNote: 0
   minNotePosY: -3
   minNotePosX: -2
   maxNotePosX: 2
@@ -849,13 +850,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548465801}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.018348511, z: -0, w: 0.9998317}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 2.103, z: 0}
 --- !u!1 &558649101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,6 +1076,8 @@ MonoBehaviour:
   longNote: {fileID: 4182026099467513019, guid: dbb91bdd150bd0e4dafef6daa3b34655, type: 3}
   mousePos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
+  isMaking: 0
+  tempLongNote: {fileID: 0}
 --- !u!1 &661741351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,7 +2410,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1584184300}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 619897407}
+        m_TargetAssemblyTypeName: NoteList, Assembly-CSharp
+        m_MethodName: clickDeleteButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1584184300
 MonoBehaviour:
   m_ObjectHideFlags: 0

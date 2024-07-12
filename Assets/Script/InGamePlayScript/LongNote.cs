@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class LongNote : MonoBehaviour
 {
-    public int noteID; //noteid는 일반노트가 0, 롱노트가 1
     public float PosX;
     public float PosY; //롱노트의 경우 제일 밑의 y값 (UpPosY와 비교하여 둘 중 낮은 y값을 PosY로 해야함
-    public float UpPosY; // 롱노트의 제일 윗부분의 Y값 = PosY + scale.y - minY
+    public float UpPosY; // 롱노트의 제일 윗부분의 Y값 = PosY + scale.y
 
     public float arrivePosYDist; // PosY와 판정선까지의 거리
     public float arriveUpPosYDist; // UpPosY와 판정선까지의 거리
 
+    public int noteID; //noteid는 일반노트가 0, 롱노트가 1
     public float defaultScale;
     public float defaultArrivePosY;
     public float defaultArriveUpPosY;
+    public float defaultUpPosY;
 
     public void InitLongNote(float tempUpPos)
     {
@@ -47,6 +48,8 @@ public class LongNote : MonoBehaviour
         defaultScale = transform.localScale.y / EditorManager.instance.userChartSpeed;
         defaultArrivePosY = arrivePosYDist / EditorManager.instance.userChartSpeed;
         defaultArriveUpPosY = arriveUpPosYDist / EditorManager.instance.userChartSpeed;
+
+        defaultUpPosY = EditorManager.instance.minNotePosY + defaultArriveUpPosY;
     }
 
 }
