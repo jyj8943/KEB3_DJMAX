@@ -28,7 +28,7 @@ public class SongData : SaveData
 
     public SongData(string _filename, string _directory) : base(_filename, _directory)
     {
-
+        
     }
 
     [Serializable]

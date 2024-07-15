@@ -20,11 +20,12 @@ public class SaveLoadHelper : MonoBehaviour
 
     public static T LoadData<T>(string fileName, string dir) where T : SaveData
     {
-        var fullPath = Application.persistentDataPath + "/" + dir + "/" + fileName + ".json";
+        //var fullPath = dir;
+        var fullPath = Application.persistentDataPath + "/" + dir + "/" + fileName;
 
         if (!File.Exists(fullPath))
         {
-            Debug.LogError("Threr is no file : " + fullPath);
+            Debug.LogError("There is no file : " + fullPath);
             return null;
         }
 
