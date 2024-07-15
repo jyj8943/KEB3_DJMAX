@@ -17,6 +17,7 @@ public class NoteList : MonoBehaviour
     public bool isMaking = false;
     public GameObject tempLongNote;
     
+    //생성할 때 중복으로 노트가 생성되지 않겠금 해야함
     void Update()
     {
         transform.localPosition = Vector3.zero;
@@ -98,6 +99,7 @@ public class NoteList : MonoBehaviour
                 {
                     if (tempDist1 < minDist)
                     {
+                        Debug.Log("tempdist1");
                         minDist = tempDist1;
                         tempNote = note;
                         checkNote = 1;
@@ -123,12 +125,12 @@ public class NoteList : MonoBehaviour
                 break;
             case 2:
                 targetPos.y = tempNote.transform.position.y + tempNote.GetComponent<LongNote>().defaultScale
-                    * EditorManager.instance.userChartSpeed - 0.2f;
+                    * EditorManager.instance.userChartSpeed;
                 break;
         }
     }
 
-    // 노트를 삭제하는 기능
+    // 노트 삭제 기능
     public void deleteNote()
     {
         Vector2 rayPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);

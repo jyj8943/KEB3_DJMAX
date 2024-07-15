@@ -46,15 +46,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734171fb07dfcce4ab64e7654e3ef606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteID: 0
   PosX: 0
   PosY: 0
   UpPosY: 0
   arrivePosYDist: 0
   arriveUpPosYDist: 0
+  noteID: 0
   defaultScale: 0
   defaultArrivePosY: 0
   defaultArriveUpPosY: 0
+  defaultUpPosY: 0
 --- !u!61 &7563394789782624969
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4206188, y: 0.6819751, z: 1}
+  m_LocalScale: {x: 1.48, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5583336537084458929}
