@@ -266,7 +266,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 197460430}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 319901147}
+        m_TargetAssemblyTypeName: ChartReader, Assembly-CSharp
+        m_MethodName: SaveData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &197460430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a43aebd7709e914ba4855e8195e165b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempNoteList: {fileID: 619897407}
 --- !u!1 &357980134
 GameObject:
   m_ObjectHideFlags: 0
