@@ -11,6 +11,7 @@ public class LongNote : MonoBehaviour
     public float arrivePosYDist; // PosY와 판정선까지의 거리
     public float arriveUpPosYDist; // UpPosY와 판정선까지의 거리
 
+    public int railNum;
     public int noteID; //noteid는 일반노트가 0, 롱노트가 1
     public float defaultScale;
     public float defaultArrivePosY;
@@ -20,6 +21,23 @@ public class LongNote : MonoBehaviour
     public void InitLongNote(float tempUpPos)
     {
         PosX = transform.position.x;
+
+        switch (PosX)
+        {
+            case (-1.5f):
+                railNum = 1;
+                break;
+            case (-0.5f):
+                railNum = 2;
+                break;
+            case (0.5f):
+                railNum = 3;
+                break;
+            case (1.5f):
+                railNum = 4;
+                break;
+        }
+
         noteID = 1;
 
         var tempPosY = transform.position.y;
@@ -52,4 +70,16 @@ public class LongNote : MonoBehaviour
         defaultUpPosY = EditorManager.instance.minNotePosY + defaultArriveUpPosY;
     }
 
+    public SongData.NoteData GetNoteData()
+    {
+        return new SongData.NoteData
+        {
+            railNum = railNum,
+            posY = PosY,
+            noteID = noteID,
+            scale = defaultScale,
+            defaultDist = defaultArrivePosY,
+            distUpPosY = defaultArriveUpPosY
+        };
+    }
 }
