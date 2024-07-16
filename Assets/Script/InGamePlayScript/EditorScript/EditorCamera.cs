@@ -20,13 +20,11 @@ public class EditorCamera : MonoBehaviour
 
     void Update()
     {
-        // �׽�Ʈ�� �ٽý��� ��ư
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("Editor");
         }
 
-        // ī�޶� �����̱�
         if (Input.GetKeyDown(KeyCode.W) && transform.position.y < EditorManager.instance.maxGridCount * 8)
         {
             transform.Translate(0f, 8f, 0f);
@@ -36,7 +34,6 @@ public class EditorCamera : MonoBehaviour
             transform.Translate(0f, -8f, 0f);
         }
 
-        // ��� ���
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (isPlaying)
@@ -54,7 +51,6 @@ public class EditorCamera : MonoBehaviour
         if (isPlaying) transform.Translate(0f, EditorManager.instance.defaultChartSpeed
             * EditorManager.instance.userChartSpeed * Time.deltaTime, 0f);
 
-        // ���콺 �ٿ� ���� ��ũ�� ���
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
         if (wheelInput > 0 && transform.position.y < EditorManager.instance.maxGridCount * 8 - 7)
         {
@@ -65,7 +61,6 @@ public class EditorCamera : MonoBehaviour
             transform.Translate(0f, wheelInput * 3, 0f);
         }
 
-        // userChartSpeed�� 0.5��ŭ ������
         if (Input.GetKeyDown(KeyCode.E) && EditorManager.instance.userChartSpeed < EditorManager.instance.maxUserChartSpeed)
         {
             EditorManager.instance.changeUserChartSpeed(0.5f);
@@ -73,7 +68,7 @@ public class EditorCamera : MonoBehaviour
             gridList.changeGridHeight();
             noteList.changeNotePosY();
         }
-        // userChartSpeed�� 0.5��ŭ ������
+
         if (Input.GetKeyDown(KeyCode.D) && EditorManager.instance.userChartSpeed > 1f)
         {
             EditorManager.instance.changeUserChartSpeed(-0.5f);
@@ -81,8 +76,6 @@ public class EditorCamera : MonoBehaviour
             gridList.changeGridHeight();
             noteList.changeNotePosY();
         }
-
-        //�뷡 ��� ��ũ��Ʈ�� �ϴ� ī�޶� ���� ���߿� ���� ��ũ��Ʈ �ۼ� �ʿ��ҵ�
 
     }
 }

@@ -9,12 +9,9 @@ public class EditorManager : MonoBehaviour
 
     public TextMeshProUGUI userChartSpeedText;
 
-    // �׸���� �ʴ� defaultChartSpeed * userChartSpeed ��ŭ �Ʒ��� �����̸�, �׸��� �ϳ��� �ǹ��ϴ� �ð��� �ᱹ 4�ʸ� �ǹ��ؾ��Ѵ�.
-    // ���� �׸���� �Ѿ�� �ð��� ( 1����� �׸��� ���� * userChartSpeed )  / ( defaultChartSpeed * userChartSpeed )��
     public float defaultChartSpeed;
     public float userChartSpeed;
 
-    // ���� 1��� ���� �׸��� ����, ����� ����
     public float defaultGridHeight = 8f;
     public float defaultVerticalLineHeight = 2f;
 

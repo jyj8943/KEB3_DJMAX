@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEditor;
 using System.IO;
+using SimpleFileBrowser;
 
 public class ChartReader : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class ChartReader : MonoBehaviour
 
     public GameObject shorNotePrefab;
     public GameObject longNotePrefab;
+
+    private void Start()
+    {
+        FileBrowser.SetDefaultFilter(".mp3");
+        FileBrowser.AddQuickLink("Users", "C:\\Users", null);
+    }
 
     public void SaveData()
     {
@@ -111,4 +118,20 @@ public class ChartReader : MonoBehaviour
             }
         }
     }
+
+    // SimpleFileBrowser 에셋으로 파일 브라우저 기능을 구현
+    // https://github.com/yasirkula/UnitySimpleFileBrowser?tab=readme-ov-file
+    public void LoadSong()
+    {
+        var filters = FileBrowser.SetDefaultFilter(".mp3");
+
+        FileBrowser.SetFilters(false);
+
+        FileBrowser.ShowLoadDialog( (paths) => { Debug.Log("Selected: " + paths[0]); },
+            () => { Debug.Log("Canceled");  },
+            FileBrowser.PickMode.Files, false, null, null, "Select MP3 File", "Select");
+    }
+
+    public delegate void OnSuccess(string[] paths);
+    public delegate void OnCancel();
 }
