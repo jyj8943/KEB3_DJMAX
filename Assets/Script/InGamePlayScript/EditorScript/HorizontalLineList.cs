@@ -8,23 +8,13 @@ public class HorizontalLineList : MonoBehaviour
 
     public GameObject horizontalLine;
 
-    // Start is called before the first frame update
     void Start()
     {
         transform.localPosition = Vector3.zero;
 
-        // 2���� ������ ������ 1�ʸ� �ǹ��ϰԲ� �����ؾ���
-        // ( �׸����� ���� * �ִ� �׸��� ���� ) / ( �⺻ ä�� �ӵ� )
-        for (int i = 0; i < ( EditorManager.instance.maxGridCount * 4f ); i++)
-        {
-            var tempLine = Instantiate(horizontalLine) as GameObject;
-            tempLine.transform.SetParent(transform, false);
-            tempLine.transform.position = new Vector3(0f, -3f + i * EditorManager.instance.verticalLineHeight, 0f);
-            horizontalLineList.Add(tempLine);
-        }
+        MakeHorizontalLine();
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.localPosition = Vector3.zero;
@@ -36,6 +26,23 @@ public class HorizontalLineList : MonoBehaviour
         {
             var tempLine = horizontalLineList[i];
             tempLine.GetComponent<Transform>().position = new Vector3(0f, -3f + i * EditorManager.instance.verticalLineHeight, 0f);
+        }
+    }
+
+    public void MakeHorizontalLine()
+    {
+        foreach (var tempHorizontalLine in horizontalLineList)
+        {
+            Destroy(tempHorizontalLine.gameObject);
+        }
+        horizontalLineList.Clear();
+
+        for (int i = 0; i < (EditorManager.instance.maxGridCount * 4 + 1); i++)
+        {
+            var tempLine = Instantiate(horizontalLine) as GameObject;
+            tempLine.transform.SetParent(transform, false);
+            tempLine.transform.position = new Vector3(0f, -3f + i * EditorManager.instance.verticalLineHeight, 0f);
+            horizontalLineList.Add(tempLine);
         }
     }
 }

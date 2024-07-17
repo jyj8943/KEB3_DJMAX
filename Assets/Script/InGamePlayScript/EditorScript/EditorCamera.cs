@@ -2,21 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EditorCamera : MonoBehaviour
 {
-    public bool isPlaying = false;
-
     public HorizontalLineList horizontalLineList;
     public GridList gridList;
     public NoteList noteList;
-
     public AudioManager audioManager;
+    public Slider slider;
 
-    void Start()
-    {
-        
-    }
+    public bool isPlaying = false;
 
     void Update()
     {
@@ -46,7 +42,6 @@ public class EditorCamera : MonoBehaviour
                 isPlaying = true;
                 audioManager.playSong();
             }
-
         }
         if (isPlaying) transform.Translate(0f, EditorManager.instance.defaultChartSpeed
             * EditorManager.instance.userChartSpeed * Time.deltaTime, 0f);
@@ -76,6 +71,5 @@ public class EditorCamera : MonoBehaviour
             gridList.changeGridHeight();
             noteList.changeNotePosY();
         }
-
     }
 }

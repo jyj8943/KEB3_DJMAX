@@ -30,7 +30,7 @@ public class EditorManager : MonoBehaviour
     public float minNotePosX = -2f;
     public float maxNotePosX = 2f;
 
-    public int songTime = 128;
+    public int songTime = 80;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class EditorManager : MonoBehaviour
 
         gridHeight = defaultGridHeight * userChartSpeed;
         verticalLineHeight = defaultVerticalLineHeight * userChartSpeed;
-        maxGridCount = songTime / 4;
+        maxGridCount = (songTime / 4);
     }
 
     private void Update()
@@ -51,5 +51,10 @@ public class EditorManager : MonoBehaviour
         userChartSpeed += changeSpeed;
         gridHeight = defaultGridHeight * userChartSpeed;
         verticalLineHeight = defaultVerticalLineHeight * userChartSpeed;
+    }
+
+    public void InitInstance()
+    {
+        maxGridCount = (songTime / 4);
     }
 }
