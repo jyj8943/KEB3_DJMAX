@@ -6,13 +6,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEditor;
 using System.IO;
+using SimpleFileBrowser;
+using UnityEngine.Networking;
+using UnityEngine.Audio;
 
 public class ChartReader : MonoBehaviour
 {
     public NoteList tempNoteList;
+    public AudioManager audioManager;
 
     public GameObject shorNotePrefab;
     public GameObject longNotePrefab;
+
+    public string jsonDir;
 
     public void SaveData()
     {
@@ -20,8 +26,9 @@ public class ChartReader : MonoBehaviour
 
         // 곡 이름이랑 재생시간 가져오도록 작성해야함
         data.songName = "testSong";
-        data.songRunningTime = 120f;
-        data.bpm = 120;
+        data.songRunningTime = 120f; // 노래 시간 가져와야함
+        data.bpm = 120; // 해당 노래 bpm 가져와야함
+        data.difficulty = 3; // 해당 노래 채보의 레벨 가져와함
 
         var noteData = new SongData.NoteData[tempNoteList.noteList.Count];
 
@@ -42,13 +49,27 @@ public class ChartReader : MonoBehaviour
     {
         // 유저가 로드 버튼을 눌렀을 때 로컬 파일 창이 열리면서 채보 파일을 가져오게 한 후
         // 그 채보 파일의 곡 이름과 같은 노래를 가져오도록 짜야함
-        var jsonDir = EditorUtility.OpenFilePanel("Json File", Application.persistentDataPath + "/ChartData/testSong", "json");
+        //var jsonDir = EditorUtility.OpenFilePanel("Json File", Application.persistentDataPath + "/ChartData/testSong", "json");
+        FileBrowser.SetFilters(false, "json");
+        FileBrowser.AddQuickLink("Users", "C:\\Users", null);
+
+        StartCoroutine(ShowLoadDialogCoroutineForJson());
+    }
+
+    private IEnumerator ShowLoadDialogCoroutineForJson()
+    {
+        yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, null, "Load Json File", "Load");
+
+        if (FileBrowser.Success)
+        {
+            jsonDir = FileBrowser.Result[0];
+        }
         Debug.Log(jsonDir);
 
         var jsonName = Path.GetFileName(jsonDir);
         Debug.Log(jsonName);
 
-        if (string.IsNullOrEmpty(jsonDir)) return;
+        if (string.IsNullOrEmpty(jsonDir)) yield break;
 
         var data = SaveLoadHelper.LoadData<SongData>(jsonName, "ChartData/testSong");
 
@@ -57,8 +78,6 @@ public class ChartReader : MonoBehaviour
             Destroy(tempNote.gameObject);
         }
         tempNoteList.noteList.Clear();
-
-
 
         for (int i = 0; i < data.notes.Length; i++)
         {
@@ -87,7 +106,6 @@ public class ChartReader : MonoBehaviour
                     posX = 1.5f;
                     break;
             }
-
             var pos = new Vector3(posX, posY, 1f);
 
             if (noteID == 0)
@@ -108,6 +126,48 @@ public class ChartReader : MonoBehaviour
                 longNote.GetComponent<LongNote>().InitLongNote(distUpPosY);
 
                 tempNoteList.noteList.Add(longNote);
+            }
+        }
+    }
+
+    // SimpleFileBrowser 에셋으로 파일 브라우저 기능을 구현
+    // https://github.com/yasirkula/UnitySimpleFileBrowser?tab=readme-ov-file
+    public void LoadSong()
+    {
+        FileBrowser.SetFilters(false, "mp3");
+
+        FileBrowser.AddQuickLink("Users", "C:\\Users", null);
+
+        StartCoroutine(ShowLoadDialogCoroutine());
+    }
+
+    private IEnumerator ShowLoadDialogCoroutine()
+    {
+        yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, null, "Load MP3 File", "Load");
+
+        if (FileBrowser.Success)
+        {
+            string filePath = FileBrowser.Result[0]; // 선택된 파일 경로
+            StartCoroutine(LoadAudio(filePath));
+        }
+    }
+
+    private IEnumerator LoadAudio(string filePath)
+    {
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + filePath, AudioType.MPEG))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError(www.error);
+            }
+            else
+            {
+                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+                audioManager.bgm.clip = clip;
+                audioManager.InitSong();
+                audioManager.isLoadedSong = true;
             }
         }
     }
