@@ -24,6 +24,7 @@ public class SongData : SaveData
     public string songName;
     public float songRunningTime;
     public int bpm;
+    public int difficulty;
     public NoteData[] notes;
 
     public SongData(string _filename, string _directory) : base(_filename, _directory)
