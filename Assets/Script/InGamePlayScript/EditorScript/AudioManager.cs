@@ -28,6 +28,9 @@ public class AudioManager : MonoBehaviour
 
     public void SliderValueChanged()
     {
+        // 기능은 구현한 것 같지만 조건을 다시 설정해야함
+        // 재생 중일때 카메라, 슬라이더 모두 움직이여함
+        // 정지중일때 하나에 맞춰서 모두가 움직여야함
         if (isLoadedSong)
         {
             if (slider.value > bgm.clip.length)
