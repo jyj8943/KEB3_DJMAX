@@ -166,6 +166,7 @@ public class ChartReader : MonoBehaviour
             {
                 AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
                 audioManager.bgm.clip = clip;
+
                 audioManager.InitSong();
                 audioManager.isLoadedSong = true;
             }

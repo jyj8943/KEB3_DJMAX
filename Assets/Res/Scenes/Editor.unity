@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3832776937032140512, guid: df43f878b07a5714fba1568f5d16d42b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.33333334
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3832776937032140512, guid: df43f878b07a5714fba1568f5d16d42b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2065,7 +2065,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3487,7 +3487,7 @@ MonoBehaviour:
   gridList: {fileID: 661741353}
   noteList: {fileID: 619897407}
   audioManager: {fileID: 1055902969}
-  slider: {fileID: 0}
+  slider: {fileID: 2125186014}
   isPlaying: 0
 --- !u!1 &2125186012
 GameObject:

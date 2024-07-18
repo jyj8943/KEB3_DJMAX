@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Celebrity_IU_0: 5357402049024150275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

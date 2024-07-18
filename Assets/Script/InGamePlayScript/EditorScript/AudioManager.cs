@@ -18,11 +18,9 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-
-        if (isLoadedSong)
+        if (isLoadedSong && !Input.GetMouseButton(0))
         {
-            slider.value = editorCamera.transform.position.y / (EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed);
-            //slider.value = bgm.time;
+            slider.value = bgm.time;
         }
     }   
 
@@ -31,7 +29,7 @@ public class AudioManager : MonoBehaviour
         // 기능은 구현한 것 같지만 조건을 다시 설정해야함
         // 재생 중일때 카메라, 슬라이더 모두 움직이여함
         // 정지중일때 하나에 맞춰서 모두가 움직여야함
-        if (isLoadedSong)
+        if (isLoadedSong && Input.GetMouseButton(0))
         {
             if (slider.value > bgm.clip.length)
             {
@@ -54,7 +52,7 @@ public class AudioManager : MonoBehaviour
     {
         Debug.Log(bgm.clip.length.ToString());
         int bgmLength = 0;
-
+        
         if (bgm.clip != null)
         {
             bgmLength = Mathf.RoundToInt(bgm.clip.length);
@@ -64,7 +62,7 @@ public class AudioManager : MonoBehaviour
         }
 
         bgm.Play();
-        bgm.Stop();
+        bgm.Pause();
 
         EditorManager.instance.songTime = bgmLength;
         EditorManager.instance.InitInstance();
@@ -73,18 +71,9 @@ public class AudioManager : MonoBehaviour
         horizontalLineList.MakeHorizontalLine();
     }
 
-    public IEnumerator waitAndPlaySong()
-    {
-        yield return new WaitForSeconds(0.5f);
-    }
-
     public void playSong()
     {
-        if (isPaused)
-        {
-            waitAndPlaySong();
-        }
-        bgm.Play();
+        bgm.UnPause();
         isPaused = false;
     }
 
