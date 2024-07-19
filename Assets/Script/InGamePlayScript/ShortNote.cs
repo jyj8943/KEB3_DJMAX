@@ -17,7 +17,7 @@ public class ShortNote : MonoBehaviour {
         PosX = transform.position.x;
         PosY = transform.position.y;
         noteID = 0;
-        arrvieDist = PosY - EditorManager.instance.minNotePosY;
+        arrvieDist = PosY - EditorManager.instance.minNotePosY; //EditorManager.instance.minNotePosY;
 
         switch (PosX)
         {
@@ -35,7 +35,7 @@ public class ShortNote : MonoBehaviour {
                 break;
         }
 
-        defaultDist = arrvieDist / EditorManager.instance.userChartSpeed;
+        defaultDist = arrvieDist / EditorManager.instance.userChartSpeed; //EditorManager.instance.userChartSpeed;
     }
 
     public SongData.NoteData GetNoteData()

@@ -44,7 +44,7 @@ public class EditorCamera : MonoBehaviour
             }
         }
         if (isPlaying) transform.Translate(0f, EditorManager.instance.defaultChartSpeed
-            * EditorManager.instance.userChartSpeed * Time.deltaTime, 0f);
+                                               * EditorManager.instance.userChartSpeed * Time.deltaTime, 0f);
 
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
         if (wheelInput > 0 && transform.position.y < EditorManager.instance.maxGridCount * 8 - 7)
@@ -68,7 +68,7 @@ public class EditorCamera : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && EditorManager.instance.userChartSpeed < EditorManager.instance.maxUserChartSpeed)
         {
-            var defaultCameraDist = transform.position.y / EditorManager.instance.userChartSpeed;
+            var defaultCameraDist = transform.position.y /EditorManager.instance.userChartSpeed;
 
             EditorManager.instance.changeUserChartSpeed(0.5f);
             horizontalLineList.changeHorizontalLineHeight();
