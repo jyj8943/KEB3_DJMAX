@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,6 +14,9 @@ public class AudioManager : MonoBehaviour
     public GridList gridList;
     public HorizontalLineList horizontalLineList;
 
+    public RawImage movieScreen;
+    public VideoPlayer videoPlayer;
+
     [SerializeField]
     private bool isPaused = true;
     public bool isLoadedSong = false;
@@ -20,7 +25,8 @@ public class AudioManager : MonoBehaviour
     {
         if (isLoadedSong && !Input.GetMouseButton(0))
         {
-            slider.value = bgm.time;
+            //slider.value = bgm.time;
+            slider.value = (float)videoPlayer.time;
         }
     }   
 
@@ -31,38 +37,50 @@ public class AudioManager : MonoBehaviour
         // 정지중일때 하나에 맞춰서 모두가 움직여야함
         if (isLoadedSong && Input.GetMouseButton(0))
         {
-            if (slider.value > bgm.clip.length)
+            if (slider.value > (float)videoPlayer.length)
             {
+                editorCamera.isPlaying = false;
+
                 editorCamera.transform.position = new Vector3(editorCamera.transform.position.x
                         , slider.value * EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed
                         , editorCamera.transform.position.z);
             }
             else
             {
-                bgm.time = slider.value;
+                videoPlayer.Pause();
+                editorCamera.isPlaying = false;
+
+                videoPlayer.time = (double)slider.value;
 
                 editorCamera.transform.position = new Vector3(editorCamera.transform.position.x
                     , slider.value * EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed
                     , editorCamera.transform.position.z);
             }
         }
+
+        if (isLoadedSong && Input.GetMouseButtonUp(0))
+        {
+            videoPlayer.Play();
+            editorCamera.isPlaying = true;
+        }
     }
 
     public void InitSong()
     {
-        Debug.Log(bgm.clip.length.ToString());
+        Debug.Log(videoPlayer.length.ToString());
         int bgmLength = 0;
         
-        if (bgm.clip != null)
+        if (videoPlayer != null)
         {
-            bgmLength = Mathf.RoundToInt(bgm.clip.length);
+            bgmLength = Mathf.RoundToInt((float)videoPlayer.length);
             slider.maxValue = bgmLength;
             slider.minValue = 0;
             slider.value = 0;
         }
 
-        bgm.Play();
-        bgm.Pause();
+        videoPlayer.Play();
+        videoPlayer.Pause();
+        //videoPlayer.time = 10f;
 
         EditorManager.instance.songTime = bgmLength;
         EditorManager.instance.InitInstance();
@@ -73,13 +91,15 @@ public class AudioManager : MonoBehaviour
 
     public void playSong()
     {
-        bgm.UnPause();
+        //bgm.UnPause();
+        videoPlayer.Play();
         isPaused = false;
     }
 
     public void pauseSong()
     {
-        bgm.Pause();
+        //bgm.Pause();
+        videoPlayer.Pause();
         isPaused = true;
     }
 }
