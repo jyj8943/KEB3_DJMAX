@@ -4,7 +4,7 @@ using System.ComponentModel.Design;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class NoteList : MonoBehaviour
+public class InGameNoteList : MonoBehaviour
 {
     public List<GameObject> noteList = new();
 

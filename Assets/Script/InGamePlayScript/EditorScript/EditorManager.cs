@@ -43,7 +43,7 @@ public class EditorManager : MonoBehaviour
 
     private void Update()
     {
-        userChartSpeedText.SetText("User Chart Speed: " + userChartSpeed);
+        //userChartSpeedText.SetText("User Chart Speed: " + userChartSpeed);
     }
 
     public void changeUserChartSpeed(float changeSpeed)

@@ -36,7 +36,7 @@ public class GridList : MonoBehaviour
 
             var tempCount = gridCountList[i];
             tempCount.GetComponent<Transform>().position = new Vector3(-1f, tempGrid.transform.position.y -0.5f + 
-                EditorManager.instance.gridHeight / 2f, 0f);
+                                                                            EditorManager.instance.gridHeight / 2f, 0f);
             tempCount.GetComponent<Transform>().localScale = new Vector3(0.5f, 1 / (EditorManager.instance.gridHeight), 1f);
         }
     }
@@ -55,7 +55,7 @@ public class GridList : MonoBehaviour
         }
         gridCountList.Clear();
 
-        for (int i = 0; i < EditorManager.instance.maxGridCount; i++)
+        for (int i = 0; i <EditorManager.instance.maxGridCount; i++)
         {
             var tempGrid = Instantiate(grid) as GameObject;
             tempGrid.transform.SetParent(transform, false);

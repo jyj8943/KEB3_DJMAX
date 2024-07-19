@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class EditorCamera : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class EditorCamera : MonoBehaviour
     public NoteList noteList;
     public AudioManager audioManager;
     public Slider slider;
+
+    public RawImage movieScreen;
+    public VideoPlayer videoPlayer;
 
     public bool isPlaying = false;
 
@@ -44,7 +48,7 @@ public class EditorCamera : MonoBehaviour
             }
         }
         if (isPlaying) transform.Translate(0f, EditorManager.instance.defaultChartSpeed
-            * EditorManager.instance.userChartSpeed * Time.deltaTime, 0f);
+                                               * EditorManager.instance.userChartSpeed * Time.deltaTime, 0f);
 
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
         if (wheelInput > 0 && transform.position.y < EditorManager.instance.maxGridCount * 8 - 7)
@@ -53,8 +57,12 @@ public class EditorCamera : MonoBehaviour
 
             if (transform.position.y > EditorManager.instance.maxGridCount * 8 - 7)
                 transform.position = new Vector3(transform.position.x, EditorManager.instance.maxGridCount * 8 - 7, transform.position.z);
-            
-            audioManager.bgm.time = transform.position.y / (EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed);
+
+            if (videoPlayer != null)
+            {
+                videoPlayer.time = (double)(transform.position.y
+                    / (EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed));
+            }
         }
         else if (wheelInput < 0 && transform.position.y > 0)
         {
@@ -63,12 +71,16 @@ public class EditorCamera : MonoBehaviour
             if (transform.position.y < 0)
                 transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
 
-            audioManager.bgm.time = transform.position.y / (EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed);
+            if (videoPlayer != null)
+            {
+                videoPlayer.time = (double)(transform.position.y
+                    / (EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed));
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.E) && EditorManager.instance.userChartSpeed < EditorManager.instance.maxUserChartSpeed)
         {
-            var defaultCameraDist = transform.position.y / EditorManager.instance.userChartSpeed;
+            var defaultCameraDist = transform.position.y /EditorManager.instance.userChartSpeed;
 
             EditorManager.instance.changeUserChartSpeed(0.5f);
             horizontalLineList.changeHorizontalLineHeight();
