@@ -984,21 +984,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userChartSpeedText: {fileID: 357980136}
-  defaultChartSpeed: 2
-  userChartSpeed: 1
   defaultGridHeight: 8
   defaultVerticalLineHeight: 2
   gridHeight: 8
   verticalLineHeight: 2
-  maxUserChartSpeed: 5
   maxGridCount: 10
   isInsertShortNote: 0
   isInsertLongNote: 0
   isDeleteNote: 0
-  minNotePosY: -3
-  minNotePosX: -2
-  maxNotePosX: 2
-  songTime: 80
 --- !u!4 &548465803
 Transform:
   m_ObjectHideFlags: 0
@@ -1026,8 +1019,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6303a71869e056f408a30f292399e66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultChartSpeed: 0
-  userChartSpeed: 0
+  defaultChartSpeed: 2
+  userChartSpeed: 1
   maxUserChartSpeed: 5
   minNotePosY: -3
   minNotePosX: -2
