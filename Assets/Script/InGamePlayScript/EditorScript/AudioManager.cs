@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
                 editorCamera.isPlaying = false;
 
                 editorCamera.transform.position = new Vector3(editorCamera.transform.position.x
-                        , slider.value * EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed
+                        , slider.value * TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed
                         , editorCamera.transform.position.z);
             }
             else
@@ -53,7 +53,7 @@ public class AudioManager : MonoBehaviour
                 videoPlayer.time = (double)slider.value;
 
                 editorCamera.transform.position = new Vector3(editorCamera.transform.position.x
-                    , slider.value * EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed
+                    , slider.value * TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed
                     , editorCamera.transform.position.z);
             }
         }
@@ -82,7 +82,7 @@ public class AudioManager : MonoBehaviour
         videoPlayer.Pause();
         //videoPlayer.time = 10f;
 
-        EditorManager.instance.songTime = bgmLength;
+        TotalManager.instance.songTime = bgmLength;
         EditorManager.instance.InitInstance();
 
         gridList.MakeGrids();

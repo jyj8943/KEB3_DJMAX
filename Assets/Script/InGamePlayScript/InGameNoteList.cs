@@ -125,7 +125,7 @@ public class InGameNoteList : MonoBehaviour
                 break;
             case 2:
                 targetPos.y = tempNote.transform.position.y + tempNote.GetComponent<LongNote>().defaultScale
-                    * EditorManager.instance.userChartSpeed;
+                    * TotalManager.instance.userChartSpeed;
                 break;
         }
     }
@@ -157,8 +157,8 @@ public class InGameNoteList : MonoBehaviour
 
     public void insertShortNote()
     {
-        if (targetPos.x >=EditorManager.instance.minNotePosX && targetPos.x <= EditorManager.instance.maxNotePosX
-                && targetPos.y >= EditorManager.instance.minNotePosY)
+        if (targetPos.x >=TotalManager.instance.minNotePosX && targetPos.x <= TotalManager.instance.maxNotePosX
+                && targetPos.y >= TotalManager.instance.minNotePosY)
         {
             correctPosX(targetPos.x);
             var tempNote = Instantiate(shortNote, targetPos, Quaternion.identity);
@@ -188,8 +188,8 @@ public class InGameNoteList : MonoBehaviour
     {
         // 롱노트를 생성하는 함수 -> 두번째 클릭시 스케일을 변경하도록 짜야할듯
 
-        if (targetPos.x >= EditorManager.instance.minNotePosX && targetPos.x <= EditorManager.instance.maxNotePosX
-                                                              && targetPos.y >= EditorManager.instance.minNotePosY)
+        if (targetPos.x >= TotalManager.instance.minNotePosX && targetPos.x <= TotalManager.instance.maxNotePosX
+                                                              && targetPos.y >= TotalManager.instance.minNotePosY)
         {
             correctPosX(targetPos.x);
             tempLongNote = Instantiate(longNote, targetPos, Quaternion.identity);
@@ -199,19 +199,19 @@ public class InGameNoteList : MonoBehaviour
 
     public void correctPosX(float posX)
     {
-        if (posX >= 0 && posX < ( EditorManager.instance.maxNotePosX / 2 ))
+        if (posX >= 0 && posX < ( TotalManager.instance.maxNotePosX / 2 ))
         {
             targetPos.x = 0.5f;
         }
-        else if (posX >= ( EditorManager.instance.maxNotePosX / 2) && posX < EditorManager.instance.maxNotePosX)
+        else if (posX >= ( TotalManager.instance.maxNotePosX / 2) && posX < TotalManager.instance.maxNotePosX)
         {
             targetPos.x = 1.5f;
         }
-        else if (posX >= (EditorManager.instance.minNotePosX / 2) && posX < 0)
+        else if (posX >= (TotalManager.instance.minNotePosX / 2) && posX < 0)
         {
             targetPos.x = -0.5f;
         }
-        else if (posX >= EditorManager.instance.minNotePosX && posX < ( EditorManager.instance.minNotePosX / 2 ))
+        else if (posX >= TotalManager.instance.minNotePosX && posX < ( TotalManager.instance.minNotePosX / 2 ))
         {
             targetPos.x = -1.5f;
         }
@@ -228,17 +228,17 @@ public class InGameNoteList : MonoBehaviour
             if (tempNote.tag == "ShortNote")
             {
                 tempNote.GetComponent<Transform>().position = new Vector3(tempNote.transform.position.x,
-                    EditorManager.instance.minNotePosY + tempNote.GetComponent<ShortNote>().defaultDist *
-                    EditorManager.instance.userChartSpeed, tempNote.transform.position.z);
+                    TotalManager.instance.minNotePosY + tempNote.GetComponent<ShortNote>().defaultDist *
+                    TotalManager.instance.userChartSpeed, tempNote.transform.position.z);
             }
             else if (tempNote.tag == "LongNote")
             {
                 tempNote.transform.position = new Vector3(tempNote.transform.position.x,
-                    EditorManager.instance.minNotePosY + tempNote.GetComponent<LongNote>().defaultArrivePosY *
-                    EditorManager.instance.userChartSpeed, tempNote.transform.position.z);
+                    TotalManager.instance.minNotePosY + tempNote.GetComponent<LongNote>().defaultArrivePosY *
+                    TotalManager.instance.userChartSpeed, tempNote.transform.position.z);
 
                 tempNote.transform.localScale = new Vector3(1f, tempNote.GetComponent<LongNote>().defaultScale *
-                                                                EditorManager.instance.userChartSpeed, 1f);
+                                                                TotalManager.instance.userChartSpeed, 1f);
             }
         }
     }

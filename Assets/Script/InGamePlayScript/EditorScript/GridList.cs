@@ -30,7 +30,7 @@ public class GridList : MonoBehaviour
         for (int i = gridList.Count - 1; i >= 0; i--)
         {
             var tempGrid = gridList[i];
-            tempGrid.transform.localScale = new Vector3(4f, 8 * EditorManager.instance.userChartSpeed, 1f);
+            tempGrid.transform.localScale = new Vector3(4f, 8 * TotalManager.instance.userChartSpeed, 1f);
             tempGrid.GetComponent<Transform>().position = new Vector3(0f, -3f + 0.5f * EditorManager.instance.gridHeight 
                 + i * EditorManager.instance.gridHeight, 0f);
 

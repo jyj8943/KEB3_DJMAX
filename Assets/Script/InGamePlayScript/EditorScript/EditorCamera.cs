@@ -47,8 +47,8 @@ public class EditorCamera : MonoBehaviour
                 audioManager.playSong();
             }
         }
-        if (isPlaying) transform.Translate(0f, EditorManager.instance.defaultChartSpeed
-                                               * EditorManager.instance.userChartSpeed * Time.deltaTime, 0f);
+        if (isPlaying) transform.Translate(0f, TotalManager.instance.defaultChartSpeed
+                                               * TotalManager.instance.userChartSpeed * Time.deltaTime, 0f);
 
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
         if (wheelInput > 0 && transform.position.y < EditorManager.instance.maxGridCount * 8 - 7)
@@ -61,7 +61,7 @@ public class EditorCamera : MonoBehaviour
             if (videoPlayer != null)
             {
                 videoPlayer.time = (double)(transform.position.y
-                    / (EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed));
+                    / (TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed));
             }
         }
         else if (wheelInput < 0 && transform.position.y > 0)
@@ -74,13 +74,13 @@ public class EditorCamera : MonoBehaviour
             if (videoPlayer != null)
             {
                 videoPlayer.time = (double)(transform.position.y
-                    / (EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed));
+                    / (TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed));
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && EditorManager.instance.userChartSpeed < EditorManager.instance.maxUserChartSpeed)
+        if (Input.GetKeyDown(KeyCode.E) && TotalManager.instance.userChartSpeed < TotalManager.instance.maxUserChartSpeed)
         {
-            var defaultCameraDist = transform.position.y /EditorManager.instance.userChartSpeed;
+            var defaultCameraDist = transform.position.y / TotalManager.instance.userChartSpeed;
 
             EditorManager.instance.changeUserChartSpeed(0.5f);
             horizontalLineList.changeHorizontalLineHeight();
@@ -88,12 +88,12 @@ public class EditorCamera : MonoBehaviour
             noteList.changeNotePosY();
 
 
-            transform.position = new Vector3(transform.position.x, defaultCameraDist * EditorManager.instance.userChartSpeed, transform.position.z);
+            transform.position = new Vector3(transform.position.x, defaultCameraDist * TotalManager.instance.userChartSpeed, transform.position.z);
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && EditorManager.instance.userChartSpeed > 1f)
+        if (Input.GetKeyDown(KeyCode.D) && TotalManager.instance.userChartSpeed > 1f)
         {
-            var defaultCameraDist = transform.position.y / EditorManager.instance.userChartSpeed;
+            var defaultCameraDist = transform.position.y / TotalManager.instance.userChartSpeed;
 
             EditorManager.instance.changeUserChartSpeed(-0.5f);
             horizontalLineList.changeHorizontalLineHeight();
@@ -101,7 +101,7 @@ public class EditorCamera : MonoBehaviour
             noteList.changeNotePosY();
 
 
-            transform.position = new Vector3(transform.position.x, defaultCameraDist * EditorManager.instance.userChartSpeed, transform.position.z);
+            transform.position = new Vector3(transform.position.x, defaultCameraDist * TotalManager.instance.userChartSpeed, transform.position.z);
         }
     }
 }

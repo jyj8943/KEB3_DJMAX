@@ -963,6 +963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 548465803}
   - component: {fileID: 548465802}
+  - component: {fileID: 548465804}
   m_Layer: 0
   m_Name: EditorManager
   m_TagString: Untagged
@@ -1013,6 +1014,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 2.103, z: 0}
+--- !u!114 &548465804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548465801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6303a71869e056f408a30f292399e66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultChartSpeed: 0
+  userChartSpeed: 0
+  maxUserChartSpeed: 5
+  minNotePosY: -3
+  minNotePosX: -2
+  maxNotePosX: 2
+  songTime: 80
 --- !u!1 &558649101
 GameObject:
   m_ObjectHideFlags: 0
