@@ -7,31 +7,57 @@ using UnityEngine.EventSystems;
 
 public class SongListManager : MonoBehaviour
 {
-    public GameObject songPrefab; // 곡 정보 Prefab
-    public Transform contentPanel; // ScrollView의 Content
+    public GameObject songPrefab;
+    public Transform contentPanel;
+    public TextMeshProUGUI infoTitle;
+    public TextMeshProUGUI infoArtist;
+    public Image infoAlbumImage;
+    private int listIndex = 0;
 
     void Start()
     {
         PopulateSongList();
-        Button firstButton = contentPanel.transform.GetChild(0).GetComponent<Button>();
+        Button firstButton = contentPanel.transform.GetChild(listIndex).GetComponent<Button>();
         EventSystem.current.SetSelectedGameObject(firstButton.gameObject);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ScrollDown();
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            ScrollUp();
+        }
     }
 
     void PopulateSongList()
     {
         foreach (var song in SongDB.Instance.songs)
         {   
-            GameObject newSong = Instantiate(songPrefab, contentPanel);
-            TextMeshProUGUI titleText = newSong.transform.Find("Title").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI artistText = newSong.transform.Find("Artist").GetComponent<TextMeshProUGUI>();
-            Image songImage = newSong.transform.Find("Image").GetComponent<Image>();
-
-            titleText.text = song.songTitle;
-            artistText.text = song.songArtist;
-
-            string imagePath = "AlbumImage/" + song.songTitle + "_" + song.songArtist;
-            Sprite imageSprite = Resources.Load<Sprite>(imagePath);
-            songImage.sprite = imageSprite;
+            var songListElement = Instantiate(songPrefab, contentPanel).GetComponent<SongPrefabMaker>();
+            songListElement.FillContent(song);
         }
+    }
+
+    void ScrollDown()
+    {
+        listIndex += 1;
+        Button selectedButton = contentPanel.transform.GetChild(listIndex).GetComponent<Button>();
+        EventSystem.current.SetSelectedGameObject(selectedButton.gameObject);
+    }
+
+    void ScrollUp()
+    {
+        listIndex -= 1;
+        Button selectedButton = contentPanel.transform.GetChild(listIndex).GetComponent<Button>();
+        EventSystem.current.SetSelectedGameObject(selectedButton.gameObject);
+    }
+
+    void InfoUpdate()
+    {
+        // infoTitle.text = 
     }
 }
