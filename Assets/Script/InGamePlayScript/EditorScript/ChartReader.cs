@@ -9,16 +9,26 @@ using System.IO;
 using SimpleFileBrowser;
 using UnityEngine.Networking;
 using UnityEngine.Audio;
+using UnityEngine.Video;
 
 public class ChartReader : MonoBehaviour
 {
     public NoteList tempNoteList;
     public AudioManager audioManager;
 
+    public RawImage movieScreen;
+    public VideoPlayer videoPlayer;
+    public RenderTexture renderTexture;
+
     public GameObject shorNotePrefab;
     public GameObject longNotePrefab;
 
     public string jsonDir;
+
+    private void Awake()
+    {
+        movieScreen.texture = null;
+    }
 
     public void SaveData()
     {
@@ -28,7 +38,7 @@ public class ChartReader : MonoBehaviour
         data.songName = "testSong";
         data.songRunningTime = 120f; // 노래 시간 가져와야함
         data.bpm = 120; // 해당 노래 bpm 가져와야함
-        data.difficulty = 3; // 해당 노래 채보의 레벨 가져와함
+        data.difficulty = 3; // 해당 노래 채보의 레벨 가져와함 (1 ~ 10 예상중)
 
         var noteData = new SongData.NoteData[tempNoteList.noteList.Count];
 
@@ -49,9 +59,7 @@ public class ChartReader : MonoBehaviour
     {
         // 유저가 로드 버튼을 눌렀을 때 로컬 파일 창이 열리면서 채보 파일을 가져오게 한 후
         // 그 채보 파일의 곡 이름과 같은 노래를 가져오도록 짜야함
-        //var jsonDir = EditorUtility.OpenFilePanel("Json File", Application.persistentDataPath + "/ChartData/testSong", "json");
         FileBrowser.SetFilters(false, "json");
-        FileBrowser.AddQuickLink("Users", "C:\\Users", null);
 
         StartCoroutine(ShowLoadDialogCoroutineForJson());
     }
@@ -134,38 +142,87 @@ public class ChartReader : MonoBehaviour
     // https://github.com/yasirkula/UnitySimpleFileBrowser?tab=readme-ov-file
     public void LoadSong()
     {
-        FileBrowser.SetFilters(false, "mp3");
+        //FileBrowser.SetFilters(false, "mp3", "mp4");
 
-        FileBrowser.AddQuickLink("Users", "C:\\Users", null);
+        //FileBrowser.AddQuickLink("Users", "C:\\Users", null);
 
-        StartCoroutine(ShowLoadDialogCoroutine());
+        //StartCoroutine(ShowLoadDialogCoroutine());
+
+        FileBrowser.SetFilters(true, new FileBrowser.Filter("Videos", ".mp4", ".avi", ".mov"));
+        FileBrowser.SetDefaultFilter(".mp4");
+        FileBrowser.ShowLoadDialog(OnFileSelected, null, FileBrowser.PickMode.Files, false, null, null, "Select Video File", "Select");
     }
 
-    private IEnumerator ShowLoadDialogCoroutine()
-    {
-        yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, null, "Load MP3 File", "Load");
+    //private IEnumerator ShowLoadDialogCoroutine()
+    //{
+    //    yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, null, "Load MP3 File", "Load");
 
-        if (FileBrowser.Success)
+    //    if (FileBrowser.Success)
+    //    {
+    //        string filePath = FileBrowser.Result[0]; // 선택된 파일 경로
+    //        StartCoroutine(LoadAudio(filePath));
+    //    }
+    //}
+
+    //private IEnumerator LoadAudio(string filePath)
+    //{
+    //    using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + filePath, AudioType.MPEG))
+    //    {
+    //        yield return www.SendWebRequest();
+
+    //        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+    //        {
+    //            Debug.LogError(www.error);
+    //        }
+    //        else
+    //        {
+    //            AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+    //            audioManager.bgm.clip = clip;
+
+    //            audioManager.InitSong();
+    //            audioManager.isLoadedSong = true;
+    //        }
+    //    }
+    //}
+
+    void OnFileSelected(string[] paths)
+    {
+        if (paths.Length > 0)
         {
-            string filePath = FileBrowser.Result[0]; // 선택된 파일 경로
-            StartCoroutine(LoadAudio(filePath));
+            string filePath = paths[0];
+            StartCoroutine(DownloadAndPlayVideo(filePath));
         }
     }
 
-    private IEnumerator LoadAudio(string filePath)
+    IEnumerator DownloadAndPlayVideo(string url)
     {
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + filePath, AudioType.MPEG))
+        using (UnityWebRequest uwr = UnityWebRequest.Get(url))
         {
-            yield return www.SendWebRequest();
+            string filePath = System.IO.Path.Combine(Application.persistentDataPath, "downloadedVideo.mp4");
+            uwr.downloadHandler = new DownloadHandlerFile(filePath);
 
-            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+            yield return uwr.SendWebRequest();
+
+            if (uwr.result == UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.LogError(www.error);
+                Debug.LogError(uwr.error);
             }
             else
             {
-                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
-                audioManager.bgm.clip = clip;
+                Debug.Log("Video successfully downloaded and saved to " + filePath);
+
+                videoPlayer.url = filePath;
+                videoPlayer.Prepare();
+
+                while (!videoPlayer.isPrepared)
+                {
+                    yield return null;
+                }
+
+                if (movieScreen.texture != null)
+                    movieScreen.texture = null;
+
+                movieScreen.texture = videoPlayer.texture;
                 audioManager.InitSong();
                 audioManager.isLoadedSong = true;
             }

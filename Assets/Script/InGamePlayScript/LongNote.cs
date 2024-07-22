@@ -60,14 +60,14 @@ public class LongNote : MonoBehaviour
 
         }
 
-        arrivePosYDist = PosY - EditorManager.instance.minNotePosY;
-        arriveUpPosYDist = UpPosY - EditorManager.instance.minNotePosY;
+        arrivePosYDist = PosY - TotalManager.instance.minNotePosY;
+        arriveUpPosYDist = UpPosY - TotalManager.instance.minNotePosY;
 
-        defaultScale = transform.localScale.y / EditorManager.instance.userChartSpeed;
-        defaultArrivePosY = arrivePosYDist / EditorManager.instance.userChartSpeed;
-        defaultArriveUpPosY = arriveUpPosYDist / EditorManager.instance.userChartSpeed;
+        defaultScale = transform.localScale.y / TotalManager.instance.userChartSpeed;
+        defaultArrivePosY = arrivePosYDist / TotalManager.instance.userChartSpeed;
+        defaultArriveUpPosY = arriveUpPosYDist / TotalManager.instance.userChartSpeed;
 
-        defaultUpPosY = EditorManager.instance.minNotePosY + defaultArriveUpPosY;
+        defaultUpPosY = TotalManager.instance.minNotePosY + defaultArriveUpPosY;
     }
 
     public SongData.NoteData GetNoteData()

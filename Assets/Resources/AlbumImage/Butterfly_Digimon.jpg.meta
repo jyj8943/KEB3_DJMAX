@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Butterfly_Digimon_0: 2046192069128784575
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

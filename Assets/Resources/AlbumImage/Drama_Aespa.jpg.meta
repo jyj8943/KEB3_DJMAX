@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Drama_Aespa_0: 4382362811286711680
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

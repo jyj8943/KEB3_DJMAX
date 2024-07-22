@@ -30,13 +30,13 @@ public class GridList : MonoBehaviour
         for (int i = gridList.Count - 1; i >= 0; i--)
         {
             var tempGrid = gridList[i];
-            tempGrid.transform.localScale = new Vector3(4f, 8 * EditorManager.instance.userChartSpeed, 1f);
+            tempGrid.transform.localScale = new Vector3(4f, 8 * TotalManager.instance.userChartSpeed, 1f);
             tempGrid.GetComponent<Transform>().position = new Vector3(0f, -3f + 0.5f * EditorManager.instance.gridHeight 
                 + i * EditorManager.instance.gridHeight, 0f);
 
             var tempCount = gridCountList[i];
             tempCount.GetComponent<Transform>().position = new Vector3(-1f, tempGrid.transform.position.y -0.5f + 
-                EditorManager.instance.gridHeight / 2f, 0f);
+                                                                            EditorManager.instance.gridHeight / 2f, 0f);
             tempCount.GetComponent<Transform>().localScale = new Vector3(0.5f, 1 / (EditorManager.instance.gridHeight), 1f);
         }
     }
@@ -55,7 +55,7 @@ public class GridList : MonoBehaviour
         }
         gridCountList.Clear();
 
-        for (int i = 0; i < EditorManager.instance.maxGridCount; i++)
+        for (int i = 0; i <EditorManager.instance.maxGridCount; i++)
         {
             var tempGrid = Instantiate(grid) as GameObject;
             tempGrid.transform.SetParent(transform, false);

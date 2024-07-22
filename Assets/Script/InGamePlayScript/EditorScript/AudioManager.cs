@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,17 +14,19 @@ public class AudioManager : MonoBehaviour
     public GridList gridList;
     public HorizontalLineList horizontalLineList;
 
+    public RawImage movieScreen;
+    public VideoPlayer videoPlayer;
+
     [SerializeField]
     private bool isPaused = true;
     public bool isLoadedSong = false;
 
     private void Update()
     {
-
-        if (isLoadedSong)
+        if (isLoadedSong && !Input.GetMouseButton(0))
         {
-            slider.value = editorCamera.transform.position.y / (EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed);
             //slider.value = bgm.time;
+            slider.value = (float)videoPlayer.time;
         }
     }   
 
@@ -31,66 +35,71 @@ public class AudioManager : MonoBehaviour
         // 기능은 구현한 것 같지만 조건을 다시 설정해야함
         // 재생 중일때 카메라, 슬라이더 모두 움직이여함
         // 정지중일때 하나에 맞춰서 모두가 움직여야함
-        if (isLoadedSong)
+        if (isLoadedSong && Input.GetMouseButton(0))
         {
-            if (slider.value > bgm.clip.length)
+            if (slider.value > (float)videoPlayer.length)
             {
+                editorCamera.isPlaying = false;
+
                 editorCamera.transform.position = new Vector3(editorCamera.transform.position.x
-                        , slider.value * EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed
+                        , slider.value * TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed
                         , editorCamera.transform.position.z);
             }
             else
             {
-                bgm.time = slider.value;
+                videoPlayer.Pause();
+                editorCamera.isPlaying = false;
+
+                videoPlayer.time = (double)slider.value;
 
                 editorCamera.transform.position = new Vector3(editorCamera.transform.position.x
-                    , slider.value * EditorManager.instance.userChartSpeed * EditorManager.instance.defaultChartSpeed
+                    , slider.value * TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed
                     , editorCamera.transform.position.z);
             }
+        }
+
+        if (isLoadedSong && Input.GetMouseButtonUp(0))
+        {
+            videoPlayer.Play();
+            editorCamera.isPlaying = true;
         }
     }
 
     public void InitSong()
     {
-        Debug.Log(bgm.clip.length.ToString());
+        Debug.Log(videoPlayer.length.ToString());
         int bgmLength = 0;
-
-        if (bgm.clip != null)
+        
+        if (videoPlayer != null)
         {
-            bgmLength = Mathf.RoundToInt(bgm.clip.length);
+            bgmLength = Mathf.RoundToInt((float)videoPlayer.length);
             slider.maxValue = bgmLength;
             slider.minValue = 0;
             slider.value = 0;
         }
 
-        bgm.Play();
-        bgm.Stop();
+        videoPlayer.Play();
+        videoPlayer.Pause();
+        //videoPlayer.time = 10f;
 
-        EditorManager.instance.songTime = bgmLength;
+        TotalManager.instance.songTime = bgmLength;
         EditorManager.instance.InitInstance();
 
         gridList.MakeGrids();
         horizontalLineList.MakeHorizontalLine();
     }
 
-    public IEnumerator waitAndPlaySong()
-    {
-        yield return new WaitForSeconds(0.5f);
-    }
-
     public void playSong()
     {
-        if (isPaused)
-        {
-            waitAndPlaySong();
-        }
-        bgm.Play();
+        //bgm.UnPause();
+        videoPlayer.Play();
         isPaused = false;
     }
 
     public void pauseSong()
     {
-        bgm.Pause();
+        //bgm.Pause();
+        videoPlayer.Pause();
         isPaused = true;
     }
 }
