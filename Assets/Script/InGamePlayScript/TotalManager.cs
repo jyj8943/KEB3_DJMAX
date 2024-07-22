@@ -6,8 +6,8 @@ public class TotalManager : MonoBehaviour
 {
     public static TotalManager instance;
 
-    public float defaultChartSpeed;
-    public float userChartSpeed;
+    public float defaultChartSpeed = 2f;
+    public float userChartSpeed = 1f;
 
     public float maxUserChartSpeed = 5f;
 

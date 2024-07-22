@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -62,6 +63,15 @@ public class NoteList : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && EditorManager.instance.isDeleteNote)
         {
             deleteNote();
+        }
+    }
+
+    // noteList의 note들을 정렬 -> 삽입 정렬로 구현
+    public void SortingNotes()
+    {
+        for (int i = 1; i < noteList.Count; i++)
+        {
+
         }
     }
 

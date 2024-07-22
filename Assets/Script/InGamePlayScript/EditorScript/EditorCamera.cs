@@ -20,18 +20,31 @@ public class EditorCamera : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Editor");
-        }
-
         if (Input.GetKeyDown(KeyCode.W) && transform.position.y < EditorManager.instance.maxGridCount * 8)
         {
             transform.Translate(0f, 8f, 0f);
+
+            if (transform.position.y > EditorManager.instance.maxGridCount * 8 - 7)
+                transform.position = new Vector3(transform.position.x, EditorManager.instance.maxGridCount * 8 - 7, transform.position.z);
+
+            if (videoPlayer != null)
+            {
+                videoPlayer.time = (double)(transform.position.y
+                    / (TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed));
+            }
         }
         if (Input.GetKeyDown(KeyCode.S) && transform.position.y > 0)
         {
             transform.Translate(0f, -8f, 0f);
+
+            if (transform.position.y < 0)
+                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+
+            if (videoPlayer != null)
+            {
+                videoPlayer.time = (double)(transform.position.y
+                    / (TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed));
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q))

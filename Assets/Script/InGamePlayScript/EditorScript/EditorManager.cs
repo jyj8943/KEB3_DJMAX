@@ -9,28 +9,17 @@ public class EditorManager : MonoBehaviour
 
     public TextMeshProUGUI userChartSpeedText;
 
-    //public float defaultChartSpeed;
-    //public float userChartSpeed;
-
     public float defaultGridHeight = 8f;
     public float defaultVerticalLineHeight = 2f;
 
     public float gridHeight;
     public float verticalLineHeight;
 
-    //public float maxUserChartSpeed = 5f;
-
     public int maxGridCount;
 
     public bool isInsertShortNote = false;
     public bool isInsertLongNote = false; 
     public bool isDeleteNote = false;
-
-    //public float minNotePosY = -3f;
-    //public float minNotePosX = -2f;
-    //public float maxNotePosX = 2f;
-
-    //public int songTime = 80;
 
     private void Awake()
     {
