@@ -18,7 +18,7 @@ public class InGameChartReader : MonoBehaviour
     public string jsonFileName = "testSong.json"; // JSON 파일 이름을 스크립트에 직접 저장
     public string jsonFilePath = "ChartData/testSong"; // JSON 파일 경로를 스크립트에 직접 저장
 
-    private void Awake()
+    private void Start()
     {
         LoadData();
     }

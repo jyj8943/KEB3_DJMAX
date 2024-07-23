@@ -9,7 +9,10 @@ public class InGamePlayManager : MonoBehaviour
     public static InGamePlayManager instance;
 
     public List<GameObject> noteList = new();
-    //public List<GameObject> 
+    //public List<GameObject> noteListinRailNum1 = new();
+    //public List<GameObject> noteListinRailNum2 = new();
+    //public List<GameObject> noteListinRailNum3 = new();
+    //public List<GameObject> noteListinRailNum4 = new();
 
     //public GameObject shortNotePrefab;
     //public GameObject longNotePrefab;
@@ -31,15 +34,22 @@ public class InGamePlayManager : MonoBehaviour
         float defaultDist = 0;
         float noteListDist = 0;
         int noteListNum = -1;
+        int railNum = 0;
 
         if (noteList.Count == 0)
             noteList.Add(tempNote);
         else
         {
             if (tempNote.tag == "ShortNote")
+            {
                 defaultDist = tempNote.GetComponent<ShortNote>().defaultDist;
+                railNum = tempNote.GetComponent<ShortNote>().railNum;
+            }
             else if (tempNote.tag == "LongNote")
+            {
                 defaultDist = tempNote.GetComponent<LongNote>().defaultArrivePosY;
+                railNum = tempNote.GetComponent<LongNote>().railNum;
+            }
 
             for (int i = 0; i < noteList.Count; i++)
             {
@@ -59,6 +69,42 @@ public class InGamePlayManager : MonoBehaviour
                 noteList.Insert(noteListNum, tempNote);
             else if (noteListNum == -1)
                 noteList.Add(tempNote);
+
+            //switch (railNum)
+            //{
+            //    case 1:
+            //        {
+            //            if (noteListNum != -1)
+            //                noteListinRailNum1.Insert(noteListNum, tempNote);
+            //            else if (noteListNum == -1)
+            //                noteListinRailNum1.Add(tempNote);
+            //            break;
+            //        }
+            //    case 2:
+            //        {
+            //            if (noteListNum != -1)
+            //                noteListinRailNum2.Insert(noteListNum, tempNote);
+            //            else if (noteListNum == -1)
+            //                noteListinRailNum2.Add(tempNote);
+            //            break;
+            //        }
+            //    case 3:
+            //        {
+            //            if (noteListNum != -1)
+            //                noteListinRailNum3.Insert(noteListNum, tempNote);
+            //            else if (noteListNum == -1)
+            //                noteListinRailNum3.Add(tempNote);
+            //            break;
+            //        }
+            //    case 4:
+            //        {
+            //            if (noteListNum != -1)
+            //                noteListinRailNum4.Insert(noteListNum, tempNote);
+            //            else if (noteListNum == -1)
+            //                noteListinRailNum4.Add(tempNote);
+            //            break;
+            //        }
+            //}
         }
     }
 }
