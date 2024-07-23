@@ -468,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: -1.04, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -881,10 +881,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9c07cfe04f3864d9976f221f023b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempNoteList: {fileID: 2113552176}
   shortNotePrefab: {fileID: 4210926327830567101, guid: 04e451d8c5c4900439198034c2c3dc9c, type: 3}
   longNotePrefab: {fileID: 4182026099467513019, guid: dbb91bdd150bd0e4dafef6daa3b34655, type: 3}
-  jsonFileName: ButterFly.json
+  jsonFileName: testSong.json
   jsonFilePath: ChartData/testSong
 --- !u!4 &1330400907
 Transform:
@@ -1560,7 +1559,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1954910022}
   - component: {fileID: 1954910023}
-  - component: {fileID: 1954910024}
   - component: {fileID: 1954910025}
   m_Layer: 0
   m_Name: GameManager
@@ -1578,7 +1576,7 @@ Transform:
   m_GameObject: {fileID: 1954910020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1596,36 +1594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802f33958eea57a409ae96dfef03808a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultChartSpeed: 2
-  userChartSpeed: 1
-  defaultGridHeight: 8
-  defaultVerticalLineHeight: 2
-  maxUserChartSpeed: 5
-  minNotePosY: -3
-  minNotePosX: -2
-  maxNotePosX: 2
-  songTime: 80
---- !u!114 &1954910024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954910020}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecc09dd6c3d57064abc8610398d154a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userChartSpeedText: {fileID: 0}
-  defaultGridHeight: 8
-  defaultVerticalLineHeight: 2
-  gridHeight: 0
-  verticalLineHeight: 0
-  maxGridCount: 0
-  isInsertShortNote: 0
-  isInsertLongNote: 0
-  isDeleteNote: 0
+  noteList: []
 --- !u!114 &1954910025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,57 +1700,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2113552175
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2113552177}
-  - component: {fileID: 2113552176}
-  m_Layer: 0
-  m_Name: InGameNoteList
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2113552176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113552175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5906e38a64ac294999e4f14042ec86a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noteList: []
-  shortNote: {fileID: 4210926327830567101, guid: 04e451d8c5c4900439198034c2c3dc9c, type: 3}
-  longNote: {fileID: 4182026099467513019, guid: dbb91bdd150bd0e4dafef6daa3b34655, type: 3}
-  mousePos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
-  isMaking: 0
-  tempLongNote: {fileID: 0}
---- !u!4 &2113552177
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113552175}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51413774, y: -1.1923735, z: 5.622858}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1789,4 +1707,3 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1954910022}
   - {fileID: 1330400907}
-  - {fileID: 2113552177}

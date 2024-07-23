@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -66,12 +67,40 @@ public class NoteList : MonoBehaviour
         }
     }
 
-    // noteList의 note들을 정렬 -> 삽입 정렬로 구현
-    public void SortingNotes()
+    // noteList의 note들을 note의 defaultDist순으로 noteList에 삽입
+    public void SortingNotes(GameObject tempNote)
     {
-        for (int i = 1; i < noteList.Count; i++)
-        {
+        float defaultDist = 0;
+        float noteListDist = 0;
+        int noteListNum = -1;
 
+        if (noteList.Count == 0)
+            noteList.Add(tempNote);
+        else
+        {
+            if (tempNote.tag == "ShortNote")
+                defaultDist = tempNote.GetComponent<ShortNote>().defaultDist;
+            else if (tempNote.tag == "LongNote")
+                defaultDist = tempNote.GetComponent<LongNote>().defaultArrivePosY;
+
+            for (int i = 0; i < noteList.Count; i++)
+            {
+                if (noteList[i].tag == "ShortNote")
+                    noteListDist = noteList[i].GetComponent<ShortNote>().defaultDist;
+                else if (noteList[i].tag == "LongNote")
+                    noteListDist = noteList[i].GetComponent<LongNote>().defaultArrivePosY;
+
+                if (defaultDist < noteListDist || defaultDist == noteListDist)
+                {
+                    noteListNum = i;
+                    break;
+                }
+            }
+
+            if (noteListNum != -1)
+                noteList.Insert(noteListNum, tempNote);
+            else if (noteListNum == -1)
+                noteList.Add(tempNote);
         }
     }
 
@@ -175,7 +204,10 @@ public class NoteList : MonoBehaviour
 
             tempNote.transform.SetParent(transform, false);
 
-            noteList.Add(tempNote);
+            tempNote.GetComponent<ShortNote>().InitShortNote();
+
+            //noteList.Add(tempNote);
+            SortingNotes(tempNote);
         }
     }
 
@@ -187,10 +219,11 @@ public class NoteList : MonoBehaviour
         tempLongNote.transform.SetParent(transform, false);
         isMaking = false;
 
-        noteList.Add(tempLongNote);
-
         tempLongNote.GetComponent<LongNote>().InitLongNote(targetPos.y);
 
+        //noteList.Add(tempLongNote);
+        SortingNotes(tempLongNote);
+        
         tempLongNote = null;
     }
 

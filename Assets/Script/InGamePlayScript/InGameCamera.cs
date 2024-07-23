@@ -5,15 +5,7 @@ using UnityEngine;
 public class InGameCamera : MonoBehaviour
 {
     public bool isPlaying = false;
-    
-    //public AudioManager audioManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -30,8 +22,8 @@ public class InGameCamera : MonoBehaviour
             }
             
         }
-        if (isPlaying) transform.Translate(0f, InGamePlayManager.instance.defaultChartSpeed
-                                               * InGamePlayManager.instance.userChartSpeed * Time.deltaTime, 0f);
+        if (isPlaying) transform.Translate(0f, TotalManager.instance.defaultChartSpeed
+                                               * TotalManager.instance.userChartSpeed * Time.deltaTime, 0f);
         
     }
 }
