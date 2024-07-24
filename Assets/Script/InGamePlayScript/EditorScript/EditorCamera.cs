@@ -20,6 +20,14 @@ public class EditorCamera : MonoBehaviour
 
     void Update()
     {
+        if (PauseCanvas.isPauseCanvasOn)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+            {
+                
+                return;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.W) && transform.position.y < EditorManager.instance.maxGridCount * 8)
         {
             transform.Translate(0f, 8f, 0f);
@@ -116,5 +124,7 @@ public class EditorCamera : MonoBehaviour
 
             transform.position = new Vector3(transform.position.x, defaultCameraDist * TotalManager.instance.userChartSpeed, transform.position.z);
         }
+
+        
     }
 }

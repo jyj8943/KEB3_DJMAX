@@ -7,10 +7,12 @@ using UnityEngine.Video;
 public class PauseCanvas : MonoBehaviour
 {
     public GameObject pauseCanvas;
+    public GameObject helpCanvas;
     public RawImage movieScreen;
     public VideoPlayer videoPlayer;
+    public EditorCamera EditorCamera;
 
-    private bool isPauseCanvasOn = false;
+    public static bool isPauseCanvasOn = false;
 
     void Update()
     {
@@ -21,7 +23,8 @@ public class PauseCanvas : MonoBehaviour
                 pauseCanvas.SetActive(false);
 
                 Time.timeScale = 1f;
-                videoPlayer.Play();
+                //videoPlayer.Play();
+                EditorCamera.isPlaying = false;
 
                 isPauseCanvasOn = false;
             }
@@ -33,6 +36,15 @@ public class PauseCanvas : MonoBehaviour
                 videoPlayer.Pause();
 
                 isPauseCanvasOn = true;
+            }
+        }
+
+        // 마우스 스크롤을 무시하는 코드 (필요한 경우 사용)
+        if (isPauseCanvasOn)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+            {
+                return;
             }
         }
     }
@@ -49,11 +61,38 @@ public class PauseCanvas : MonoBehaviour
 
     public void OnClickHelpBtn()
     {
-        // Help 버튼 클릭시 도움말 패널이 뜨도록 구현 예정
+        if (helpCanvas != null)
+        {
+            helpCanvas.SetActive(true);
+            if (pauseCanvas != null)
+            {
+                pauseCanvas.SetActive(false);
+            }
+        }
+    }
+
+    public void OnClickCloseHelpBtn()
+    {
+        if (helpCanvas != null)
+        {
+            helpCanvas.SetActive(false);
+            if (pauseCanvas != null)
+            {
+                pauseCanvas.SetActive(true);
+            }
+            else
+            {
+                
+                pauseCanvas.SetActive(true);
+                Time.timeScale = 0f;
+                videoPlayer.Pause();
+                isPauseCanvasOn = true;
+            }
+        }
     }
 
     public void OnClickExitBtn()
     {
-        // Exit 버튼 클릭시 메인메뉴로 가게끔 구현 예정
+        // Exit 버튼 클릭 시 메인메뉴로 가게끔 구현 예정
     }
 }
