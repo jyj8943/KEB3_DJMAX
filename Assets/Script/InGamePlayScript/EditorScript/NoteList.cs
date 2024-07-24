@@ -204,7 +204,7 @@ public class NoteList : MonoBehaviour
 
             tempNote.transform.SetParent(transform, false);
 
-            tempNote.GetComponent<ShortNote>().InitShortNote();
+            tempNote.GetComponent<ShortNote>().InitNote();
 
             //noteList.Add(tempNote);
             SortingNotes(tempNote);
@@ -219,7 +219,7 @@ public class NoteList : MonoBehaviour
         tempLongNote.transform.SetParent(transform, false);
         isMaking = false;
 
-        tempLongNote.GetComponent<LongNote>().InitLongNote(targetPos.y);
+        tempLongNote.GetComponent<LongNote>().InitNote(targetPos.y);
 
         //noteList.Add(tempLongNote);
         SortingNotes(tempLongNote);

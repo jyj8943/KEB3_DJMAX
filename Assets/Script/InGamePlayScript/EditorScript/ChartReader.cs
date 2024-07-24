@@ -121,7 +121,7 @@ public class ChartReader : MonoBehaviour
                 var shortNote = Instantiate(shorNotePrefab, pos, Quaternion.identity);
 
                 shortNote.transform.SetParent(tempNoteList.transform, false);
-                shortNote.GetComponent<ShortNote>().InitShortNote();
+                shortNote.GetComponent<ShortNote>().InitNote();
 
                 //tempNoteList.noteList.Add(shortNote);
                 tempNoteList.GetComponent<NoteList>().SortingNotes(shortNote);
@@ -133,7 +133,7 @@ public class ChartReader : MonoBehaviour
                 longNote.transform.SetParent(tempNoteList.transform, false);
 
                 longNote.transform.localScale = new Vector3(1f, scale, 1f);
-                longNote.GetComponent<LongNote>().InitLongNote(distUpPosY);
+                longNote.GetComponent<LongNote>().InitNote(distUpPosY);
 
                 //tempNoteList.noteList.Add(longNote);
                 tempNoteList.GetComponent<NoteList>().SortingNotes(longNote);

@@ -9,10 +9,9 @@ public class InGamePlayManager : MonoBehaviour
     public static InGamePlayManager instance;
 
     public List<GameObject> noteList = new();
-    //public List<GameObject> noteListinRailNum1 = new();
-    //public List<GameObject> noteListinRailNum2 = new();
-    //public List<GameObject> noteListinRailNum3 = new();
-    //public List<GameObject> noteListinRailNum4 = new();
+    public List<ShortNote>[] noteListinRail = new List<ShortNote>[]{
+        new List<ShortNote>(), new List<ShortNote>(), new List<ShortNote>(), new List<ShortNote>()
+    };
 
     //public GameObject shortNotePrefab;
     //public GameObject longNotePrefab;
@@ -22,89 +21,58 @@ public class InGamePlayManager : MonoBehaviour
         instance = this;
     }
 
-    // 버튼을 누를 때 리스트에 있는 노트들을 순서대로 처리하게끔 구현
-    public void JudegeNotes()
+
+    public void DivideList()
     {
+        if (noteList == null) return;
 
-    }
-
-    // list 정렬 함수 -> 리스트를 4개로 분할하여 각각 담도록 해야함
-    public void SortingNotes(GameObject tempNote)
-    {
-        float defaultDist = 0;
-        float noteListDist = 0;
-        int noteListNum = -1;
-        int railNum = 0;
-
-        if (noteList.Count == 0)
-            noteList.Add(tempNote);
-        else
+        foreach (var note in noteList)
         {
-            if (tempNote.tag == "ShortNote")
-            {
-                defaultDist = tempNote.GetComponent<ShortNote>().defaultDist;
-                railNum = tempNote.GetComponent<ShortNote>().railNum;
-            }
-            else if (tempNote.tag == "LongNote")
-            {
-                defaultDist = tempNote.GetComponent<LongNote>().defaultArrivePosY;
-                railNum = tempNote.GetComponent<LongNote>().railNum;
-            }
-
-            for (int i = 0; i < noteList.Count; i++)
-            {
-                if (noteList[i].tag == "ShortNote")
-                    noteListDist = noteList[i].GetComponent<ShortNote>().defaultDist;
-                else if (noteList[i].tag == "LongNote")
-                    noteListDist = noteList[i].GetComponent<LongNote>().defaultArrivePosY;
-
-                if (defaultDist < noteListDist || defaultDist == noteListDist)
-                {
-                    noteListNum = i;
-                    break;
-                }
-            }
-
-            if (noteListNum != -1)
-                noteList.Insert(noteListNum, tempNote);
-            else if (noteListNum == -1)
-                noteList.Add(tempNote);
-
-            //switch (railNum)
-            //{
-            //    case 1:
-            //        {
-            //            if (noteListNum != -1)
-            //                noteListinRailNum1.Insert(noteListNum, tempNote);
-            //            else if (noteListNum == -1)
-            //                noteListinRailNum1.Add(tempNote);
-            //            break;
-            //        }
-            //    case 2:
-            //        {
-            //            if (noteListNum != -1)
-            //                noteListinRailNum2.Insert(noteListNum, tempNote);
-            //            else if (noteListNum == -1)
-            //                noteListinRailNum2.Add(tempNote);
-            //            break;
-            //        }
-            //    case 3:
-            //        {
-            //            if (noteListNum != -1)
-            //                noteListinRailNum3.Insert(noteListNum, tempNote);
-            //            else if (noteListNum == -1)
-            //                noteListinRailNum3.Add(tempNote);
-            //            break;
-            //        }
-            //    case 4:
-            //        {
-            //            if (noteListNum != -1)
-            //                noteListinRailNum4.Insert(noteListNum, tempNote);
-            //            else if (noteListNum == -1)
-            //                noteListinRailNum4.Add(tempNote);
-            //            break;
-            //        }
-            //}
+            noteListinRail[note.GetComponent<ShortNote>().railNum - 1].Add(note.GetComponent<ShortNote>());
         }
+
+        // 유니티에서 보여주기 위해서 삭제는 나중에 처리
+        //noteList.RemoveRange(0, noteList.Count);
     }
 }
+
+    // list 정렬 함수 -> 이미 에디터에서 정렬을 하기 때문에 필요없을듯
+    //public void SortingNotes(GameObject tempNote)
+    //{
+    //    float defaultDist = 0;
+    //    float noteListDist = 0;
+    //    int noteListNum = -1;
+
+    //    if (noteList.Count == 0)
+    //        noteList.Add(tempNote);
+    //    else
+    //    {
+    //        if (tempNote.GetComponent<ShortNote>().noteID == 0)
+    //        {
+    //            defaultDist = tempNote.GetComponent<ShortNote>().defaultDist;
+    //        }
+    //        else if (tempNote.GetComponent<LongNote>().noteID == 1)
+    //        {
+    //            defaultDist = tempNote.GetComponent<LongNote>().defaultArrivePosY;
+    //        }
+
+    //        for (int i = 0; i < noteList.Count; i++)
+    //        {
+    //            if (tempNote.GetComponent<ShortNote>().noteID == 0)
+    //                noteListDist = noteList[i].GetComponent<ShortNote>().defaultDist;
+    //            else if (tempNote.GetComponent<LongNote>().noteID == 1)
+    //                noteListDist = noteList[i].GetComponent<LongNote>().defaultArrivePosY;
+
+    //            if (defaultDist < noteListDist || defaultDist == noteListDist)
+    //            {
+    //                noteListNum = i;
+    //                break;
+    //            }
+    //        }
+
+    //        if (noteListNum != -1)
+    //            noteList.Insert(noteListNum, tempNote);
+    //        else if (noteListNum == -1)
+    //            noteList.Add(tempNote);
+    //    }
+    //}
