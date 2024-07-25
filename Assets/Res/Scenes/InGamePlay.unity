@@ -852,6 +852,7 @@ MonoBehaviour:
   buttonImage: {fileID: 1274872195}
   upImage: {fileID: 21300000, guid: d6beaeac8de2af749a48581db778df3e, type: 3}
   downImage: {fileID: 21300000, guid: 30a2566f94f937b4998542121050e68b, type: 3}
+  clickedRailNum: 0
 --- !u!1 &1330400905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,6 +1006,7 @@ MonoBehaviour:
   buttonImage: {fileID: 1504582096}
   upImage: {fileID: 21300000, guid: d6beaeac8de2af749a48581db778df3e, type: 3}
   downImage: {fileID: 21300000, guid: 30a2566f94f937b4998542121050e68b, type: 3}
+  clickedRailNum: 0
 --- !u!1 &1574395091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,7 +1272,7 @@ Transform:
   m_GameObject: {fileID: 1671431516}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.070612, y: -4.2743306, z: -0.04912102}
+  m_LocalPosition: {x: -2.070612, y: -4.31033, z: -0.04912102}
   m_LocalScale: {x: 3, y: 4.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1347,6 +1349,7 @@ MonoBehaviour:
   buttonImage: {fileID: 1671431518}
   upImage: {fileID: 21300000, guid: d6beaeac8de2af749a48581db778df3e, type: 3}
   downImage: {fileID: 21300000, guid: 30a2566f94f937b4998542121050e68b, type: 3}
+  clickedRailNum: 0
 --- !u!1 &1700887910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1463,7 @@ Transform:
   m_GameObject: {fileID: 1704595681}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0986118, y: -4.2863307, z: -0.04912102}
+  m_LocalPosition: {x: -1.0986118, y: -4.31033, z: -0.04912102}
   m_LocalScale: {x: 3, y: 4.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1537,6 +1540,7 @@ MonoBehaviour:
   buttonImage: {fileID: 1704595683}
   upImage: {fileID: 21300000, guid: d6beaeac8de2af749a48581db778df3e, type: 3}
   downImage: {fileID: 21300000, guid: 30a2566f94f937b4998542121050e68b, type: 3}
+  clickedRailNum: 0
 --- !u!1 &1954910020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,6 +1587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteList: []
+  judgeBar: {fileID: 2118928555}
 --- !u!114 &1954910025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,6 +1724,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2118928555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3148435748144326318, guid: df43f878b07a5714fba1568f5d16d42b, type: 3}
+  m_PrefabInstance: {fileID: 1670980592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

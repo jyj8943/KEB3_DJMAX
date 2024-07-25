@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,6 +15,9 @@ public class InGamePlayManager : MonoBehaviour
         new List<ShortNote>(), new List<ShortNote>(), new List<ShortNote>(), new List<ShortNote>()
     };
 
+    public ShortNote GetFirstNote(int i) => noteListinRail[i][0];
+
+    public GameObject judgeBar;
     //public GameObject shortNotePrefab;
     //public GameObject longNotePrefab;
 
@@ -21,7 +26,26 @@ public class InGamePlayManager : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        NoteMiss();
+    }
 
+    public void NoteMiss()
+    {
+        foreach (var noteList in noteListinRail)
+        {
+            if (noteList.Count == 0) return;
+            
+            if (noteList[0].transform.position.y <= judgeBar.transform.position.y - 0.5f)
+            {
+                Debug.Log("MISS");
+                noteList[0].gameObject.SetActive(false);
+                noteList.RemoveAt(0);
+            }
+        }
+    }
+    
     public void DivideList()
     {
         if (noteList == null) return;
@@ -30,9 +54,6 @@ public class InGamePlayManager : MonoBehaviour
         {
             noteListinRail[note.GetComponent<ShortNote>().railNum - 1].Add(note.GetComponent<ShortNote>());
         }
-
-        // 유니티에서 보여주기 위해서 삭제는 나중에 처리
-        //noteList.RemoveRange(0, noteList.Count);
     }
 }
 
