@@ -121,8 +121,10 @@ public class ChartReader : MonoBehaviour
                 var shortNote = Instantiate(shorNotePrefab, pos, Quaternion.identity);
 
                 shortNote.transform.SetParent(tempNoteList.transform, false);
+                shortNote.GetComponent<ShortNote>().InitNote();
 
-                tempNoteList.noteList.Add(shortNote);
+                //tempNoteList.noteList.Add(shortNote);
+                tempNoteList.GetComponent<NoteList>().SortingNotes(shortNote);
             }
             else if (noteID == 1)
             {
@@ -131,9 +133,10 @@ public class ChartReader : MonoBehaviour
                 longNote.transform.SetParent(tempNoteList.transform, false);
 
                 longNote.transform.localScale = new Vector3(1f, scale, 1f);
-                longNote.GetComponent<LongNote>().InitLongNote(distUpPosY);
+                longNote.GetComponent<LongNote>().InitNote(distUpPosY);
 
-                tempNoteList.noteList.Add(longNote);
+                //tempNoteList.noteList.Add(longNote);
+                tempNoteList.GetComponent<NoteList>().SortingNotes(longNote);
             }
         }
     }
@@ -142,48 +145,12 @@ public class ChartReader : MonoBehaviour
     // https://github.com/yasirkula/UnitySimpleFileBrowser?tab=readme-ov-file
     public void LoadSong()
     {
-        //FileBrowser.SetFilters(false, "mp3", "mp4");
-
-        //FileBrowser.AddQuickLink("Users", "C:\\Users", null);
-
-        //StartCoroutine(ShowLoadDialogCoroutine());
-
         FileBrowser.SetFilters(true, new FileBrowser.Filter("Videos", ".mp4", ".avi", ".mov"));
+
         FileBrowser.SetDefaultFilter(".mp4");
+
         FileBrowser.ShowLoadDialog(OnFileSelected, null, FileBrowser.PickMode.Files, false, null, null, "Select Video File", "Select");
     }
-
-    //private IEnumerator ShowLoadDialogCoroutine()
-    //{
-    //    yield return FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, null, "Load MP3 File", "Load");
-
-    //    if (FileBrowser.Success)
-    //    {
-    //        string filePath = FileBrowser.Result[0]; // 선택된 파일 경로
-    //        StartCoroutine(LoadAudio(filePath));
-    //    }
-    //}
-
-    //private IEnumerator LoadAudio(string filePath)
-    //{
-    //    using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + filePath, AudioType.MPEG))
-    //    {
-    //        yield return www.SendWebRequest();
-
-    //        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-    //        {
-    //            Debug.LogError(www.error);
-    //        }
-    //        else
-    //        {
-    //            AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
-    //            audioManager.bgm.clip = clip;
-
-    //            audioManager.InitSong();
-    //            audioManager.isLoadedSong = true;
-    //        }
-    //    }
-    //}
 
     void OnFileSelected(string[] paths)
     {

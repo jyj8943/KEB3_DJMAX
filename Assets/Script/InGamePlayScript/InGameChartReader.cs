@@ -12,18 +12,16 @@ using UnityEngine.Audio;
 
 public class InGameChartReader : MonoBehaviour
 {
-    public InGameNoteList tempNoteList;
-    //public AudioManager audioManager;
-
     public GameObject shortNotePrefab; // 프리팹 이름 수정
     public GameObject longNotePrefab;
 
-    public string jsonFileName = "ButterFly.json"; // JSON 파일 이름을 스크립트에 직접 저장
+    public string jsonFileName = "testSong.json"; // JSON 파일 이름을 스크립트에 직접 저장
     public string jsonFilePath = "ChartData/testSong"; // JSON 파일 경로를 스크립트에 직접 저장
 
     private void Start()
     {
         LoadData();
+        InGamePlayManager.instance.DivideList();
     }
 
     public void LoadData()
@@ -36,11 +34,11 @@ public class InGameChartReader : MonoBehaviour
 
         var data = SaveLoadHelper.LoadData<SongData>(jsonFileName, jsonFilePath);
 
-        foreach (var tempNote in tempNoteList.noteList)
+        foreach (var tempNote in InGamePlayManager.instance.noteList)
         {
             Destroy(tempNote.gameObject);
         }
-        tempNoteList.noteList.Clear();
+        InGamePlayManager.instance.noteList.Clear();
 
         for (int i = 0; i < data.notes.Length; i++)
         {
@@ -75,20 +73,21 @@ public class InGameChartReader : MonoBehaviour
             {
                 var shortNote = Instantiate(shortNotePrefab, pos, Quaternion.identity); // 프리팹 이름 수정
 
-                shortNote.transform.SetParent(tempNoteList.transform, false);
+                shortNote.transform.SetParent(InGamePlayManager.instance.transform, false);
+                shortNote.GetComponent<ShortNote>().InitNote();
 
-                tempNoteList.noteList.Add(shortNote);
+                InGamePlayManager.instance.noteList.Add(shortNote);
             }
             else if (noteID == 1)
             {
                 var longNote = Instantiate(longNotePrefab, pos, Quaternion.identity);
 
-                longNote.transform.SetParent(tempNoteList.transform, false);
+                longNote.transform.SetParent(InGamePlayManager.instance.transform, false);
 
                 longNote.transform.localScale = new Vector3(1f, scale, 1f);
-                longNote.GetComponent<LongNote>().InitLongNote(distUpPosY);
+                longNote.GetComponent<LongNote>().InitNote(distUpPosY);
 
-                tempNoteList.noteList.Add(longNote);
+                InGamePlayManager.instance.noteList.Add(longNote);
             }
         }
     }

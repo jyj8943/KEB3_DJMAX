@@ -9,7 +9,6 @@ using UnityEngine.Video;
 public class AudioManager : MonoBehaviour
 {
     public EditorCamera editorCamera;
-    public AudioSource bgm;
     public Slider slider;
     public GridList gridList;
     public HorizontalLineList horizontalLineList;
@@ -25,7 +24,6 @@ public class AudioManager : MonoBehaviour
     {
         if (isLoadedSong && !Input.GetMouseButton(0))
         {
-            //slider.value = bgm.time;
             slider.value = (float)videoPlayer.time;
         }
     }   
@@ -80,7 +78,6 @@ public class AudioManager : MonoBehaviour
 
         videoPlayer.Play();
         videoPlayer.Pause();
-        //videoPlayer.time = 10f;
 
         TotalManager.instance.songTime = bgmLength;
         EditorManager.instance.InitInstance();
@@ -91,14 +88,12 @@ public class AudioManager : MonoBehaviour
 
     public void playSong()
     {
-        //bgm.UnPause();
         videoPlayer.Play();
         isPaused = false;
     }
 
     public void pauseSong()
     {
-        //bgm.Pause();
         videoPlayer.Pause();
         isPaused = true;
     }
