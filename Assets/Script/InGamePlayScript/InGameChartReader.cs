@@ -15,11 +15,12 @@ public class InGameChartReader : MonoBehaviour
     public GameObject shortNotePrefab; // 프리팹 이름 수정
     public GameObject longNotePrefab;
 
-    public string jsonFileName = "testSong.json"; // JSON 파일 이름을 스크립트에 직접 저장
+    public string jsonFileName; // JSON 파일 이름을 스크립트에 직접 저장
     public string jsonFilePath = "ChartData/testSong"; // JSON 파일 경로를 스크립트에 직접 저장
 
     private void Start()
     {
+        jsonFileName = Selector.selectedTrack;
         LoadData();
         InGamePlayManager.instance.DivideList();
     }
