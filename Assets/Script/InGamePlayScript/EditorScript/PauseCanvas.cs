@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
-
+using UnityEngine.SceneManagement;
 public class PauseCanvas : MonoBehaviour
 {
     public GameObject pauseCanvas;
@@ -11,32 +11,39 @@ public class PauseCanvas : MonoBehaviour
     public RawImage movieScreen;
     public VideoPlayer videoPlayer;
     public EditorCamera EditorCamera;
+    public GameObject volume;
+    
+    
+    
 
     public static bool isPauseCanvasOn = false;
+    public static bool isHelpCanvasOn = false;
+
+    void Start()
+    {
+        pauseCanvas.SetActive(false);
+        helpCanvas.SetActive(false);
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pauseCanvas != null && isPauseCanvasOn)
+            
+            if (!isPauseCanvasOn)
             {
-                pauseCanvas.SetActive(false);
-
-                Time.timeScale = 1f;
-                //videoPlayer.Play();
-                EditorCamera.isPlaying = false;
-
-                isPauseCanvasOn = false;
+                ActivatePauseCanvas();
             }
-            else if (pauseCanvas != null && !isPauseCanvasOn)
+            else if (isHelpCanvasOn)
             {
-                pauseCanvas.SetActive(true);
-
-                Time.timeScale = 0f;
-                videoPlayer.Pause();
-
-                isPauseCanvasOn = true;
+                OnClickCloseHelpBtn();
             }
+            else if (isPauseCanvasOn)
+            {
+                OnClickContinueBtn();
+            }
+            
+            
         }
 
         // 마우스 스크롤을 무시하는 코드 (필요한 경우 사용)
@@ -49,13 +56,23 @@ public class PauseCanvas : MonoBehaviour
         }
     }
 
+    private void ActivatePauseCanvas()
+    {
+        
+        
+        volume.SetActive(true); // 블러 활성화
+        pauseCanvas.SetActive(true);
+        Time.timeScale = 0f;
+        videoPlayer.Pause();
+        isPauseCanvasOn = true;
+    }
+
     public void OnClickContinueBtn()
     {
         pauseCanvas.SetActive(false);
-
+        volume.SetActive(false); // 블러 비활성화
         Time.timeScale = 1f;
         videoPlayer.Play();
-
         isPauseCanvasOn = false;
     }
 
@@ -68,6 +85,7 @@ public class PauseCanvas : MonoBehaviour
             {
                 pauseCanvas.SetActive(false);
             }
+            isHelpCanvasOn = true;
         }
     }
 
@@ -80,19 +98,14 @@ public class PauseCanvas : MonoBehaviour
             {
                 pauseCanvas.SetActive(true);
             }
-            else
-            {
-                
-                pauseCanvas.SetActive(true);
-                Time.timeScale = 0f;
-                videoPlayer.Pause();
-                isPauseCanvasOn = true;
-            }
+              
+            isHelpCanvasOn = false;
         }
     }
 
     public void OnClickExitBtn()
     {
         // Exit 버튼 클릭 시 메인메뉴로 가게끔 구현 예정
+        SceneManager.LoadScene("TitleMenu");
     }
 }

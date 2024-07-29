@@ -12,10 +12,10 @@ public class ShowVideo : MonoBehaviour
     public VideoPlayer videoPlayer;
     public RawImage movieScreen;
     public TextMeshProUGUI btnText;
-
+    public GameObject basicScreen;
     void Start()
     {
-        
+        basicScreen.SetActive(true);
     }
 
     void Update()
@@ -36,6 +36,7 @@ public class ShowVideo : MonoBehaviour
                 movieScreen.color = tempColor;
 
                 btnText.text = "Video Off";
+                basicScreen.SetActive(true);
             }
             else if (isClicked)
             {
@@ -46,6 +47,7 @@ public class ShowVideo : MonoBehaviour
                 movieScreen.color = tempColor;
 
                 btnText.text = "Video On";
+                basicScreen.SetActive(false);
             }
         }
     }
