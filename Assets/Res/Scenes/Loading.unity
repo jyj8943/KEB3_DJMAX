@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 63826950}
-  SceneToLoad: MainMenu
+  SceneToLoad: TitleMenu
 --- !u!4 &1124181606
 Transform:
   m_ObjectHideFlags: 0
