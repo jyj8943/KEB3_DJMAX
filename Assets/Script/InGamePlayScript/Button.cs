@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.tvOS;
 
 public class Button : MonoBehaviour
 {
@@ -12,30 +15,22 @@ public class Button : MonoBehaviour
     public Sprite upImage;
     public Sprite downImage;
 
-    private bool isKeyDown = false;
-
     public int clickedRailNum;
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(Key))
         {
             buttonEffect.SetActive(true);
             buttonImage.sprite = downImage;
-
-            // 노트에 대한 판정 제작중
-            isKeyDown = true;
-
-            if (isKeyDown)
-                JudgeNotes();
+            
+            JudgeNotes();
         }
-        
-        if(Input.GetKeyUp(Key))
+
+        if (Input.GetKeyUp(Key))
         {
             buttonEffect.SetActive(false);
             buttonImage.sprite = upImage;
-
-            isKeyDown = false;
         }
     }
 
@@ -65,15 +60,53 @@ public class Button : MonoBehaviour
                 }
         }
 
-        InGamePlayManager.instance.noteListinRail[clickedRailNum][0].gameObject.SetActive(false);
-
-        //JudgeAccuracy(InGamePlayManager.instance.noteListinRail[clickedRailNum][0].gameObject);
-
-        InGamePlayManager.instance.noteListinRail[clickedRailNum].RemoveAt(0);
+        if (InGamePlayManager.instance.noteListinRail[clickedRailNum].Count > 0 )
+        { 
+            JudgeAccuracy(InGamePlayManager.instance.GetFirstNote(clickedRailNum));
+            
+            InGamePlayManager.instance.GetFirstNote(clickedRailNum).gameObject.SetActive(false);
+            InGamePlayManager.instance.noteListinRail[clickedRailNum].RemoveAt(0);
+        }
+        else
+        {
+            return;
+        }
     }
 
-    public void JudgeAccuracy(GameObject tempNote)
+    // ReSharper disable Unity.PerformanceAnalysis
+    public void JudgeAccuracy(ShortNote tempNote)
     {
-        // 판정선과 노트의 거리가 0이면 Perfect 판정이 발생하도록 구현
+        // 버튼을 눌렀을 때의 시간을 ( 판정선의 y값 / 기본 속도 * 배속 )으로 계산
+        // ( 노트의 defaultDist / 기본 속도 )와 비교하여 판정 처리
+        switch (tempNote.noteID)
+        {
+            case (0):
+            {
+                var judgeTime = (InGamePlayManager.instance.judgeBar.transform.position.y -
+                                 TotalManager.instance.minNotePosY)
+                                / (TotalManager.instance.defaultChartSpeed * TotalManager.instance.userChartSpeed);
+                var noteTime = tempNote.defaultDist / TotalManager.instance.defaultChartSpeed;
+
+                if (judgeTime >= noteTime - 0.04f && judgeTime <= noteTime + 0.04f)
+                {
+                    Debug.Log("judgeTime: " + judgeTime);
+                    Debug.Log("noteTime: " + noteTime);
+                    Debug.Log("PERFECT");
+                }
+                
+                // var judgePosY = judgeBar.transform.position.y - TotalManager.instance.minNotePosY;
+                //
+                // if (judgePosY / tempNote.GetComponent<ShortNote>().defaultDist >= 0.96f &&
+                //     judgePosY / tempNote.GetComponent<ShortNote>().defaultDist <= 1.04f)
+                // {
+                //     Debug.Log("PERFECT");
+                // }
+                break;
+            }
+            case (1):
+            {
+                return;
+            }
+        }
     }
 }
