@@ -31,6 +31,8 @@ public class InGamePlayManager : MonoBehaviour
         NoteMiss();
     }
 
+     
+    
     public void NoteMiss()
     {
         foreach (var noteList in noteListinRail)
