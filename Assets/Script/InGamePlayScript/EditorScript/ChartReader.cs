@@ -22,7 +22,7 @@ public class ChartReader : MonoBehaviour
 
     public GameObject shorNotePrefab;
     public GameObject longNotePrefab;
-
+    public GameObject basicScreen;
     public string jsonDir;
 
     private void Awake()
@@ -62,6 +62,7 @@ public class ChartReader : MonoBehaviour
         FileBrowser.SetFilters(false, "json");
 
         StartCoroutine(ShowLoadDialogCoroutineForJson());
+        
     }
 
     private IEnumerator ShowLoadDialogCoroutineForJson()
@@ -157,6 +158,7 @@ public class ChartReader : MonoBehaviour
         if (paths.Length > 0)
         {
             string filePath = paths[0];
+            basicScreen.SetActive(false);
             StartCoroutine(DownloadAndPlayVideo(filePath));
         }
     }

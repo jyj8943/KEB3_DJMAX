@@ -87,20 +87,12 @@ public class Button : MonoBehaviour
                                 / (TotalManager.instance.defaultChartSpeed * TotalManager.instance.userChartSpeed);
                 var noteTime = tempNote.defaultDist / TotalManager.instance.defaultChartSpeed;
 
-                if (judgeTime >= noteTime - 0.04f && judgeTime <= noteTime + 0.04f)
+                if (judgeTime >= noteTime - 0.15f && judgeTime <= noteTime + 0.04f)
                 {
                     Debug.Log("judgeTime: " + judgeTime);
                     Debug.Log("noteTime: " + noteTime);
                     Debug.Log("PERFECT");
                 }
-                
-                // var judgePosY = judgeBar.transform.position.y - TotalManager.instance.minNotePosY;
-                //
-                // if (judgePosY / tempNote.GetComponent<ShortNote>().defaultDist >= 0.96f &&
-                //     judgePosY / tempNote.GetComponent<ShortNote>().defaultDist <= 1.04f)
-                // {
-                //     Debug.Log("PERFECT");
-                // }
                 break;
             }
             case (1):
