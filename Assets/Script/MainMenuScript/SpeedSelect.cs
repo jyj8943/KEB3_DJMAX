@@ -7,7 +7,7 @@ using TMPro;
 public class SpeedSelect : MonoBehaviour
 {
     public TextMeshProUGUI speed;
-    public float[] speedList = new float[] {1.0f, 1.2f, 1.5f, 2.0f, 3.0f, 4.0f, 5.0f};
+    public float[] speedList = new float[] {1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 4.5f, 5.0f};
     public int index = 0;
     public static float finalSpeed;
 
@@ -17,20 +17,20 @@ public class SpeedSelect : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.DownArrow))
+        if(Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if(index < 6)
+            if(index < 8)
             {
                 index += 1;
             }
-            else if(index == 6)
+            else if(index == 8)
             {
                 index = 0;
             }
             speed.text = "Track Speed: x " + speedList[index].ToString("F1");
             finalSpeed = speedList[index];
         }
-        else if(Input.GetKeyDown(KeyCode.UpArrow))
+        else if(Input.GetKeyDown(KeyCode.DownArrow))
         {
             if(index > 0)
             {
@@ -38,7 +38,7 @@ public class SpeedSelect : MonoBehaviour
             }
             else if(index == 0)
             {
-                index = 6;
+                index = 8;
             }
             speed.text = "Track Speed: x " + speedList[index].ToString("F1");
             finalSpeed = speedList[index];

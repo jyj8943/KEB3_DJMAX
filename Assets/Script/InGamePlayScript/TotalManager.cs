@@ -20,6 +20,7 @@ public class TotalManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         instance = this;
         finalChartSpeed = defaultChartSpeed * userChartSpeed;
     }

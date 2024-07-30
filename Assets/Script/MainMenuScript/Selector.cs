@@ -52,6 +52,8 @@ public class Selector : MonoBehaviour
         selectedTrack = trackTitle.text+trackArtist.text+".json";
         Debug.Log(selectedTrack);
         Debug.Log(SpeedSelect.finalSpeed);
+
+        TotalManager.instance.userChartSpeed = SpeedSelect.finalSpeed;
         SceneManager.LoadScene("InGamePlay");
     }
 
