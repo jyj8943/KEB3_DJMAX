@@ -8,6 +8,7 @@ public class TotalManager : MonoBehaviour
 
     public float defaultChartSpeed = 2f;
     public float userChartSpeed = 1f;
+    public float finalChartSpeed;
 
     public float maxUserChartSpeed = 5f;
 
@@ -20,5 +21,16 @@ public class TotalManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Update()
+    {
+        finalChartSpeed = defaultChartSpeed * userChartSpeed;
+    }
+
+    public void ChangeSpeed(float speed)
+    {
+        userChartSpeed += speed;
+        finalChartSpeed = defaultChartSpeed * userChartSpeed;
     }
 }

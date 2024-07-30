@@ -40,7 +40,8 @@ public class EditorManager : MonoBehaviour
 
     public void changeUserChartSpeed(float changeSpeed)
     {
-        TotalManager.instance.userChartSpeed += changeSpeed;
+        TotalManager.instance.ChangeSpeed(changeSpeed);
+        
         gridHeight = defaultGridHeight * TotalManager.instance.userChartSpeed;
         verticalLineHeight = defaultVerticalLineHeight * TotalManager.instance.userChartSpeed;
     }

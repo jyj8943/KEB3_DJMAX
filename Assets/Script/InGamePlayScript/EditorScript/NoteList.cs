@@ -25,7 +25,10 @@ public class NoteList : MonoBehaviour
         transform.localPosition = Vector3.zero;
 
         mousePos = Input.mousePosition;
-        targetPos = Camera.main.ScreenToWorldPoint(mousePos + new Vector3(0f, 0f, 10f));
+        //mousePos = new Vector3(Input.mousePosition.x, Mathf.Floor(Input.mousePosition.y * 100f) / 100f, Input.mousePosition.z);
+        
+        var tempTargetPos = Camera.main.ScreenToWorldPoint(mousePos + new Vector3(0f, 0f, 10f));
+        targetPos = new Vector3(tempTargetPos.x, Mathf.Floor(tempTargetPos.y * 100f) / 100f, tempTargetPos.z);
 
         if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertShortNote)
         {
@@ -79,16 +82,16 @@ public class NoteList : MonoBehaviour
         else
         {
             if (tempNote.tag == "ShortNote")
-                defaultDist = tempNote.GetComponent<ShortNote>().defaultDist;
+                defaultDist = tempNote.GetComponent<ShortNote>().noteStartingTime;
             else if (tempNote.tag == "LongNote")
-                defaultDist = tempNote.GetComponent<LongNote>().defaultArrivePosY;
+                defaultDist = tempNote.GetComponent<LongNote>().noteStartingTime;
 
             for (int i = 0; i < noteList.Count; i++)
             {
                 if (noteList[i].tag == "ShortNote")
-                    noteListDist = noteList[i].GetComponent<ShortNote>().defaultDist;
+                    noteListDist = noteList[i].GetComponent<ShortNote>().noteStartingTime;
                 else if (noteList[i].tag == "LongNote")
-                    noteListDist = noteList[i].GetComponent<LongNote>().defaultArrivePosY;
+                    noteListDist = noteList[i].GetComponent<LongNote>().noteStartingTime;
 
                 if (defaultDist < noteListDist || defaultDist == noteListDist)
                 {
@@ -132,7 +135,7 @@ public class NoteList : MonoBehaviour
             else if (note.transform.tag == "LongNote")
             {
                 var tempDist1 = Mathf.Abs(note.transform.position.y - targetPos.y);
-                var tempDist2 = Mathf.Abs(note.GetComponent<LongNote>().defaultUpPosY  - targetPos.y);
+                var tempDist2 = Mathf.Abs(note.transform.position.y + note.transform.localScale.y - targetPos.y);
 
                 if (tempDist1 < tempDist2)
                 {
@@ -163,7 +166,7 @@ public class NoteList : MonoBehaviour
                 targetPos.y = tempNote.transform.position.y;
                 break;
             case 2:
-                targetPos.y = tempNote.transform.position.y + tempNote.GetComponent<LongNote>().defaultScale
+                targetPos.y = tempNote.transform.position.y + tempNote.transform.localScale.y
                     * TotalManager.instance.userChartSpeed;
                 break;
         }
@@ -271,17 +274,19 @@ public class NoteList : MonoBehaviour
             if (tempNote.tag == "ShortNote")
             {
                 tempNote.GetComponent<Transform>().position = new Vector3(tempNote.transform.position.x,
-                    TotalManager.instance.minNotePosY + tempNote.GetComponent<ShortNote>().defaultDist *
-                    TotalManager.instance.userChartSpeed, tempNote.transform.position.z);
+                    TotalManager.instance.minNotePosY + tempNote.GetComponent<ShortNote>().noteStartingTime *
+                    TotalManager.instance.finalChartSpeed,
+                    tempNote.transform.position.z);
             }
             else if (tempNote.tag == "LongNote")
             {
                 tempNote.transform.position = new Vector3(tempNote.transform.position.x,
-                    TotalManager.instance.minNotePosY + tempNote.GetComponent<LongNote>().defaultArrivePosY *
-                    TotalManager.instance.userChartSpeed, tempNote.transform.position.z);
+                    TotalManager.instance.minNotePosY + tempNote.GetComponent<LongNote>().noteStartingTime *
+                    TotalManager.instance.finalChartSpeed,
+                    tempNote.transform.position.z);
 
-                tempNote.transform.localScale = new Vector3(1f, tempNote.GetComponent<LongNote>().defaultScale *
-                                                                TotalManager.instance.userChartSpeed, 1f);
+                tempNote.transform.localScale = new Vector3(1f, tempNote.GetComponent<LongNote>().noteHoldingTime * 
+                                                                TotalManager.instance.finalChartSpeed, 1f);
             }
         }
     }

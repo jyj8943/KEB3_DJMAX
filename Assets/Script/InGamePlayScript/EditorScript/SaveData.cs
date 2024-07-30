@@ -36,10 +36,12 @@ public class SongData : SaveData
     public class NoteData
     {
         public float railNum;
-        public float posY;
         public int noteID;
-        public float scale;
-        public float defaultDist;
-        public float distUpPosY;
+        public float noteStartingTime; // 노트를 눌러야할 시간
+        public float noteHoldingTime; // 롱노트에서 노트를 끝까지 눌러야할 시간
+        //public float posY;
+        // public float scale;
+        // public float defaultDist;
+        // public float distUpPosY;
     }
 }
