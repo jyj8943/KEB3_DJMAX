@@ -42,7 +42,8 @@ public class ShortNote : MonoBehaviour {
 
         //defaultDist = arrvieDist / TotalManager.instance.userChartSpeed; //EditorManager.instance.userChartSpeed;
 
-        noteStartingTime = (posY - TotalManager.instance.minNotePosY) / TotalManager.instance.finalChartSpeed;
+        noteStartingTime = Mathf.Round(((posY - TotalManager.instance.minNotePosY) / 
+                                         TotalManager.instance.finalChartSpeed) * 100f) / 100f;
         noteHoldingTime = 0f;
     }
 

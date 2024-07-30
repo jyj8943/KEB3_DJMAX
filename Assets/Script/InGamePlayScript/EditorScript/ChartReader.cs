@@ -119,8 +119,7 @@ public class ChartReader : MonoBehaviour
                     break;
             }
 
-            float posY = TotalManager.instance.minNotePosY + TotalManager.instance.userChartSpeed *
-                TotalManager.instance.defaultChartSpeed * noteStartingTime;
+            float posY = TotalManager.instance.minNotePosY + TotalManager.instance.finalChartSpeed * noteStartingTime;
             
             var pos = new Vector3(posX, posY, 1f);
 

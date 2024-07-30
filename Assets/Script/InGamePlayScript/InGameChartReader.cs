@@ -70,8 +70,7 @@ public class InGameChartReader : MonoBehaviour
                     posX = 1.5f;
                     break;
             }
-            float posY = TotalManager.instance.minNotePosY + TotalManager.instance.userChartSpeed *
-                TotalManager.instance.defaultChartSpeed * noteStartingTime;
+            float posY = TotalManager.instance.minNotePosY + TotalManager.instance.finalChartSpeed * noteStartingTime;
             
             var pos = new Vector3(posX, posY, 1f);
 
@@ -90,9 +89,9 @@ public class InGameChartReader : MonoBehaviour
 
                 longNote.transform.SetParent(InGamePlayManager.instance.transform, false);
 
-                longNote.transform.localScale = new Vector3(1f, noteHoldingTime * TotalManager.instance.userChartSpeed, 1f);
+                longNote.transform.localScale = new Vector3(1f, noteHoldingTime * TotalManager.instance.finalChartSpeed, 1f);
                 
-                var distUpPosY = (pos.y + longNote.transform.localScale.y);
+                var distUpPosY = (pos.y + longNote.GetComponent<LongNote>().noteHoldingTime);
                 longNote.GetComponent<LongNote>().InitNote(distUpPosY);
 
                 InGamePlayManager.instance.noteList.Add(longNote);

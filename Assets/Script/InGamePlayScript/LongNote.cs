@@ -65,8 +65,9 @@ public class LongNote : ShortNote
 
         }
 
-        noteStartingTime = (posY - TotalManager.instance.minNotePosY) / TotalManager.instance.finalChartSpeed;
-        noteHoldingTime = transform.localScale.y / TotalManager.instance.finalChartSpeed;
+        noteStartingTime = Mathf.Round(((posY - TotalManager.instance.minNotePosY) 
+                                        / TotalManager.instance.finalChartSpeed) * 100f) / 100f;
+        noteHoldingTime = Mathf.Round((transform.localScale.y / TotalManager.instance.finalChartSpeed) * 100f) / 100f;
 
         // arrivePosYDist = posY - TotalManager.instance.minNotePosY;
         // arriveUpPosYDist = arrivePosYDist + transform.localScale.y;

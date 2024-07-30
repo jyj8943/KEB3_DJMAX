@@ -21,6 +21,7 @@ public class TotalManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        finalChartSpeed = defaultChartSpeed * userChartSpeed;
     }
 
     private void Update()

@@ -28,7 +28,7 @@ public class NoteList : MonoBehaviour
         //mousePos = new Vector3(Input.mousePosition.x, Mathf.Floor(Input.mousePosition.y * 100f) / 100f, Input.mousePosition.z);
         
         var tempTargetPos = Camera.main.ScreenToWorldPoint(mousePos + new Vector3(0f, 0f, 10f));
-        targetPos = new Vector3(tempTargetPos.x, Mathf.Floor(tempTargetPos.y * 100f) / 100f, tempTargetPos.z);
+        targetPos = new Vector3(tempTargetPos.x, Mathf.Round(tempTargetPos.y * 100f) / 100f, tempTargetPos.z);
 
         if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertShortNote)
         {
@@ -166,8 +166,8 @@ public class NoteList : MonoBehaviour
                 targetPos.y = tempNote.transform.position.y;
                 break;
             case 2:
-                targetPos.y = tempNote.transform.position.y + tempNote.transform.localScale.y
-                    * TotalManager.instance.userChartSpeed;
+                targetPos.y = tempNote.transform.position.y + tempNote.transform.localScale.y;
+                    //* TotalManager.instance.userChartSpeed;
                 break;
         }
     }
