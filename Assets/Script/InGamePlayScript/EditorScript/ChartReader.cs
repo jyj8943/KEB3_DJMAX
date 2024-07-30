@@ -93,11 +93,14 @@ public class ChartReader : MonoBehaviour
             var noteData = data.notes[i];
 
             var railNum = noteData.railNum;
-            var posY = noteData.posY;
             var noteID = noteData.noteID;
-            var scale = noteData.scale;
-            var defaultDist = noteData.defaultDist;
-            var distUpPosY = noteData.distUpPosY;
+            var noteStartingTime = noteData.noteStartingTime;
+            var noteHoldingTime = noteData.noteHoldingTime;
+            
+            // var posY = noteData.posY;
+            // var scale = noteData.scale;
+            // var defaultDist = noteData.defaultDist;
+            // var distUpPosY = noteData.distUpPosY;
 
             float posX = 0f;
             switch (railNum)
@@ -115,6 +118,10 @@ public class ChartReader : MonoBehaviour
                     posX = 1.5f;
                     break;
             }
+
+            float posY = TotalManager.instance.minNotePosY + TotalManager.instance.userChartSpeed *
+                TotalManager.instance.defaultChartSpeed * noteStartingTime;
+            
             var pos = new Vector3(posX, posY, 1f);
 
             if (noteID == 0)
@@ -133,7 +140,9 @@ public class ChartReader : MonoBehaviour
 
                 longNote.transform.SetParent(tempNoteList.transform, false);
 
-                longNote.transform.localScale = new Vector3(1f, scale, 1f);
+                longNote.transform.localScale = new Vector3(1f, noteHoldingTime * TotalManager.instance.finalChartSpeed, 1f);
+
+                var distUpPosY = (pos.y + longNote.transform.localScale.y);
                 longNote.GetComponent<LongNote>().InitNote(distUpPosY);
 
                 //tempNoteList.noteList.Add(longNote);
