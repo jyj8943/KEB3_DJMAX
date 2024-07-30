@@ -140,7 +140,7 @@ public class ChartReader : MonoBehaviour
 
                 longNote.transform.SetParent(tempNoteList.transform, false);
 
-                longNote.transform.localScale = new Vector3(1f, noteHoldingTime * TotalManager.instance.userChartSpeed, 1f);
+                longNote.transform.localScale = new Vector3(1f, noteHoldingTime * TotalManager.instance.finalChartSpeed, 1f);
 
                 var distUpPosY = (pos.y + longNote.transform.localScale.y);
                 longNote.GetComponent<LongNote>().InitNote(distUpPosY);
