@@ -5,10 +5,15 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Video;
 
 public class InGamePlayManager : MonoBehaviour
 {
     public static InGamePlayManager instance;
+
+    public VideoPlayer video;
+    public Camera inGameCamera;
+    public bool isPlaying = false;
 
     public List<GameObject> noteList = new();
     public List<ShortNote>[] noteListinRail = new List<ShortNote>[]{
@@ -26,21 +31,41 @@ public class InGamePlayManager : MonoBehaviour
         instance = this;
     }
 
-    private void Update()
+    private void Start()
     {
-        NoteMiss();
+        
     }
 
-     
+    private void Update()
+    {
+        //NoteMiss();
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (isPlaying)
+            {
+                isPlaying = false;
+            }
+            else
+            {
+                isPlaying = true;
+            }
+
+            Debug.Log("Video Time: " + video.time);
+        }
+        if (isPlaying) video.Play();
+        else if (!isPlaying) video.Pause();
+    }
     
     public void NoteMiss()
     {
         foreach (var noteList in noteListinRail)
         {
-            if (noteList.Count == 0) return;
+            if (noteList.Count == 0) continue;
             
             if (noteList[0].transform.position.y <= judgeBar.transform.position.y - 0.5f)
             {
+                // shortNote의 경우 그대로 없어지며 MISS 판정이 뜨지만, longNote의 경우 그대로 내려가며 계속 MiSS가 떠야함
                 Debug.Log("MISS");
                 noteList[0].gameObject.SetActive(false);
                 noteList.RemoveAt(0);

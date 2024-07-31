@@ -15,8 +15,8 @@ public class Button : MonoBehaviour
     
     private bool isHolding = false;
     private float judgeTime = 0f;
-    //private String FirstJudgeLongNote;
     private float holdingTime = 0f;
+    private float judgeInterval = 0f;
     
     public SpriteRenderer buttonImage;
     public Sprite upImage;
@@ -37,33 +37,45 @@ public class Button : MonoBehaviour
 
      private void Update()
      {
+         // 인게임에 비디오를 구현해놨으니 비디오의 time(현재 재생 시간) 속성을 활용하여 정확도를 판별하도록 구현 예정
+         
          if (Input.GetKeyDown(Key))
          {
              buttonEffect.SetActive(true);
              buttonImage.sprite = downImage;
     
+             Debug.Log("Key: " + Key + ", Time: " + InGamePlayManager.instance.video.time);
              isHolding = true;
              JudgeNotes();
          }
          
          if (isHolding && note != null)
          {
-             if (note.noteID == 1)
-             // 롱노트 첫 입력 이후 홀드 시의 판정 처리
+             holdingTime += Time.deltaTime;
+             judgeInterval += Time.deltaTime;
+             ScalingLongNote(note as LongNote);
+             
+             // 0.5초마다 누르는 도중의 판정이 이뤄지도록 작성
+             if (note.noteID == 1 && judgeInterval >= 0.5f)
+             {
+                 Debug.Log("JudgeInterval: " + judgeInterval);
+                 // 롱노트 첫 입력 이후 홀드 시의 판정 처리
                  JudgeLongNoteHolding(note as LongNote);
+                 judgeInterval = 0f;
+             }
          }
          
          if (Input.GetKeyUp(Key))
          {
              buttonEffect.SetActive(false);
              buttonImage.sprite = upImage;
-    
-             isHolding = false;
-             holdingTime = 0f;
              
              // 롱노트의 마지막 입력 판정 처리
              if (note != null && note.noteID == 1)
                  JudgeLongNoteEnd(note as LongNote);
+             
+             isHolding = false;
+             holdingTime = 0f;
          }
      }
     
@@ -97,18 +109,10 @@ public class Button : MonoBehaviour
     
       public void JudgeShortNoteAccuracy(ShortNote tempNote)
       {
-         // 버튼을 눌렀을 때의 시간을 ( 판정선의 y값 / 기본 속도 * 배속 )으로 계산
-         // ( 노트의 defaultDist / 기본 속도 )와 비교하여 판정 처리
          judgeTime = GetJudgeTime();
          var noteTime = tempNote.noteStartingTime;
-    
-         if (judgeTime >= noteTime - 0.15f && judgeTime <= noteTime + 0.04f)
-         {
-             Debug.Log("judgeTime: " + judgeTime);
-             Debug.Log("noteTime: " + noteTime);
-             Debug.Log("PERFECT");
-         }
-         // else if (~) {~} 세부 판정 작성해야함
+
+         GetNoteAccuracy(noteTime);
       }
     
       public void JudgeLongNoteAccuracy(LongNote tempNote)
@@ -116,39 +120,48 @@ public class Button : MonoBehaviour
           judgeTime = GetJudgeTime();
           var noteTime = tempNote.noteStartingTime;
           
-          if (judgeTime >= noteTime - 0.15f && judgeTime <= noteTime + 0.04f)
-          {
-              Debug.Log("judgeTime: " + judgeTime);
-              Debug.Log("noteTime: " + noteTime);
-              Debug.Log("PERFECT");
-              //FirstJudgeLongNote = "PERFECT";
-          }
+          GetNoteAccuracy(noteTime);
       }
-    
+
       public void JudgeLongNoteHolding(LongNote tempNote)
       {
-          holdingTime += Time.deltaTime;
-          if (holdingTime >= 0.1f)
-          {
-              Debug.Log("PASS");
-          }
-    
-          note.transform.localScale =
-              new Vector3(1f, tempNote.transform.position.y + ( tempNote.noteHoldingTime - holdingTime)
-                              * TotalManager.instance.finalChartSpeed
-                              - InGamePlayManager.instance.judgeBar.transform.position.y, 1f);
-          note.transform.position = new Vector3(note.transform.position.x,
-              InGamePlayManager.instance.judgeBar.transform.position.y, note.transform.position.z);
+          Debug.Log("PASS");
       }
-    
-      public void JudgeLongNoteEnd(LongNote tempNote)
+
+      public void ScalingLongNote(LongNote tempNote)
       {
           judgeTime = GetJudgeTime();
+          // 버튼을 누르고 있으면 롱노트가 계속 줄어들도록 연출
+          if ( note != null && holdingTime < tempNote.noteHoldingTime)
+          {
+              if (judgeTime >= tempNote.noteStartingTime)
+              {
+                  note.transform.position = new Vector3(note.transform.position.x,
+                       InGamePlayManager.instance.judgeBar.transform.position.y, note.transform.position.z);
+                  note.transform.localScale =
+                      new Vector3(1f, tempNote.transform.position.y + (tempNote.noteHoldingTime - holdingTime)
+                                      * TotalManager.instance.finalChartSpeed
+                                      - InGamePlayManager.instance.judgeBar.transform.position.y, 1f);
+              }
+              // else
+              // {
+              //     note.transform.position = new Vector3(note.transform.position.x,
+              //          InGamePlayManager.instance.judgeBar.transform.position.y, note.transform.position.z);
+              //     note.transform.localScale =
+              //         new Vector3(1f, tempNote.transform.position.y + (tempNote.noteHoldingTime + holdingTime)
+              //                         * TotalManager.instance.finalChartSpeed
+              //                         - InGamePlayManager.instance.judgeBar.transform.position.y, 1f);
+              // }
+          }
+      }
+
+      public void JudgeLongNoteEnd(LongNote tempNote)
+      {
           var noteTime = tempNote.noteHoldingTime;
           
-          if (judgeTime >= noteTime - 0.15f && judgeTime <= noteTime + 0.04f)
+          if (holdingTime >= noteTime - 0.04f && holdingTime <= noteTime + 0.04f)
           {
-              Debug.Log("judgeTime: " + judgeTime);
+              Debug.Log("End holdingTime: " + holdingTime);
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("PERFECT");
           }
@@ -157,11 +170,36 @@ public class Button : MonoBehaviour
           note = null;
           InGamePlayManager.instance.noteListinRail[clickedRailNum].RemoveAt(0);
       }
-    
+
+      private void GetNoteAccuracy(float noteTime)
+      {
+          if (judgeTime >= noteTime - 0.04f && judgeTime <= noteTime + 0.04f)
+          {
+              Debug.Log("noteTime: " + noteTime);
+              Debug.Log("MAX 100%");
+          }
+          else if (judgeTime >= noteTime - 0.14f && judgeTime <= noteTime + 0.14f)
+          {
+              Debug.Log("noteTime: " + noteTime);
+              Debug.Log("MAX 90%");
+          }
+          else if (judgeTime >= noteTime - 0.24f && judgeTime <= noteTime + 0.24f)
+          {
+              Debug.Log("noteTime: " + noteTime);
+              Debug.Log("MAX 80%");
+          }
+          else
+          {
+              Debug.Log("MISS");
+          }
+          // else if (~) {~} 세부 판정 작성해야함
+      }
+      
       private float GetJudgeTime()
       {
-          return (InGamePlayManager.instance.judgeBar.transform.position.y -
-                  TotalManager.instance.minNotePosY)
-                 / (TotalManager.instance.defaultChartSpeed * TotalManager.instance.userChartSpeed);
+          // return (InGamePlayManager.instance.judgeBar.transform.position.y -
+          //         TotalManager.instance.minNotePosY)
+          //        / (TotalManager.instance.defaultChartSpeed * TotalManager.instance.userChartSpeed);
+          return (float)InGamePlayManager.instance.video.time;
       }
 }

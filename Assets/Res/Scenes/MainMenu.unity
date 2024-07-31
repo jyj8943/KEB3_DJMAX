@@ -2856,7 +2856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultChartSpeed: 2
   userChartSpeed: 1
-  finalChartSpeed: 0
+  finalChartSpeed: 2
   maxUserChartSpeed: 5
   minNotePosY: -3
   minNotePosX: -2

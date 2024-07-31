@@ -28,7 +28,6 @@ public class SpeedSelect : MonoBehaviour
                 index = 0;
             }
             speed.text = "Track Speed: x " + speedList[index].ToString("F1");
-            finalSpeed = speedList[index];
         }
         else if(Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -41,8 +40,8 @@ public class SpeedSelect : MonoBehaviour
                 index = 8;
             }
             speed.text = "Track Speed: x " + speedList[index].ToString("F1");
-            finalSpeed = speedList[index];
         }
+        finalSpeed = speedList[index];
     }
 
     public void ResetSpeed()
