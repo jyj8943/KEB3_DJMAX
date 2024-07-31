@@ -15,9 +15,12 @@ public class NoteList : MonoBehaviour
 
     public Vector3 mousePos;
     public Vector3 targetPos;
-
+    
+    public GameObject judgementBar;
+    
     public bool isMaking = false;
     public GameObject tempLongNote;
+    
     
     //생성할 때 중복으로 노트가 생성되지 않겠금 해야함
     void Update()
@@ -39,7 +42,24 @@ public class NoteList : MonoBehaviour
 
             insertShortNote();
         }
-
+        
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            InsertNoteAtRail(1);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            InsertNoteAtRail(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Semicolon))
+        {
+            InsertNoteAtRail(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Quote))
+        {
+            InsertNoteAtRail(4);
+        }
+        
         if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertLongNote)
         {
             if (!isMaking)
@@ -68,6 +88,31 @@ public class NoteList : MonoBehaviour
         {
             deleteNote();
         }
+
+        
+    }
+    private void InsertNoteAtRail(int railNum)
+    {
+        float posX = 0f;
+       
+        switch (railNum)
+        {
+            case 1:
+                posX = -1.5f;
+                break;
+            case 2:
+                posX = -0.5f;
+                break;
+            case 3:
+                posX = 0.5f;
+                break;
+            case 4:
+                posX = 1.5f;
+                break;
+        }
+        targetPos.x = posX;
+        targetPos.y = judgementBar.transform.position.y;
+        insertShortNote();
     }
 
     // noteList의 note들을 note의 defaultDist순으로 noteList에 삽입
@@ -194,7 +239,6 @@ public class NoteList : MonoBehaviour
                 }
             }
         }
-        
     }
 
     public void insertShortNote()

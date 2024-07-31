@@ -8,6 +8,8 @@ public class PauseCanvas : MonoBehaviour
 {
     public GameObject pauseCanvas;
     public GameObject helpCanvas;
+    public GameObject firstPanel; 
+    public GameObject secondPanel;
     public RawImage movieScreen;
     public VideoPlayer videoPlayer;
     public EditorCamera EditorCamera;
@@ -37,6 +39,7 @@ public class PauseCanvas : MonoBehaviour
             else if (isHelpCanvasOn)
             {
                 OnClickCloseHelpBtn();
+                Time.timeScale = 0f;
             }
             else if (isPauseCanvasOn)
             {
@@ -85,6 +88,9 @@ public class PauseCanvas : MonoBehaviour
             {
                 pauseCanvas.SetActive(false);
             }
+
+            firstPanel.SetActive(true);
+            secondPanel.SetActive(false);
             isHelpCanvasOn = true;
         }
     }
@@ -101,6 +107,18 @@ public class PauseCanvas : MonoBehaviour
               
             isHelpCanvasOn = false;
         }
+    }
+
+    public void OnclickNextPageBtn()
+    {
+        firstPanel.SetActive(false);
+        secondPanel.SetActive(true);
+    }
+    
+    public void OnclickPrevPageBtn()
+    {
+        secondPanel.SetActive(false);
+        firstPanel.SetActive(true);
     }
 
     public void OnClickExitBtn()

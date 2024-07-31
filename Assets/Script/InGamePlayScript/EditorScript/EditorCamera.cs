@@ -41,7 +41,7 @@ public class EditorCamera : MonoBehaviour
                     / (TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed));
             }
         }
-        if (Input.GetKeyDown(KeyCode.S) && transform.position.y > 0)
+        if (Input.GetKeyDown(KeyCode.E) && transform.position.y > 0)
         {
             transform.Translate(0f, -8f, 0f);
 
@@ -99,7 +99,7 @@ public class EditorCamera : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && TotalManager.instance.userChartSpeed < TotalManager.instance.maxUserChartSpeed)
+        if (Input.GetKeyDown(KeyCode.R) && TotalManager.instance.userChartSpeed < TotalManager.instance.maxUserChartSpeed)
         {
             var defaultCameraDist = transform.position.y / TotalManager.instance.userChartSpeed;
 
@@ -112,7 +112,7 @@ public class EditorCamera : MonoBehaviour
             transform.position = new Vector3(transform.position.x, defaultCameraDist * TotalManager.instance.userChartSpeed, transform.position.z);
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && TotalManager.instance.userChartSpeed > 1f)
+        if (Input.GetKeyDown(KeyCode.T) && TotalManager.instance.userChartSpeed > 1f)
         {
             var defaultCameraDist = transform.position.y / TotalManager.instance.userChartSpeed;
 
@@ -124,6 +124,7 @@ public class EditorCamera : MonoBehaviour
 
             transform.position = new Vector3(transform.position.x, defaultCameraDist * TotalManager.instance.userChartSpeed, transform.position.z);
         }
+        
 
         
     }
