@@ -14,6 +14,8 @@ public class InGamePlayManager : MonoBehaviour
     public VideoPlayer video;
     public Camera inGameCamera;
     public bool isPlaying = false;
+    private bool isPassed = true;
+    private float judgeInterval = 0f;
 
     public List<GameObject> noteList = new();
     public List<ShortNote>[] noteListinRail = new List<ShortNote>[]{
@@ -31,14 +33,9 @@ public class InGamePlayManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
-        //NoteMiss();
+        NoteMiss();
         
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -57,18 +54,38 @@ public class InGamePlayManager : MonoBehaviour
         else if (!isPlaying) video.Pause();
     }
     
-    public void NoteMiss()
+    // 유저가 노트를 아예 놓치는 경우 발생하는 MISS에 대해 판정
+    private void NoteMiss()
     {
         foreach (var noteList in noteListinRail)
         {
             if (noteList.Count == 0) continue;
             
-            if (noteList[0].transform.position.y <= judgeBar.transform.position.y - 0.5f)
+            if ( video.time >= noteList[0].noteStartingTime + 0.25f)
             {
-                // shortNote의 경우 그대로 없어지며 MISS 판정이 뜨지만, longNote의 경우 그대로 내려가며 계속 MiSS가 떠야함
-                Debug.Log("MISS");
-                noteList[0].gameObject.SetActive(false);
-                noteList.RemoveAt(0);
+                if (noteList[0].noteID == 0)
+                {
+                    // shortNote의 경우 그대로 없어지며 MISS 판정이 뜨지만, longNote의 경우 그대로 내려가며 계속 MiSS가 떠야함
+                    Debug.Log("ShortNote MISS");
+                    noteList[0].gameObject.SetActive(false);
+                    noteList.RemoveAt(0);
+                }
+                else if (noteList[0].noteID == 1)
+                {
+                    if (isPassed) 
+                    {
+                        Debug.Log("LongNote Starting MISS");
+                        isPassed = false;
+                    }
+                    
+                    if (video.time >= noteList[0].noteStartingTime + noteList[0].noteHoldingTime + 0.25f)
+                    {
+                        Debug.Log("LongNote End MISS");
+                        noteList[0].gameObject.SetActive(false);
+                        noteList.RemoveAt(0);
+                        isPassed = true;
+                    }
+                }
             }
         }
     }
