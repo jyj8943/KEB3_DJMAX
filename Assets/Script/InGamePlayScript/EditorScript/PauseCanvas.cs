@@ -14,9 +14,8 @@ public class PauseCanvas : MonoBehaviour
     public VideoPlayer videoPlayer;
     public EditorCamera EditorCamera;
     public GameObject volume;
-    
-    
-    
+
+    public GameObject nameCanvas;
 
     public static bool isPauseCanvasOn = false;
     public static bool isHelpCanvasOn = false;
@@ -31,26 +30,33 @@ public class PauseCanvas : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
-            if (!isPauseCanvasOn)
+            if (nameCanvas.activeSelf)
             {
-                ActivatePauseCanvas();
-            }
-            else if (isHelpCanvasOn)
-            {
-                OnClickCloseHelpBtn();
-                Time.timeScale = 0f;
-            }
-            else if (isPauseCanvasOn)
-            {
-                OnClickContinueBtn();
+                nameCanvas.SetActive(false);
+                volume.SetActive(false);
             }
             
-            
+            else
+            {
+                if (!isPauseCanvasOn)
+                {
+                    ActivatePauseCanvas();
+                }
+                else if (isHelpCanvasOn)
+                {
+                    OnClickCloseHelpBtn();
+                    Time.timeScale = 0f;
+                }
+                else if (isPauseCanvasOn)
+                {
+                    OnClickContinueBtn();
+                }
+            }
         }
+        
 
         // 마우스 스크롤을 무시하는 코드 (필요한 경우 사용)
-        if (isPauseCanvasOn)
+        if (isPauseCanvasOn || nameCanvas.activeSelf)
         {
             if (Input.GetAxis("Mouse ScrollWheel") != 0f)
             {

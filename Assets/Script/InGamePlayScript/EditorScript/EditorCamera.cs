@@ -18,6 +18,9 @@ public class EditorCamera : MonoBehaviour
 
     public bool isPlaying = false;
 
+    public GameObject nameCanvas;
+    public GameObject helpCanvas;
+    public GameObject pauseCanvas;
     void Update()
     {
         if (PauseCanvas.isPauseCanvasOn)
@@ -28,46 +31,76 @@ public class EditorCamera : MonoBehaviour
                 return;
             }
         }
-        if (Input.GetKeyDown(KeyCode.W) && transform.position.y < EditorManager.instance.maxGridCount * 8)
+       
+        if (!nameCanvas.activeSelf && !helpCanvas.activeSelf && !pauseCanvas.activeSelf)
         {
-            transform.Translate(0f, 8f, 0f);
-
-            if (transform.position.y > EditorManager.instance.maxGridCount * 8 - 7)
-                transform.position = new Vector3(transform.position.x, EditorManager.instance.maxGridCount * 8 - 7, transform.position.z);
-
-            if (videoPlayer != null)
+            if (Input.GetKeyDown(KeyCode.W) && transform.position.y < EditorManager.instance.maxGridCount * 8)
             {
-                videoPlayer.time = (double)(transform.position.y
-                    / (TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed));
+                transform.Translate(0f, 8f, 0f);
+
+                if (transform.position.y > EditorManager.instance.maxGridCount * 8 - 7)
+                    transform.position = new Vector3(transform.position.x, EditorManager.instance.maxGridCount * 8 - 7, transform.position.z);
+
+                if (videoPlayer != null)
+                {
+                    videoPlayer.time = (double)(transform.position.y
+                                                / (TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed));
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.E) && transform.position.y > 0)
+            {
+                transform.Translate(0f, -8f, 0f);
+
+                if (transform.position.y < 0)
+                    transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+
+                if (videoPlayer != null)
+                {
+                    videoPlayer.time = (double)(transform.position.y
+                                                / (TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed));
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (isPlaying)
+                {
+                    isPlaying = false;
+                    audioManager.pauseSong();
+                }
+                else
+                {
+                    isPlaying = true;
+                    audioManager.playSong();
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.R) && TotalManager.instance.userChartSpeed < TotalManager.instance.maxUserChartSpeed)
+            {
+                var defaultCameraDist = transform.position.y / TotalManager.instance.userChartSpeed;
+
+                EditorManager.instance.changeUserChartSpeed(0.5f);
+                horizontalLineList.changeHorizontalLineHeight();
+                gridList.changeGridHeight();
+                noteList.changeNotePosY();
+
+
+                transform.position = new Vector3(transform.position.x, defaultCameraDist * TotalManager.instance.userChartSpeed, transform.position.z);
+            }
+
+            if (Input.GetKeyDown(KeyCode.T) && TotalManager.instance.userChartSpeed > 1f)
+            {
+                var defaultCameraDist = transform.position.y / TotalManager.instance.userChartSpeed;
+
+                EditorManager.instance.changeUserChartSpeed(-0.5f);
+                horizontalLineList.changeHorizontalLineHeight();
+                gridList.changeGridHeight();
+                noteList.changeNotePosY();
+
+
+                transform.position = new Vector3(transform.position.x, defaultCameraDist * TotalManager.instance.userChartSpeed, transform.position.z);
             }
         }
-        if (Input.GetKeyDown(KeyCode.E) && transform.position.y > 0)
-        {
-            transform.Translate(0f, -8f, 0f);
-
-            if (transform.position.y < 0)
-                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
-
-            if (videoPlayer != null)
-            {
-                videoPlayer.time = (double)(transform.position.y
-                    / (TotalManager.instance.userChartSpeed * TotalManager.instance.defaultChartSpeed));
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (isPlaying)
-            {
-                isPlaying = false;
-                audioManager.pauseSong();
-            }
-            else
-            {
-                isPlaying = true;
-                audioManager.playSong();
-            }
-        }
+        
         if (isPlaying) transform.Translate(0f, TotalManager.instance.defaultChartSpeed
                                                * TotalManager.instance.userChartSpeed * Time.deltaTime, 0f);
 
@@ -99,31 +132,7 @@ public class EditorCamera : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && TotalManager.instance.userChartSpeed < TotalManager.instance.maxUserChartSpeed)
-        {
-            var defaultCameraDist = transform.position.y / TotalManager.instance.userChartSpeed;
-
-            EditorManager.instance.changeUserChartSpeed(0.5f);
-            horizontalLineList.changeHorizontalLineHeight();
-            gridList.changeGridHeight();
-            noteList.changeNotePosY();
-
-
-            transform.position = new Vector3(transform.position.x, defaultCameraDist * TotalManager.instance.userChartSpeed, transform.position.z);
-        }
-
-        if (Input.GetKeyDown(KeyCode.T) && TotalManager.instance.userChartSpeed > 1f)
-        {
-            var defaultCameraDist = transform.position.y / TotalManager.instance.userChartSpeed;
-
-            EditorManager.instance.changeUserChartSpeed(-0.5f);
-            horizontalLineList.changeHorizontalLineHeight();
-            gridList.changeGridHeight();
-            noteList.changeNotePosY();
-
-
-            transform.position = new Vector3(transform.position.x, defaultCameraDist * TotalManager.instance.userChartSpeed, transform.position.z);
-        }
+       
         
 
         

@@ -1,15 +1,11 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEditor;
 using System.IO;
 using SimpleFileBrowser;
 using TMPro;
 using UnityEngine.Networking;
-using UnityEngine.Audio;
 using UnityEngine.Video;
 
 public class ChartReader : MonoBehaviour
@@ -25,31 +21,50 @@ public class ChartReader : MonoBehaviour
     public GameObject longNotePrefab;
     public GameObject basicScreen;
     public string jsonDir;
-    public TMP_InputField fileName;
-
     public GameObject nameCanvas;
+    public TMP_InputField fileName;
+    public TMP_InputField fileDifficulty;
+    private string jsonName;
+    public GameObject volume;
     private void Awake()
     {
         movieScreen.texture = null;
-        nameCanvas.SetActive(false); 
+        nameCanvas.SetActive(false);
+        volume.SetActive(false);
     }
     public void SaveData()
     {
-        nameCanvas.SetActive(true);
+        if (!nameCanvas.activeSelf)
+        {
+            nameCanvas.SetActive(true);
+            volume.SetActive(true);
+        }
+        
     }
 
+    
+    public void OnInputFieldEndEdit(string input)
+    {
+        
+        ConfirmSaveData();
+        
+    }
+
+    // void Start()
+    // {
+    //     fileName.onEndEdit.AddListener(OnInputFieldEndEdit);
+    //     fileDifficulty.onEndEdit.AddListener(OnInputFieldEndEdit);
+    // }
+    
     public void ConfirmSaveData()
     {
         var data = new SongData(fileName.text, "ChartData/testSong");
-    
-        // 디버그 로그 추가
-        Debug.Log("InputField Text: " + fileName.text);
 
         data.songName = fileName.text; // 입력된 텍스트를 songName으로 저장
         data.songRunningTime = 120f; // 노래 시간 가져와야함
         data.bpm = 120; // 해당 노래 bpm 가져와야함
-        data.difficulty = 3; // 해당 노래 채보의 레벨 가져와함 (1 ~ 10 예상중)
-
+        data.difficulty = int.Parse(fileDifficulty.text);
+        
         var noteData = new SongData.NoteData[tempNoteList.noteList.Count];
 
         for (int i = 0; i < tempNoteList.noteList.Count; i++)
@@ -62,25 +77,12 @@ public class ChartReader : MonoBehaviour
 
         data.notes = noteData;
 
+        
+        
         SaveLoadHelper.SaveData(data);
-        nameCanvas.SetActive(false); // 데이터 저장 후 nameCanvas 비활성화
+        nameCanvas.SetActive(false); 
+        volume.SetActive(false);
     }
-    public void OnInputFieldEndEdit(string input)
-    {
-        // Enter 키가 눌렸을 때만 ConfirmSaveData를 호출
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            ConfirmSaveData();
-        }
-    }
-
-    void Start()
-    {
-        // InputField의 OnEndEdit 이벤트에 메서드 추가
-        fileName.onEndEdit.AddListener(OnInputFieldEndEdit);
-    }
-    
-
     public void LoadData()
     {
         // 유저가 로드 버튼을 눌렀을 때 로컬 파일 창이 열리면서 채보 파일을 가져오게 한 후
@@ -101,7 +103,7 @@ public class ChartReader : MonoBehaviour
         }
         Debug.Log(jsonDir);
 
-        var jsonName = Path.GetFileName(jsonDir);
+        jsonName = Path.GetFileName(jsonDir);
         Debug.Log(jsonName);
 
         if (string.IsNullOrEmpty(jsonDir)) yield break;
@@ -175,6 +177,7 @@ public class ChartReader : MonoBehaviour
             }
         }
     }
+    
 
     // SimpleFileBrowser 에셋으로 파일 브라우저 기능을 구현
     // https://github.com/yasirkula/UnitySimpleFileBrowser?tab=readme-ov-file

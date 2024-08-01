@@ -20,8 +20,9 @@ public class NoteList : MonoBehaviour
     
     public bool isMaking = false;
     public GameObject tempLongNote;
-    
-    
+    public GameObject nameCanvas;
+    public GameObject pauseCanvas;
+    public GameObject helpCanvas;
     //생성할 때 중복으로 노트가 생성되지 않겠금 해야함
     void Update()
     {
@@ -33,61 +34,66 @@ public class NoteList : MonoBehaviour
         var tempTargetPos = Camera.main.ScreenToWorldPoint(mousePos + new Vector3(0f, 0f, 10f));
         targetPos = new Vector3(tempTargetPos.x, Mathf.Round(tempTargetPos.y * 100f) / 100f, tempTargetPos.z);
 
-        if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertShortNote)
+        if (!nameCanvas.activeSelf && !helpCanvas.activeSelf && !pauseCanvas.activeSelf)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                SnapNotePosY();
-            }
-
-            insertShortNote();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            InsertNoteAtRail(1);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            InsertNoteAtRail(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Semicolon))
-        {
-            InsertNoteAtRail(3);
-        }
-        if (Input.GetKeyDown(KeyCode.Quote))
-        {
-            InsertNoteAtRail(4);
-        }
-        
-        if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertLongNote)
-        {
-            if (!isMaking)
+            if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertShortNote)
             {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     SnapNotePosY();
                 }
 
-                // 첫 번째 클릭
-                InsertLongNoteDown();
+                insertShortNote();
             }
-            else
+            
+            if (Input.GetKeyDown(KeyCode.A))
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                InsertNoteAtRail(1);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                InsertNoteAtRail(2);
+            }
+            if (Input.GetKeyDown(KeyCode.Semicolon))
+            {
+                InsertNoteAtRail(3);
+            }
+            if (Input.GetKeyDown(KeyCode.Quote))
+            {
+                InsertNoteAtRail(4);
+            }
+            
+        
+            if (Input.GetMouseButtonDown(0) && EditorManager.instance.isInsertLongNote)
+            {
+                if (!isMaking)
                 {
-                    SnapNotePosY();
-                }
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        SnapNotePosY();
+                    }
 
-                //2번째 클릭
-                insertLongNoteUp();
+                    // 첫 번째 클릭
+                    InsertLongNoteDown();
+                }
+                else
+                {
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        SnapNotePosY();
+                    }
+
+                    //2번째 클릭
+                    insertLongNoteUp();
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0) && EditorManager.instance.isDeleteNote)
+            {
+                deleteNote();
             }
         }
-
-        if (Input.GetMouseButtonDown(0) && EditorManager.instance.isDeleteNote)
-        {
-            deleteNote();
-        }
+        
 
         
     }
