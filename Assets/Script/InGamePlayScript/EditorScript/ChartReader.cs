@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.IO;
 using SimpleFileBrowser;
+using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.Audio;
 using UnityEngine.Video;
@@ -24,18 +25,27 @@ public class ChartReader : MonoBehaviour
     public GameObject longNotePrefab;
     public GameObject basicScreen;
     public string jsonDir;
+    public TMP_InputField fileName;
 
+    public GameObject nameCanvas;
     private void Awake()
     {
         movieScreen.texture = null;
+        nameCanvas.SetActive(false); 
     }
-
     public void SaveData()
     {
-        var data = new SongData("testSong", "ChartData/testSong");
+        nameCanvas.SetActive(true);
+    }
 
-        // 곡 이름이랑 재생시간 가져오도록 작성해야함
-        data.songName = "testSong";
+    public void ConfirmSaveData()
+    {
+        var data = new SongData(fileName.text, "ChartData/testSong");
+    
+        // 디버그 로그 추가
+        Debug.Log("InputField Text: " + fileName.text);
+
+        data.songName = fileName.text; // 입력된 텍스트를 songName으로 저장
         data.songRunningTime = 120f; // 노래 시간 가져와야함
         data.bpm = 120; // 해당 노래 bpm 가져와야함
         data.difficulty = 3; // 해당 노래 채보의 레벨 가져와함 (1 ~ 10 예상중)
@@ -53,7 +63,23 @@ public class ChartReader : MonoBehaviour
         data.notes = noteData;
 
         SaveLoadHelper.SaveData(data);
+        nameCanvas.SetActive(false); // 데이터 저장 후 nameCanvas 비활성화
     }
+    public void OnInputFieldEndEdit(string input)
+    {
+        // Enter 키가 눌렸을 때만 ConfirmSaveData를 호출
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            ConfirmSaveData();
+        }
+    }
+
+    void Start()
+    {
+        // InputField의 OnEndEdit 이벤트에 메서드 추가
+        fileName.onEndEdit.AddListener(OnInputFieldEndEdit);
+    }
+    
 
     public void LoadData()
     {
