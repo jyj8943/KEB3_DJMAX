@@ -45,15 +45,11 @@ public class InGameChartReader : MonoBehaviour
         {
             var noteData = data.notes[i];
 
-            var railNum = noteData.railNum;
+            var railNum = (int)noteData.railNum;
             var noteID = noteData.noteID;
             var noteStartingTime = noteData.noteStartingTime;
             var noteHoldingTime = noteData.noteHoldingTime;
-            // var posY = noteData.posY;
-            // var scale = noteData.scale;
-            // var defaultDist = noteData.defaultDist;
-            // var distUpPosY = noteData.distUpPosY;
-
+            
             float posX = 0f;
             switch (railNum)
             {
@@ -78,8 +74,9 @@ public class InGameChartReader : MonoBehaviour
             {
                 var shortNote = Instantiate(shortNotePrefab, pos, Quaternion.identity); // 프리팹 이름 수정
 
-                shortNote.transform.SetParent(InGamePlayManager.instance.transform, false);
-                shortNote.GetComponent<ShortNote>().InitNote();
+                shortNote.transform.SetParent(transform.GetChild(0).transform, false);
+                //shortNote.GetComponent<ShortNote>().InitNote();
+                shortNote.GetComponent<ShortNote>().SetNoteData(railNum, noteID, noteStartingTime, noteHoldingTime);
 
                 InGamePlayManager.instance.noteList.Add(shortNote);
             }
@@ -87,13 +84,14 @@ public class InGameChartReader : MonoBehaviour
             {
                 var longNote = Instantiate(longNotePrefab, pos, Quaternion.identity);
 
-                longNote.transform.SetParent(InGamePlayManager.instance.transform, false);
+                longNote.transform.SetParent(transform.GetChild(0).transform, false);
 
                 longNote.transform.localScale = new Vector3(1f, noteHoldingTime * TotalManager.instance.finalChartSpeed, 1f);
                 
                 var distUpPosY = (pos.y + longNote.GetComponent<LongNote>().noteHoldingTime);
-                longNote.GetComponent<LongNote>().InitNote(distUpPosY);
-
+                //longNote.GetComponent<LongNote>().InitNote(distUpPosY);
+                longNote.GetComponent<LongNote>().SetNoteData(railNum, noteID, noteStartingTime, noteHoldingTime);
+                
                 InGamePlayManager.instance.noteList.Add(longNote);
             }
         }

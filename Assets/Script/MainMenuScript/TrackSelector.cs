@@ -11,6 +11,7 @@ public class TrackSelector : MonoBehaviour
     public ScrollRect scrollRect;
     public TextMeshProUGUI infoTitle;
     public TextMeshProUGUI infoArtist;
+    public TextMeshProUGUI infoLevel;
     public Image infoAlbumImage;
 
     public GameObject selectedButton;
@@ -93,14 +94,22 @@ public class TrackSelector : MonoBehaviour
 
     public void InfoUpdate()
     {
-        var songTitle = selectedButton.transform.Find("Title").GetComponentInChildren<TextMeshProUGUI>();
-        var songArtist = selectedButton.transform.Find("Artist").GetComponentInChildren<TextMeshProUGUI>();
+        var songTitle = selectedButton.GetComponent<SongPrefabMaker>().title;
+        var songArtist = selectedButton.GetComponent<SongPrefabMaker>().artist;
 
         infoTitle.text = songTitle.text;
         infoArtist.text = songArtist.text;
 
         string imagePath = "AlbumImage/" + songTitle.text + "_" + songArtist.text;
         Sprite imageSprite = Resources.Load<Sprite>(imagePath);
-        infoAlbumImage.sprite = imageSprite; 
+        infoAlbumImage.sprite = imageSprite;
+
+        var level = selectedButton.GetComponent<SongPrefabMaker>().level;
+
+        infoLevel.text = "";
+        for (int i = 0 ; i < level ; i++)
+        {
+            infoLevel.text += "<sprite=0>";
+        }
     }
 }
