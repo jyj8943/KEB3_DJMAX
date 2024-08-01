@@ -3011,6 +3011,8 @@ MonoBehaviour:
   isMaking: 0
   tempLongNote: {fileID: 0}
   nameCanvas: {fileID: 667727599}
+  pauseCanvas: {fileID: 1975123294}
+  helpCanvas: {fileID: 100066941}
 --- !u!1 &627063065
 GameObject:
   m_ObjectHideFlags: 0
@@ -5701,7 +5703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &972057596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7047,6 +7049,7 @@ MonoBehaviour:
   videoPlayer: {fileID: 784800500}
   EditorCamera: {fileID: 2046658598}
   volume: {fileID: 1943908212}
+  nameCanvas: {fileID: 667727599}
 --- !u!4 &1256621623
 Transform:
   m_ObjectHideFlags: 0
@@ -10633,6 +10636,8 @@ MonoBehaviour:
   videoPlayer: {fileID: 784800500}
   isPlaying: 0
   nameCanvas: {fileID: 667727599}
+  helpCanvas: {fileID: 100066941}
+  pauseCanvas: {fileID: 1975123294}
 --- !u!114 &2046658599
 MonoBehaviour:
   m_ObjectHideFlags: 0
