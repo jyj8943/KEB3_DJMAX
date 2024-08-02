@@ -14,10 +14,12 @@ public class Button : MonoBehaviour
     private ShortNote note = null;
     
     private bool isHolding = false;
+    private bool isRecieved = false;
+    public bool isLongNoteClicked = false;
+    
     private float judgeTime = 0f;
     private float judgeInterval = 0f;
     private float scaleOftempNote = 0f;
-    private bool isRecieved = false;
     
     public SpriteRenderer buttonImage;
     public Sprite upImage;
@@ -54,7 +56,7 @@ public class Button : MonoBehaviour
          judgeTime = GetJudgeTime();
          if (note != null && note.noteID == 1)
          {
-             if (judgeTime >= note.noteStartingTime)
+             if (judgeTime >= note.noteStartingTime && judgeTime <= note.noteHoldingTime + note.noteStartingTime)
              {
                  judgeInterval += Time.deltaTime;
              }
@@ -90,7 +92,13 @@ public class Button : MonoBehaviour
              
              // 롱노트의 마지막 입력 판정 처리
              if (note != null && note.noteID == 1)
-                 JudgeLongNoteEnd();
+             {
+                 var longNoteEndTime = note.noteStartingTime + note.noteHoldingTime;
+                 if (judgeTime >= longNoteEndTime - 0.24f && judgeTime <= longNoteEndTime + 0.24f)
+                 {
+                    JudgeLongNoteEnd();
+                 }
+             }
              
              isHolding = false;
          }
@@ -128,6 +136,8 @@ public class Button : MonoBehaviour
       {
          judgeTime = GetJudgeTime();
          var noteTime = note.noteStartingTime;
+
+         isLongNoteClicked = true;
          
          GetNoteAccuracy(noteTime);
       }
@@ -141,6 +151,7 @@ public class Button : MonoBehaviour
           else
           {
               Debug.Log("LongNote Holding MISS");
+              InGamePlayManager.instance.ResetTempCombo();
           }
       }
 
@@ -149,23 +160,18 @@ public class Button : MonoBehaviour
           if (note == null) return;
           
           // 버튼을 누르고 있으면 롱노트가 계속 줄어들도록 연출
-          if (judgeTime >= note.noteStartingTime)
+          if (judgeTime >= note.noteStartingTime && judgeTime < note.noteStartingTime + note.noteHoldingTime)
           {
-              Debug.Log(scaleOftempNote);
-              note.transform.position = new Vector3(note.transform.position.x,
-                  InGamePlayManager.instance.judgeBar.transform.position.y, note.transform.position.z);
               note.transform.localScale =
                   new Vector3(1f, scaleOftempNote - (judgeTime - note.noteStartingTime) 
                       * TotalManager.instance.finalChartSpeed, 1f);
-              // else
-              // {
-              //     note.transform.position = new Vector3(note.transform.position.x,
-              //          InGamePlayManager.instance.judgeBar.transform.position.y, note.transform.position.z);
-              //     note.transform.localScale =
-              //         new Vector3(1f, tempNote.transform.position.y + (tempNote.noteHoldingTime + holdingTime)
-              //                         * TotalManager.instance.finalChartSpeed
-              //                         - InGamePlayManager.instance.judgeBar.transform.position.y, 1f);
-              // }
+              note.transform.position = new Vector3(note.transform.position.x,
+                  InGamePlayManager.instance.judgeBar.transform.position.y, note.transform.position.z);
+          }
+
+          if (judgeTime >= (note.noteStartingTime + note.noteHoldingTime))
+          {
+              note.transform.localScale = new Vector3(1f, 0f, 1f);
           }
       }
 
@@ -173,10 +179,12 @@ public class Button : MonoBehaviour
       {
           judgeTime = GetJudgeTime();
           var noteTime = note.noteStartingTime + note.noteHoldingTime;
+
+          isLongNoteClicked = false;
           
           GetNoteAccuracy(noteTime);
 
-          if (note != null && judgeTime >= noteTime)
+          if (note != null)
           {
               note.gameObject.SetActive(false);
               note = null;
@@ -190,20 +198,31 @@ public class Button : MonoBehaviour
           {
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("MAX 100%");
+              
+              InGamePlayManager.instance.PlusTempCombo();
+              InGamePlayManager.instance.GetTempScore(1f);
           }
           else if (judgeTime >= noteTime - 0.14f && judgeTime <= noteTime + 0.14f)
           {
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("MAX 90%");
+              
+              InGamePlayManager.instance.PlusTempCombo();
+              InGamePlayManager.instance.GetTempScore(0.9f);
           }
           else if (judgeTime >= noteTime - 0.24f && judgeTime <= noteTime + 0.24f)
           {
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("MAX 80%");
+              
+              InGamePlayManager.instance.PlusTempCombo();
+              InGamePlayManager.instance.GetTempScore(0.8f);
           }
           else
           {
               Debug.Log("MISS");
+              
+              InGamePlayManager.instance.ResetTempCombo();
           }
       }
       

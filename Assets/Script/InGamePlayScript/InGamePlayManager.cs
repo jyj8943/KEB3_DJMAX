@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
@@ -11,12 +12,26 @@ public class InGamePlayManager : MonoBehaviour
 {
     public static InGamePlayManager instance;
 
+    public GameObject judgeBar;
     public VideoPlayer video;
     public Camera inGameCamera;
+    public Button buttonA;
+    public Button buttonS;
+    public Button buttonSemiColon;
+    public Button buttonQuotes;
+    public TextMeshProUGUI tempComboText;
+    public TextMeshProUGUI tempScoreText;
+    
     public bool isPlaying = false;
     private bool isPassed = true;
-    private float judgeInterval = 0f;
 
+    public int maxCombo = 0;
+    public int tempCombo = 0;
+    
+    public float maxScore = 1000000f;
+    public float tempScore = 0f;
+    public float scoreOfOneNote = 0f;
+    
     public List<GameObject> noteList = new();
     public List<ShortNote>[] noteListinRail = new List<ShortNote>[]{
         new List<ShortNote>(), new List<ShortNote>(), new List<ShortNote>(), new List<ShortNote>()
@@ -24,18 +39,26 @@ public class InGamePlayManager : MonoBehaviour
 
     public ShortNote GetFirstNote(int i) => noteListinRail[i][0];
 
-    public GameObject judgeBar;
-    //public GameObject shortNotePrefab;
-    //public GameObject longNotePrefab;
 
     void Awake()
     {
         instance = this;
     }
 
+    private void Start()
+    {
+        if (maxCombo != 0)
+        {
+            scoreOfOneNote = maxScore / maxCombo;
+        }
+    }
+
     private void Update()
     {
         NoteMiss();
+        
+        DisplayTempCombo();
+        DisplayTempScore();
         
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -60,6 +83,31 @@ public class InGamePlayManager : MonoBehaviour
         foreach (var noteList in noteListinRail)
         {
             if (noteList.Count == 0) continue;
+
+            Button tempButton = null;
+            switch (noteList[0].railNum)
+            {
+                case (1):
+                {
+                    tempButton = buttonA;
+                    break;
+                }
+                case (2):
+                {
+                    tempButton = buttonS;
+                    break;
+                }
+                case (3):
+                {
+                    tempButton = buttonSemiColon;
+                    break;
+                }
+                case (4):
+                {
+                    tempButton = buttonQuotes;
+                    break;
+                }
+            }
             
             if ( video.time >= noteList[0].noteStartingTime + 0.25f)
             {
@@ -72,18 +120,27 @@ public class InGamePlayManager : MonoBehaviour
                 }
                 else if (noteList[0].noteID == 1)
                 {
-                    if (isPassed) 
+                    if (isPassed && !tempButton.isLongNoteClicked) 
                     {
+                        Debug.Log(tempButton.name);
                         Debug.Log("LongNote Starting MISS");
+                        
                         isPassed = false;
+                        
+                        ResetTempCombo();
                     }
                     
                     if (video.time >= noteList[0].noteStartingTime + noteList[0].noteHoldingTime + 0.25f)
                     {
+                        Debug.Log(tempButton.name);
                         Debug.Log("LongNote End MISS");
+                        
                         noteList[0].gameObject.SetActive(false);
                         noteList.RemoveAt(0);
+                        
                         isPassed = true;
+                        
+                        ResetTempCombo();
                     }
                 }
             }
@@ -98,5 +155,40 @@ public class InGamePlayManager : MonoBehaviour
         {
             noteListinRail[note.GetComponent<ShortNote>().railNum - 1].Add(note.GetComponent<ShortNote>());
         }
+    }
+
+    public void DisplayTempCombo()
+    {
+        if (tempCombo == 0)
+        {
+            tempComboText.gameObject.SetActive(false);
+        }
+        else
+        {
+            tempComboText.gameObject.SetActive(true);
+            tempComboText.SetText(tempCombo.ToString());
+        }
+    }
+
+    public void PlusTempCombo()
+    {
+        tempCombo += 1;
+    }
+
+    public void ResetTempCombo()
+    {
+        tempCombo = 0;
+    }
+
+    public void DisplayTempScore()
+    {
+        tempScoreText.SetText(Mathf.Round(tempScore).ToString());
+    }
+
+    public void GetTempScore(float accuracyRate)
+    {
+        tempScore += (scoreOfOneNote * accuracyRate);
+
+        if (tempScore > maxScore) tempScore = maxScore;
     }
 }

@@ -46,16 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734171fb07dfcce4ab64e7654e3ef606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosX: 0
-  PosY: 0
-  UpPosY: 0
-  arrivePosYDist: 0
-  arriveUpPosYDist: 0
+  posX: 0
+  posY: 0
+  railNum: 0
   noteID: 0
-  defaultScale: 0
-  defaultArrivePosY: 0
-  defaultArriveUpPosY: 0
-  defaultUpPosY: 0
+  noteStartingTime: 0
+  noteHoldingTime: 0
 --- !u!61 &7563394789782624969
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -5512458133631365161, guid: c492625627b55524c8405bd9407f696c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

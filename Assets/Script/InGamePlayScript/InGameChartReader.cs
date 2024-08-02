@@ -72,13 +72,15 @@ public class InGameChartReader : MonoBehaviour
 
             if (noteID == 0)
             {
-                var shortNote = Instantiate(shortNotePrefab, pos, Quaternion.identity); // 프리팹 이름 수정
+                var shortNote = Instantiate(shortNotePrefab, pos, Quaternion.identity);
 
                 shortNote.transform.SetParent(transform.GetChild(0).transform, false);
-                //shortNote.GetComponent<ShortNote>().InitNote();
+                
                 shortNote.GetComponent<ShortNote>().SetNoteData(railNum, noteID, noteStartingTime, noteHoldingTime);
 
                 InGamePlayManager.instance.noteList.Add(shortNote);
+
+                InGamePlayManager.instance.maxCombo += 1;
             }
             else if (noteID == 1)
             {
@@ -89,10 +91,12 @@ public class InGameChartReader : MonoBehaviour
                 longNote.transform.localScale = new Vector3(1f, noteHoldingTime * TotalManager.instance.finalChartSpeed, 1f);
                 
                 var distUpPosY = (pos.y + longNote.GetComponent<LongNote>().noteHoldingTime);
-                //longNote.GetComponent<LongNote>().InitNote(distUpPosY);
+
                 longNote.GetComponent<LongNote>().SetNoteData(railNum, noteID, noteStartingTime, noteHoldingTime);
                 
                 InGamePlayManager.instance.noteList.Add(longNote);
+
+                InGamePlayManager.instance.maxCombo += 2;
             }
         }
     }
