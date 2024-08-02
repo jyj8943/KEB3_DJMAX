@@ -9,10 +9,16 @@ public class TrackSelector : MonoBehaviour
 {
     public Transform contentPanel;
     public ScrollRect scrollRect;
+
     public TextMeshProUGUI infoTitle;
     public TextMeshProUGUI infoArtist;
+    public TextMeshProUGUI infoDifficulty;
     public TextMeshProUGUI infoLevel;
     public Image infoAlbumImage;
+
+    public TextMeshProUGUI bestScore;
+    public TextMeshProUGUI bestCombo;
+    public Image bestRank;
 
     public GameObject selectedButton;
     private int listIndex = 0;
@@ -104,12 +110,34 @@ public class TrackSelector : MonoBehaviour
         Sprite imageSprite = Resources.Load<Sprite>(imagePath);
         infoAlbumImage.sprite = imageSprite;
 
+        LevelDifficultyInfo();
+    }
+
+    void LevelDifficultyInfo()
+    {
         var level = selectedButton.GetComponent<SongPrefabMaker>().level;
+
+        if (level > 0 && level < 3)
+        {
+            infoDifficulty.text = "EASY";
+        }
+        else if (level >= 3 && level < 5)
+        {
+            infoDifficulty.text = "NORMAL";
+        }
+        else if (level >= 5)
+        {
+            infoDifficulty.text = "HARD";
+        }
 
         infoLevel.text = "";
         for (int i = 0 ; i < level ; i++)
         {
             infoLevel.text += "<sprite=0>";
         }
+    }
+
+    void BestInfo()
+    {
     }
 }
