@@ -11,6 +11,8 @@ public class SongPrefabMaker : MonoBehaviour
     public TextMeshProUGUI artist;
     public Image albumimage;
     public int level;
+    public int bestScore;
+    public int bestCombo;
 
     public void FillContent(SongInfo songInfo)
     {
@@ -22,6 +24,8 @@ public class SongPrefabMaker : MonoBehaviour
         albumimage.sprite = imageSprite;
         
         level = songInfo.songLevel;
+        bestScore = songInfo.songBestScore;
+        bestCombo = songInfo.songBestCombo;
     }
 }
         
