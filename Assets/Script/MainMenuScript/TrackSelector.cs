@@ -100,22 +100,22 @@ public class TrackSelector : MonoBehaviour
 
     public void InfoUpdate()
     {
-        var songTitle = selectedButton.GetComponent<SongPrefabMaker>().title;
-        var songArtist = selectedButton.GetComponent<SongPrefabMaker>().artist;
+        infoTitle.text = selectedButton.GetComponent<SongPrefabMaker>().title.text;
+        infoArtist.text = selectedButton.GetComponent<SongPrefabMaker>().artist.text;
 
-        infoTitle.text = songTitle.text;
-        infoArtist.text = songArtist.text;
-
-        string imagePath = "AlbumImage/" + songTitle.text + "_" + songArtist.text;
+        string imagePath = "AlbumImage/" + infoTitle.text + "_" + infoArtist.text;
         Sprite imageSprite = Resources.Load<Sprite>(imagePath);
         infoAlbumImage.sprite = imageSprite;
 
         LevelDifficultyInfo();
+        BestInfo();
     }
+
+    public static int level;
 
     void LevelDifficultyInfo()
     {
-        var level = selectedButton.GetComponent<SongPrefabMaker>().level;
+        level = selectedButton.GetComponent<SongPrefabMaker>().level;
 
         if (level > 0 && level < 3)
         {
@@ -139,5 +139,8 @@ public class TrackSelector : MonoBehaviour
 
     void BestInfo()
     {
+        bestScore.text = selectedButton.GetComponent<SongPrefabMaker>().bestScore.ToString();
+        bestCombo.text = selectedButton.GetComponent<SongPrefabMaker>().bestCombo.ToString();
+
     }
 }

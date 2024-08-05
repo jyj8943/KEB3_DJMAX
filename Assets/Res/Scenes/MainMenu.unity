@@ -5848,10 +5848,9 @@ MonoBehaviour:
   infoDifficulty: {fileID: 873011883}
   infoLevel: {fileID: 1503492382}
   infoAlbumImage: {fileID: 1584202229}
-  bestScore: {fileID: 0}
-  bestCombo: {fileID: 0}
-  bestRank: {fileID: 0}
-  selectedButton: {fileID: 0}
+  bestScore: {fileID: 1395417564}
+  bestCombo: {fileID: 1576228968}
+  bestRank: {fileID: 36082664}
 --- !u!4 &1961462851
 Transform:
   m_ObjectHideFlags: 0

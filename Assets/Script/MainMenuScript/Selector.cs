@@ -14,6 +14,8 @@ public class Selector : MonoBehaviour
 
     public TextMeshProUGUI trackTitle;
     public TextMeshProUGUI trackArtist;
+    public static string selectedTrackTitle;
+    public static string selectedTrackArtist;
     public static string selectedTrack;
     public GameObject trackSelect;
     public GameObject selector;
@@ -49,6 +51,8 @@ public class Selector : MonoBehaviour
 
     public void Play()
     {
+        selectedTrackTitle = trackTitle.text;
+        selectedTrackArtist = trackArtist.text;
         selectedTrack = trackTitle.text+trackArtist.text+".json";
         Debug.Log(selectedTrack);
         Debug.Log(SpeedSelect.finalSpeed);

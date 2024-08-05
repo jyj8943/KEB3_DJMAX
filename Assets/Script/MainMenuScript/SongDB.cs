@@ -15,7 +15,7 @@ public class SongDB : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             // 여기에 노래 정보를 추가합니다.
-            songs.Add(new SongInfo {songTitle = "Butterfly", songArtist = "Digimon", songLevel = 3, songBestScore = 1234567, songBestCombo = 2024});
+            songs.Add(new SongInfo {songTitle = "Butterfly", songArtist = "Digimon", songLevel = 3, songBestScore = 987654, songBestCombo = 2024});
             songs.Add(new SongInfo {songTitle = "Dynamite", songArtist = "BTS", songLevel = 5});
             songs.Add(new SongInfo {songTitle = "Drama", songArtist = "Aespa", songLevel = 4});
             songs.Add(new SongInfo {songTitle = "Song 3", songArtist = "Artist3", songLevel = 1});
