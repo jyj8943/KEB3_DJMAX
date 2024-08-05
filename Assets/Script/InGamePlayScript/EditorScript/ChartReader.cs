@@ -24,6 +24,7 @@ public class ChartReader : MonoBehaviour
     public GameObject nameCanvas;
     public TMP_InputField fileName;
     public TMP_InputField fileDifficulty;
+    public TMP_InputField fileArtist;
     private string jsonName;
     public GameObject volume;
     private void Awake()
@@ -61,6 +62,7 @@ public class ChartReader : MonoBehaviour
         var data = new SongData(fileName.text, "ChartData/testSong");
 
         data.songName = fileName.text; // 입력된 텍스트를 songName으로 저장
+        data.songArtist = fileArtist.text;
         data.songRunningTime = 120f; // 노래 시간 가져와야함
         data.bpm = 120; // 해당 노래 bpm 가져와야함
         data.difficulty = int.Parse(fileDifficulty.text);
