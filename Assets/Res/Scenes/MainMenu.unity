@@ -415,7 +415,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6369884381188197543, guid: f100764fbef432d4e9a29687d3ef7f38, type: 3}
+  m_Sprite: {fileID: 5186708103806244783, guid: f100764fbef432d4e9a29687d3ef7f38, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5851,6 +5851,7 @@ MonoBehaviour:
   bestScore: {fileID: 1395417564}
   bestCombo: {fileID: 1576228968}
   bestRank: {fileID: 36082664}
+  selectedButton: {fileID: 0}
 --- !u!4 &1961462851
 Transform:
   m_ObjectHideFlags: 0
