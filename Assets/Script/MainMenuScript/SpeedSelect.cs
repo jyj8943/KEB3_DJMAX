@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Mathematics;
+/////////////////////
 
 public class SpeedSelect : MonoBehaviour
 {
@@ -21,57 +23,53 @@ public class SpeedSelect : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            if (trackSpeed < 7.0f)
+            if (!isKeyHeld)
             {
-                if (!isKeyHeld)
+                trackSpeed += 0.1f;
+                isKeyHeld = true;
+                keyHoldTime = 0.0f;
+            }
+            else
+            {
+                keyHoldTime += Time.deltaTime;
+                if (keyHoldTime >= 1.0f)
                 {
-                    trackSpeed += 0.1f;
-                    isKeyHeld = true;
-                }
-                else
-                {
-                    keyHoldTime += Time.deltaTime;
-                    if (keyHoldTime >= 0.5f)
-                    {
-                        trackSpeed += 0.1f * Time.deltaTime * 20;
-                    }
+                    trackSpeed += 0.1f * Time.deltaTime * 20;
                 }
             }
 
             if (trackSpeed >= 7.0f)
             {
                 trackSpeed = 1.0f;
-                keyHoldTime = 0.0f;
-                isKeyHeld = true;
             }
+
+            trackSpeed = Mathf.Round(trackSpeed * 10.0f) / 10.0f;
 
             speed.text = "Track Speed: x " + trackSpeed.ToString("F1");
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            if (trackSpeed > 1.0f)
+            if (!isKeyHeld)
             {
-                if (!isKeyHeld)
+                trackSpeed -= 0.1f;
+                isKeyHeld = true;
+                keyHoldTime = 0.0f;
+            }
+            else
+            {
+                keyHoldTime += Time.deltaTime;
+                if (keyHoldTime >= 1.0f)
                 {
-                    trackSpeed -= 0.1f;
-                    isKeyHeld = true;
-                }
-                else
-                {
-                    keyHoldTime += Time.deltaTime;
-                    if (keyHoldTime >= 0.5f)
-                    {
-                        trackSpeed -= 0.1f * Time.deltaTime * 20;
-                    }
+                    trackSpeed -= 0.1f * Time.deltaTime * 20;
                 }
             }
 
             if (trackSpeed <= 1.0f)
             {
                 trackSpeed = 7.0f;
-                keyHoldTime = 0.0f;
-                isKeyHeld = true;
             }
+
+            trackSpeed = Mathf.Round(trackSpeed * 10.0f) / 10.0f;
 
             speed.text = "Track Speed: x " + trackSpeed.ToString("F1");
         }
@@ -83,7 +81,6 @@ public class SpeedSelect : MonoBehaviour
 
         finalSpeed = trackSpeed;
     }
-
 
     public void ResetSpeed()
     {
