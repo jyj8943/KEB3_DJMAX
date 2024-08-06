@@ -41,9 +41,5 @@ public class SongData : SaveData
         public int noteID;
         public float noteStartingTime; // 노트를 눌러야할 시간
         public float noteHoldingTime; // 롱노트에서 노트를 끝까지 눌러야할 시간
-        //public float posY;
-        // public float scale;
-        // public float defaultDist;
-        // public float distUpPosY;
     }
 }

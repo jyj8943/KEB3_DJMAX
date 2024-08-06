@@ -63,7 +63,7 @@ public class ChartReader : MonoBehaviour
 
         data.songName = fileName.text; // 입력된 텍스트를 songName으로 저장
         data.songArtist = fileArtist.text;
-        data.songRunningTime = 120f; // 노래 시간 가져와야함
+        data.songRunningTime = (float)videoPlayer.length; // 노래 시간 가져와야함
         data.bpm = 120; // 해당 노래 bpm 가져와야함
         data.difficulty = int.Parse(fileDifficulty.text);
         
@@ -82,6 +82,15 @@ public class ChartReader : MonoBehaviour
         SaveLoadHelper.SaveData(data);
         nameCanvas.SetActive(false); 
         volume.SetActive(false);
+
+        var currentFileName = "tempSong.mp4";
+        var newFileName = data.songName + data.songArtist + ".mp4";
+        
+        var directory = Path.Combine(Application.persistentDataPath, "SongVideo");
+        var currentFilePath = Path.Combine(directory, currentFileName);
+        var newFilePath = Path.Combine(directory, newFileName);
+        
+        File.Move(currentFilePath, newFilePath);
     }
     public void LoadData()
     {
@@ -90,7 +99,6 @@ public class ChartReader : MonoBehaviour
         FileBrowser.SetFilters(false, "json");
 
         StartCoroutine(ShowLoadDialogCoroutineForJson());
-        
     }
 
     private IEnumerator ShowLoadDialogCoroutineForJson()
@@ -124,11 +132,6 @@ public class ChartReader : MonoBehaviour
             var noteID = noteData.noteID;
             var noteStartingTime = noteData.noteStartingTime;
             var noteHoldingTime = noteData.noteHoldingTime;
-            
-            // var posY = noteData.posY;
-            // var scale = noteData.scale;
-            // var defaultDist = noteData.defaultDist;
-            // var distUpPosY = noteData.distUpPosY;
 
             float posX = 0f;
             switch (railNum)
@@ -157,8 +160,7 @@ public class ChartReader : MonoBehaviour
 
                 shortNote.transform.SetParent(tempNoteList.transform, false);
                 shortNote.GetComponent<ShortNote>().InitNote();
-
-                //tempNoteList.noteList.Add(shortNote);
+                
                 tempNoteList.GetComponent<NoteList>().SortingNotes(shortNote);
             }
             else if (noteID == 1)
@@ -171,13 +173,11 @@ public class ChartReader : MonoBehaviour
 
                 var distUpPosY = (pos.y + longNote.transform.localScale.y);
                 longNote.GetComponent<LongNote>().InitNote(distUpPosY);
-
-                //tempNoteList.noteList.Add(longNote);
+                
                 tempNoteList.GetComponent<NoteList>().SortingNotes(longNote);
             }
         }
     }
-    
 
     // SimpleFileBrowser 에셋으로 파일 브라우저 기능을 구현
     // https://github.com/yasirkula/UnitySimpleFileBrowser?tab=readme-ov-file
@@ -202,8 +202,7 @@ public class ChartReader : MonoBehaviour
     {
         using (UnityWebRequest uwr = UnityWebRequest.Get(url))
         {
-            
-            string filePath = System.IO.Path.Combine(Application.persistentDataPath, "downloadedVideo.mp4");
+            string filePath = System.IO.Path.Combine(Application.persistentDataPath + "/SongVideo", "tempSong.mp4");
             uwr.downloadHandler = new DownloadHandlerFile(filePath);
             
             yield return uwr.SendWebRequest();
