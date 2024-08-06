@@ -10,7 +10,7 @@ public class TotalManager : MonoBehaviour
     public float userChartSpeed = 1f;
     public float finalChartSpeed;
 
-    public float maxUserChartSpeed = 5f;
+    public float maxUserChartSpeed = 7f;
 
     public float minNotePosY = -3f;
     public float minNotePosX = -2f;

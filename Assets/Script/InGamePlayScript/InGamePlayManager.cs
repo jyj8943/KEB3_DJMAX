@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.Video;
 
@@ -24,6 +25,7 @@ public class InGamePlayManager : MonoBehaviour
     
     public bool isPlaying = false;
     private bool isPassed = true;
+    public bool isEmpty = false;
 
     public int maxCombo = 0;
     public int tempCombo = 0;
@@ -31,6 +33,12 @@ public class InGamePlayManager : MonoBehaviour
     public float maxScore = 1000000f;
     public float tempScore = 0f;
     public float scoreOfOneNote = 0f;
+
+    public int perfectCount = 0;
+    public int greatCount = 0;
+    public int goodCount = 0;
+    public int missCount = 0;
+    
     
     public List<GameObject> noteList = new();
     public List<ShortNote>[] noteListinRail = new List<ShortNote>[]{
@@ -51,6 +59,8 @@ public class InGamePlayManager : MonoBehaviour
         {
             scoreOfOneNote = maxScore / maxCombo;
         }
+        
+        StartCoroutine(StartChart());
     }
 
     private void Update()
@@ -75,6 +85,23 @@ public class InGamePlayManager : MonoBehaviour
         }
         if (isPlaying) video.Play();
         else if (!isPlaying) video.Pause();
+        
+        // noteListInRail이 모두 비어 게임이 끝나는 기능
+        foreach (var noteList in noteListinRail)
+        {
+            if (noteList.Count != 0)
+            {
+                isEmpty = false;
+                break;
+            }
+
+            isEmpty = true;
+        }
+
+        if (isEmpty)
+        {
+            StartCoroutine(GameFinish());
+        }
     }
     
     // 유저가 노트를 아예 놓치는 경우 발생하는 MISS에 대해 판정
@@ -117,6 +144,9 @@ public class InGamePlayManager : MonoBehaviour
                     Debug.Log("ShortNote MISS");
                     noteList[0].gameObject.SetActive(false);
                     noteList.RemoveAt(0);
+                    
+                    ResetTempCombo();
+                    missCount++;
                 }
                 else if (noteList[0].noteID == 1)
                 {
@@ -126,6 +156,7 @@ public class InGamePlayManager : MonoBehaviour
                         Debug.Log("LongNote Starting MISS");
                         
                         isPassed = false;
+                        missCount++;
                         
                         ResetTempCombo();
                     }
@@ -139,6 +170,7 @@ public class InGamePlayManager : MonoBehaviour
                         noteList.RemoveAt(0);
                         
                         isPassed = true;
+                        missCount++;
                         
                         ResetTempCombo();
                     }
@@ -190,5 +222,47 @@ public class InGamePlayManager : MonoBehaviour
         tempScore += (scoreOfOneNote * accuracyRate);
 
         if (tempScore > maxScore) tempScore = maxScore;
+    }
+
+    public void GetJudgeCount(string judge)
+    {
+        switch (judge)
+        {
+            case ("PERFECT"):
+            {
+                perfectCount++;
+                break;
+            }
+            case ("GREAT"):
+            {
+                greatCount++;
+                break;
+            }
+            case ("GOOD"):
+            {
+                goodCount++;
+                break;
+            }
+            case ("MISS"):
+            {
+                missCount++;
+                break;
+            }
+        }
+    }
+
+    private IEnumerator StartChart()
+    {
+        yield return new WaitForSeconds(3f);
+
+        isPlaying = true;
+    }
+
+    private IEnumerator GameFinish()
+    {
+        yield return new WaitForSeconds(3f);
+        
+        Debug.Log("Game Finish!");
+        SceneManager.LoadScene("Result");
     }
 }
