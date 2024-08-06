@@ -121,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rank__0
+      name: sss
       rect:
         serializedVersion: 2
         x: 50
@@ -129,7 +129,7 @@ TextureImporter:
         width: 409
         height: 262
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,7 +142,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rank__1
+      name: ss
       rect:
         serializedVersion: 2
         x: 504
@@ -150,7 +150,7 @@ TextureImporter:
         width: 414
         height: 271
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,7 +163,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rank__2
+      name: s
       rect:
         serializedVersion: 2
         x: 1010
@@ -171,7 +171,7 @@ TextureImporter:
         width: 295
         height: 297
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,15 +184,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rank__3
+      name: a
       rect:
         serializedVersion: 2
-        x: 55
-        y: 432
+        x: 49
+        y: 430
         width: 255
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,7 +205,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rank__4
+      name: b
       rect:
         serializedVersion: 2
         x: 412
@@ -213,7 +213,7 @@ TextureImporter:
         width: 257
         height: 258
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,15 +226,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rank__5
+      name: c
       rect:
         serializedVersion: 2
-        x: 760
-        y: 431
+        x: 757
+        y: 429
         width: 247
         height: 258
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -247,7 +247,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rank__6
+      name: d
       rect:
         serializedVersion: 2
         x: 1073
@@ -255,7 +255,7 @@ TextureImporter:
         width: 272
         height: 260
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -268,7 +268,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rank__7
+      name: f
       rect:
         serializedVersion: 2
         x: 570
@@ -276,7 +276,7 @@ TextureImporter:
         width: 264
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -291,7 +291,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 50ac63bb27f6e294f819ebeb8a32b45a
     internalID: 0
     vertices: []
     indices: 
@@ -299,14 +299,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rank__0: -7305300548187699225
-      rank__1: -5543783713340956246
-      rank__2: -6369884381188197543
-      rank__3: -3714352536442676127
-      rank__4: 3600175769289594150
-      rank__5: -3040831688230512489
-      rank__6: -4007834938386679145
-      rank__7: 5186708103806244783
+      a: -3714352536442676127
+      b: 3600175769289594150
+      c: -3040831688230512489
+      d: -4007834938386679145
+      f: 5186708103806244783
+      s: -6369884381188197543
+      ss: -5543783713340956246
+      sss: -7305300548187699225
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -142,5 +142,48 @@ public class TrackSelector : MonoBehaviour
         bestScore.text = selectedButton.GetComponent<SongPrefabMaker>().bestScore.ToString();
         bestCombo.text = selectedButton.GetComponent<SongPrefabMaker>().bestCombo.ToString();
 
+        int score = selectedButton.GetComponent<SongPrefabMaker>().bestScore;
+        string rank = RankJudge(score);
+        AdjustSize(rank);
+
+        string rankPath = "Rank/rank";
+        Sprite imageSprite = LoadSprite(rankPath, rank);
+        bestRank.sprite = imageSprite;
+    }
+
+    string RankJudge(int score)
+    {
+        if (score >= 950000) return "s";
+        if (score >= 900000) return "a";
+        if (score >= 800000) return "b";
+        if (score >= 700000) return "c";
+        if (score >= 600000) return "d";
+        if (score < 600000 && score > 0) return "f";
+        return "Not Played";
+    }
+
+    Sprite LoadSprite(string basePath, string spriteName)
+    {
+        Sprite[] sprites = Resources.LoadAll<Sprite>(basePath);
+        foreach (var sprite in sprites)
+        {
+            if (sprite.name == spriteName)
+            {
+                return sprite;
+            }
+        }
+        return null;
+    }
+
+    void AdjustSize(string rank)
+    {
+        if (rank == "sss" || rank == "ss")
+        {
+            bestRank.rectTransform.sizeDelta = new Vector2(200, 150);
+        }
+        else
+        {
+            bestRank.rectTransform.sizeDelta = new Vector2(150, 150);
+        }
     }
 }

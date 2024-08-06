@@ -7,47 +7,88 @@ using TMPro;
 public class SpeedSelect : MonoBehaviour
 {
     public TextMeshProUGUI speed;
-    public float[] speedList = new float[] {1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 4.5f, 5.0f};
-    public int index = 0;
+    private float keyHoldTime = 0.0f;
+    private bool isKeyHeld = false;
+    public float trackSpeed = 1.0f;
     public static float finalSpeed;
 
     void Start()
     {
-        speed.text = "Track Speed: x " + speedList[index].ToString("F1");
+        speed.text = "Track Speed: x " + trackSpeed.ToString("F1");
     }
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            if(index < 8)
+            if (trackSpeed < 7.0f)
             {
-                index += 1;
+                if (!isKeyHeld)
+                {
+                    trackSpeed += 0.1f;
+                    isKeyHeld = true;
+                }
+                else
+                {
+                    keyHoldTime += Time.deltaTime;
+                    if (keyHoldTime >= 0.5f)
+                    {
+                        trackSpeed += 0.1f * Time.deltaTime * 20;
+                    }
+                }
             }
-            else if(index == 8)
+
+            if (trackSpeed >= 7.0f)
             {
-                index = 0;
+                trackSpeed = 1.0f;
+                keyHoldTime = 0.0f;
+                isKeyHeld = true;
             }
-            speed.text = "Track Speed: x " + speedList[index].ToString("F1");
+
+            speed.text = "Track Speed: x " + trackSpeed.ToString("F1");
         }
-        else if(Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
-            if(index > 0)
+            if (trackSpeed > 1.0f)
             {
-                index -= 1;
+                if (!isKeyHeld)
+                {
+                    trackSpeed -= 0.1f;
+                    isKeyHeld = true;
+                }
+                else
+                {
+                    keyHoldTime += Time.deltaTime;
+                    if (keyHoldTime >= 0.5f)
+                    {
+                        trackSpeed -= 0.1f * Time.deltaTime * 20;
+                    }
+                }
             }
-            else if(index == 0)
+
+            if (trackSpeed <= 1.0f)
             {
-                index = 8;
+                trackSpeed = 7.0f;
+                keyHoldTime = 0.0f;
+                isKeyHeld = true;
             }
-            speed.text = "Track Speed: x " + speedList[index].ToString("F1");
+
+            speed.text = "Track Speed: x " + trackSpeed.ToString("F1");
         }
-        finalSpeed = speedList[index];
+        else
+        {
+            keyHoldTime = 0.0f;
+            isKeyHeld = false;
+        }
+
+        finalSpeed = trackSpeed;
     }
+
 
     public void ResetSpeed()
     {
-        index = 0;
-        speed.text = "Track Speed: x " + speedList[index].ToString("F1");
-        finalSpeed = speedList[index];
+        trackSpeed = 1.0f;
+        speed.text = "Track Speed: x " + trackSpeed.ToString("F1");
+        finalSpeed = trackSpeed;
     }
 }
