@@ -59,7 +59,7 @@ public class ChartReader : MonoBehaviour
     
     public void ConfirmSaveData()
     {
-        var data = new SongData(fileName.text, "ChartData/testSong");
+        var data = new SongData(fileName.text, "ChartData");
 
         data.songName = fileName.text; // 입력된 텍스트를 songName으로 저장
         data.songArtist = fileArtist.text;
@@ -78,8 +78,6 @@ public class ChartReader : MonoBehaviour
         }
 
         data.notes = noteData;
-
-        
         
         SaveLoadHelper.SaveData(data);
         nameCanvas.SetActive(false); 
@@ -110,7 +108,7 @@ public class ChartReader : MonoBehaviour
 
         if (string.IsNullOrEmpty(jsonDir)) yield break;
 
-        var data = SaveLoadHelper.LoadData<SongData>(jsonName, "ChartData/testSong");
+        var data = SaveLoadHelper.LoadData<SongData>(jsonName, "ChartData");
 
         foreach (var tempNote in tempNoteList.noteList)
         {
@@ -186,9 +184,7 @@ public class ChartReader : MonoBehaviour
     public void LoadSong()
     {
         FileBrowser.SetFilters(true, new FileBrowser.Filter("Videos", ".mp4", ".avi", ".mov"));
-
         FileBrowser.SetDefaultFilter(".mp4");
-
         FileBrowser.ShowLoadDialog(OnFileSelected, null, FileBrowser.PickMode.Files, false, null, null, "Select Video File", "Select");
     }
 
@@ -206,9 +202,10 @@ public class ChartReader : MonoBehaviour
     {
         using (UnityWebRequest uwr = UnityWebRequest.Get(url))
         {
+            
             string filePath = System.IO.Path.Combine(Application.persistentDataPath, "downloadedVideo.mp4");
             uwr.downloadHandler = new DownloadHandlerFile(filePath);
-
+            
             yield return uwr.SendWebRequest();
 
             if (uwr.result == UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)
@@ -218,7 +215,7 @@ public class ChartReader : MonoBehaviour
             else
             {
                 Debug.Log("Video successfully downloaded and saved to " + filePath);
-
+               
                 videoPlayer.url = filePath;
                 videoPlayer.Prepare();
 
