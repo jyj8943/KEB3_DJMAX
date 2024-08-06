@@ -2508,7 +2508,6 @@ GameObject:
   m_Component:
   - component: {fileID: 548465803}
   - component: {fileID: 548465802}
-  - component: {fileID: 548465804}
   m_Layer: 0
   m_Name: EditorManager
   m_TagString: Untagged
@@ -2552,26 +2551,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 2.103, z: 0}
---- !u!114 &548465804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 548465801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6303a71869e056f408a30f292399e66b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultChartSpeed: 2
-  userChartSpeed: 1
-  finalChartSpeed: 0
-  maxUserChartSpeed: 5
-  minNotePosY: -3
-  minNotePosX: -2
-  maxNotePosX: 2
-  songTime: 80
 --- !u!1 &558649101
 GameObject:
   m_ObjectHideFlags: 0
@@ -9565,6 +9544,58 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1654883336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1654883338}
+  - component: {fileID: 1654883337}
+  m_Layer: 0
+  m_Name: TotalManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1654883337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654883336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6303a71869e056f408a30f292399e66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultChartSpeed: 2
+  userChartSpeed: 1
+  finalChartSpeed: 0
+  maxUserChartSpeed: 7
+  minNotePosY: -3
+  minNotePosX: -2
+  maxNotePosX: 2
+  songTime: 80
+--- !u!4 &1654883338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654883336}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1655299505
 GameObject:
   m_ObjectHideFlags: 0
@@ -11667,6 +11698,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1655299508}
   - {fileID: 548465803}
+  - {fileID: 1654883338}
   - {fileID: 319901146}
   - {fileID: 1256621623}
   - {fileID: 1532027272}
