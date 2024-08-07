@@ -38,7 +38,7 @@ public class SpeedSelect : MonoBehaviour
                 }
             }
 
-            if (trackSpeed >= 7.0f)
+            if (Mathf.Round(trackSpeed * 10.0f) / 10.0f > 7.0f)
             {
                 trackSpeed = 1.0f;
             }
@@ -64,7 +64,7 @@ public class SpeedSelect : MonoBehaviour
                 }
             }
 
-            if (trackSpeed <= 1.0f)
+            if (Mathf.Round(trackSpeed * 10.0f) / 10.0f < 1.0f)
             {
                 trackSpeed = 7.0f;
             }
