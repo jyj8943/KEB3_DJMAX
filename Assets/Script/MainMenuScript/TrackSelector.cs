@@ -144,11 +144,18 @@ public class TrackSelector : MonoBehaviour
 
         int score = selectedButton.GetComponent<SongPrefabMaker>().bestScore;
         string rank = RankJudge(score);
-        AdjustSize(rank);
 
-        string rankPath = "Rank/rank";
-        Sprite imageSprite = LoadSprite(rankPath, rank);
-        bestRank.sprite = imageSprite;
+        if(rank == "Not Played")
+        {
+            bestRank.gameObject.SetActive(false);
+        }
+        else
+        {
+            bestRank.gameObject.SetActive(true);
+            string rankPath = "Rank/rank";
+            Sprite imageSprite = LoadSprite(rankPath, rank);
+            bestRank.sprite = imageSprite;
+        }
     }
 
     string RankJudge(int score)
@@ -173,17 +180,5 @@ public class TrackSelector : MonoBehaviour
             }
         }
         return null;
-    }
-
-    void AdjustSize(string rank)
-    {
-        if (rank == "sss" || rank == "ss")
-        {
-            bestRank.rectTransform.sizeDelta = new Vector2(200, 150);
-        }
-        else
-        {
-            bestRank.rectTransform.sizeDelta = new Vector2(150, 150);
-        }
     }
 }
