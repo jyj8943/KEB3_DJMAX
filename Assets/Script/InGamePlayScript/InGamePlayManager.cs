@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.Video;
+using UnityEngine.UI;
 
 public class InGamePlayManager : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class InGamePlayManager : MonoBehaviour
     public Button buttonQuotes;
     public TextMeshProUGUI tempComboText;
     public TextMeshProUGUI tempScoreText;
+    public GameObject readyPanel;
+    public TextMeshProUGUI countDown;
     
     public bool isPlaying = false;
     private bool isPassed = true;
@@ -253,7 +256,17 @@ public class InGamePlayManager : MonoBehaviour
 
     private IEnumerator StartChart()
     {
-        yield return new WaitForSeconds(3f);
+        int countdownTime = 3;
+
+        while (countdownTime > 0)
+        {
+            countDown.text = countdownTime.ToString();
+            yield return new WaitForSeconds(1f);
+            countdownTime--;
+        }
+
+        readyPanel.gameObject.SetActive(false);
+        countDown.gameObject.SetActive(false);
 
         isPlaying = true;
     }

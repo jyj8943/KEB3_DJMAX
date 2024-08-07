@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+public class PauseManager : MonoBehaviour
+{
+    public GameObject pausePanel;
+    public bool isPause = false;
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            IsPause();
+        }
+    }
+
+    public void IsPause()
+    {
+        isPause = !isPause;
+        if(isPause)
+        {
+            Time.timeScale = 0f;
+            pausePanel.gameObject.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            pausePanel.gameObject.SetActive(false);
+        }
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+    }
+}
