@@ -36,4 +36,9 @@ public class SaveLoadHelper : MonoBehaviour
 
         return data;
     }
+
+    // public static T LoadDataFromRes<T>() where T : SaveData
+    // {
+    //     
+    // }
 }

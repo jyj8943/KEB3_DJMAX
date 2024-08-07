@@ -870,7 +870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &122887924
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3225,17 +3225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {fileID: 599968269}
-  speedList:
-  - 1
-  - 1.5
-  - 2
-  - 2.5
-  - 3
-  - 3.5
-  - 4
-  - 4.5
-  - 5
-  index: 0
+  trackSpeed: 1
 --- !u!4 &1049653464
 Transform:
   m_ObjectHideFlags: 0
@@ -3767,6 +3757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5b9e056e6d3d84b90ec245fbd555e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  video: {fileID: 1224440503}
   image: {fileID: 122887925}
   title: {fileID: 645902203}
   artist: {fileID: 2139481782}
@@ -3800,7 +3791,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 1
   m_WaitForFirstFrame: 1

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Video;
 using TMPro;
@@ -7,23 +8,50 @@ using UnityEngine.UI;
 
 public class BackVideo : MonoBehaviour
 {
-    private VideoPlayer video;
+    public VideoPlayer video;
     public RawImage image;
     public TextMeshProUGUI title;
     public TextMeshProUGUI artist;
 
-    void Start()
-    {
-        image.gameObject.SetActive(true);
-    }
-
+    private string tempTitle;
+    private string tempArtist;
+    
     void Update()
     {
-        video = GetComponent<VideoPlayer>();
+        if (tempArtist != artist.text && tempTitle != title.text)
+        {
+            tempArtist = artist.text;
+            tempTitle = title.text;
+            
+            PlayVideo();
+        }
+    }
 
-        string videoPath = "AlbumVideo/" + title.text + "_" + artist.text;
+    private void PlayVideo()
+    {
+        string videoPath = "AlbumVideo/" + tempTitle + "_" + tempArtist;
         
-        VideoClip videoClip = Resources.Load<VideoClip>(videoPath);
-        video.clip = videoClip;
+        var videoClip = Resources.Load<VideoClip>(videoPath);
+        
+        if (videoClip != null)
+        {
+            video.source = VideoSource.VideoClip;
+            video.clip = videoClip;
+            Debug.Log("Video Loaded from Resources");
+            video.Play();
+        }
+        else
+        {
+            var localPath = Path.Combine(Application.persistentDataPath, "SongVideo",
+                tempTitle + tempArtist + ".mp4");
+
+            if (File.Exists(localPath))
+            {
+                video.source = VideoSource.Url;
+                video.url = localPath;
+                Debug.Log("Video Loaded from Local Folder");
+                video.Play();
+            }
+        }
     }
 }

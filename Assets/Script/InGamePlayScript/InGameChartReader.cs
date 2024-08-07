@@ -16,7 +16,7 @@ public class InGameChartReader : MonoBehaviour
     public GameObject longNotePrefab;
 
     public string jsonFileName; // JSON 파일 이름을 스크립트에 직접 저장
-    public string jsonFilePath = "ChartData/testSong"; // JSON 파일 경로를 스크립트에 직접 저장
+    public string jsonFilePath = "ChartData"; // JSON 파일 경로를 스크립트에 직접 저장
 
     private void Start()
     {
@@ -24,15 +24,18 @@ public class InGameChartReader : MonoBehaviour
         LoadData();
         InGamePlayManager.instance.DivideList();
     }
-
-    public void LoadData()
+    
+    private void LoadData()
     {
         // 파일 탐색기를 사용하지 않고 지정된 파일 이름과 경로를 사용하여 JSON 파일을 로드
         var jsonDir = Path.Combine(Application.persistentDataPath, jsonFilePath, jsonFileName);
+
         Debug.Log("JSON 파일 경로: " + jsonDir);
-
-        if (string.IsNullOrEmpty(jsonDir)) return;
-
+        if (string.IsNullOrEmpty(jsonDir))
+        {
+            return;
+        }
+        
         var data = SaveLoadHelper.LoadData<SongData>(jsonFileName, jsonFilePath);
 
         foreach (var tempNote in InGamePlayManager.instance.noteList)

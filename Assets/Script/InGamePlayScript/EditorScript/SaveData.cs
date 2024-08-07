@@ -26,6 +26,8 @@ public class SongData : SaveData
     public float songRunningTime;
     public int bpm;
     public int difficulty;
+    public int bestScore;
+    public int bestCombo;
     
     public NoteData[] notes;
 
