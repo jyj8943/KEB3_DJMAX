@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,34 +15,44 @@ public class InGameChartReader : MonoBehaviour
 {
     public GameObject shortNotePrefab; // 프리팹 이름 수정
     public GameObject longNotePrefab;
+    public InGamePlayManager GM;
 
-    public SongData data;
+    private SongData data;
 
-    public string jsongFileSongName;
+    public string jsonTitle;
+    public string jsonArtist;
     public string jsonFileName; // JSON 파일 이름을 스크립트에 직접 저장
-    public string jsonFilePath = "ChartData"; // JSON 파일 경로를 스크립트에 직접 저장
-
+    private const string jsonFilePath = "ChartData"; // JSON 파일 경로를 스크립트에 직접 저장
+    
     private void Start()
     {
+        GM = InGamePlayManager.instance;
+        
         jsonFileName = Selector.selectedTrack;
-        jsongFileSongName = Selector.selectedTrackTitle;
+        jsonTitle = Selector.selectedTrackTitle;
+        jsonArtist = Selector.selectedTrackArtist;
+        
         LoadData();
+        GM.LoadVideo(jsonTitle, jsonArtist);
+        
         InGamePlayManager.instance.DivideList();
     }
     
     private void LoadData()
     {
         // 파일 탐색기를 사용하지 않고 지정된 파일 이름과 경로를 사용하여 JSON 파일을 로드
-        var jsonDir = Path.Combine(Application.persistentDataPath, jsonFilePath, jsonFileName);
-
+        //var jsonDir = Path.Combine(Application.persistentDataPath, jsonFilePath, jsonTitle);
+        var jsonDir = Application.persistentDataPath + "/" + jsonFilePath + "/" + jsonTitle + ".json";
+        
+        Debug.Log(Application.persistentDataPath);
         Debug.Log("JSON 파일 경로: " + jsonDir);
         if (File.Exists(jsonDir))
         {
-            data = SaveLoadHelper.LoadData<SongData>(jsonFileName, jsonFilePath);
+            data = SaveLoadHelper.LoadData<SongData>(jsonTitle, jsonFilePath);
         }
-        else
+        else if (!File.Exists(jsonDir))
         {
-            data = SaveLoadHelper.LoadDataFromRes<SongData>(jsongFileSongName);
+            data = SaveLoadHelper.LoadDataFromRes<SongData>(jsonTitle);
         }
 
         foreach (var tempNote in InGamePlayManager.instance.noteList)

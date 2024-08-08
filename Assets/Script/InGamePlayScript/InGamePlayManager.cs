@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
@@ -277,5 +278,37 @@ public class InGamePlayManager : MonoBehaviour
         
         Debug.Log("Game Finish!");
         SceneManager.LoadScene("Result");
+    }
+
+    public void LoadVideo(string tempTitle, string tempArtist)
+    {
+        string videoPath = "AlbumVideo/" + tempTitle + "_" + tempArtist;
+
+        var videoClip = Resources.Load<VideoClip>(videoPath);
+
+        if (videoClip != null)
+        {
+            video.source = VideoSource.VideoClip;
+            video.clip = videoClip;
+            Debug.Log("Video Loaded from Resources!");
+            video.Play();
+        }
+        else
+        {
+            var localPath = Path.Combine(Application.persistentDataPath, "SongVideo",
+                tempTitle + tempArtist + ".mp4");
+
+            if (File.Exists(localPath))
+            {
+                video.source = VideoSource.Url;
+                video.url = localPath;
+                Debug.Log("Video Loaded from Local Folder!");
+                video.Play();
+            }
+            else
+            {
+                Debug.LogError("Video doesn't Exist in Local Folder!");
+            }
+        }
     }
 }

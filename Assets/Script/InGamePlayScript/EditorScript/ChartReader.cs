@@ -119,7 +119,7 @@ public class ChartReader : MonoBehaviour
         }
         Debug.Log(jsonDir);
 
-        jsonName = Path.GetFileName(jsonDir);
+        jsonName = Path.GetFileNameWithoutExtension(jsonDir);
         Debug.Log(jsonName);
 
         if (string.IsNullOrEmpty(jsonDir)) yield break;

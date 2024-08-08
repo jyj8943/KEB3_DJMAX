@@ -22,7 +22,7 @@ public class SaveLoadHelper : MonoBehaviour
     public static T LoadData<T>(string fileName, string dir) where T : SaveData
     {
         //var fullPath = dir;
-        var fullPath = Application.persistentDataPath + "/" + dir + "/" + fileName;
+        var fullPath = Application.persistentDataPath + "/" + dir + "/" + fileName + ".json";
 
         if (!File.Exists(fullPath))
         {
