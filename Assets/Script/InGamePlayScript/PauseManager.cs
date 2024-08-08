@@ -49,7 +49,7 @@ public class PauseManager : MonoBehaviour
 
     public void Continue()
     {
-        
+        Pause();
     }
 
     public void Restart()
