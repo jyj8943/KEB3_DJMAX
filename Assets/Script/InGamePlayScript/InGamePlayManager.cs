@@ -30,7 +30,8 @@ public class InGamePlayManager : MonoBehaviour
     public bool isPlaying = false;
     private bool isPassed = true;
     public bool isEmpty = false;
-
+    
+    public int countdownTime = 3;
     public int maxCombo = 0;
     public int tempCombo = 0;
     
@@ -74,19 +75,6 @@ public class InGamePlayManager : MonoBehaviour
         DisplayTempCombo();
         DisplayTempScore();
         
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPlaying)
-            {
-                isPlaying = false;
-            }
-            else
-            {
-                isPlaying = true;
-            }
-
-            Debug.Log("Video Time: " + video.time);
-        }
         if (isPlaying) video.Play();
         else if (!isPlaying) video.Pause();
         
@@ -257,8 +245,6 @@ public class InGamePlayManager : MonoBehaviour
 
     private IEnumerator StartChart()
     {
-        int countdownTime = 3;
-
         while (countdownTime > 0)
         {
             countDown.text = countdownTime.ToString();

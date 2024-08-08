@@ -6,11 +6,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.Video;
+using UnityEditor.PackageManager;
 
 public class PauseManager : MonoBehaviour
 {
+    public InGamePlayManager GM;
     public GameObject pausePanel;
     public bool isPause = false;
+
+    private void Start()
+    {
+        GM = InGamePlayManager.instance;
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -21,14 +29,21 @@ public class PauseManager : MonoBehaviour
 
     void Pause()
     {
-        isPause = !isPause;
-        if(isPause && InGamePlayManager.instance.isPlaying)
+        if(GM.countdownTime == 0)
         {
-            pausePanel.gameObject.SetActive(true);
-        }
-        else if(!isPause && !InGamePlayManager.instance.isPlaying)
-        {
-            pausePanel.gameObject.SetActive(false);
+            isPause = !isPause;
+            GM.isPlaying = !GM.isPlaying;
+
+            if(isPause && !GM.isPlaying)
+            {
+                pausePanel.gameObject.SetActive(true);
+                var selected = pausePanel.transform.GetChild(1).gameObject;
+                EventSystem.current.SetSelectedGameObject(selected.gameObject);
+            }
+            else if(!isPause && GM.isPlaying)
+            {
+                pausePanel.gameObject.SetActive(false);
+            }
         }
     }
 
