@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using TMPro;
 
 public class SaveLoadHelper : MonoBehaviour
 {
@@ -37,8 +38,26 @@ public class SaveLoadHelper : MonoBehaviour
         return data;
     }
 
-    // public static T LoadDataFromRes<T>() where T : SaveData
-    // {
-    //     
-    // }
+    public static T LoadDataFromRes<T>(string fileName) where T : SaveData
+    {
+        var path = "Json/" + fileName;
+        Debug.Log("Attempting to load resource from path: " + path);
+
+        var asset = Resources.Load<TextAsset>(path);
+
+        if (asset == null)
+        {
+            Debug.LogError("There is no Resource File: " + path);
+            return null;
+        }
+
+        var json = asset.text;
+        Debug.Log("Json content Loaded: " + json);
+
+        var data = JsonUtility.FromJson<T>(json);
+        
+        Debug.Log("Data is Loaded from Resources/Json: " + path);
+
+        return data;
+    }
 }
