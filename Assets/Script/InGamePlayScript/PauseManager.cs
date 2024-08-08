@@ -15,27 +15,40 @@ public class PauseManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            IsPause();
+            Pause();
         }
     }
 
-    public void IsPause()
+    void Pause()
     {
         isPause = !isPause;
-        if(!isPause && InGamePlayManager.instance.isPlaying)
+        if(isPause && InGamePlayManager.instance.isPlaying)
         {
-            Time.timeScale = 0f;
             pausePanel.gameObject.SetActive(true);
-            // var selected = pausePanel.transform.GetChild(2).gameObject;
-            // EventSystem.current.SetSelectedGameObject(selected.gameObject);
         }
-        else if(isPause && !InGamePlayManager.instance.isPlaying)
+        else if(!isPause && !InGamePlayManager.instance.isPlaying)
         {
-            Time.timeScale = 1f;
             pausePanel.gameObject.SetActive(false);
         }
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
 
+    public void Continue()
+    {
+        
+    }
 
+    public void Restart()
+    {
+
+    }
+
+    public void TrackSelect()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("TitleMenu");
+    }
 }
