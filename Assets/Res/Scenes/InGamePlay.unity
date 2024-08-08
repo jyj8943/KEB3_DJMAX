@@ -3301,9 +3301,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shortNotePrefab: {fileID: 4210926327830567101, guid: 04e451d8c5c4900439198034c2c3dc9c, type: 3}
   longNotePrefab: {fileID: 4182026099467513019, guid: dbb91bdd150bd0e4dafef6daa3b34655, type: 3}
-  jsongFileSongName: 
+  GM: {fileID: 0}
+  jsonTitle: 
+  jsonArtist: 
   jsonFileName: 
-  jsonFilePath: ChartData/testSong
+  jsonFilePath: 
 --- !u!4 &1330400907
 Transform:
   m_ObjectHideFlags: 0
