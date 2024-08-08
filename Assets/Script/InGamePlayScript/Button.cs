@@ -80,7 +80,7 @@ public class Button : MonoBehaviour
          }
          
          // 인게임에 비디오를 구현해놨으니 비디오의 time(현재 재생 시간) 속성을 활용하여 정확도를 판별하도록 구현 예정
-         if (Input.GetKeyDown(Key))
+         if (Input.GetKeyDown(Key) && InGamePlayManager.instance.isPlaying)
          {
              buttonEffect.SetActive(true);
              buttonImage.sprite = downImage;
@@ -90,7 +90,7 @@ public class Button : MonoBehaviour
              JudgeNotes();
          }
          
-         if (Input.GetKeyUp(Key))
+         if (Input.GetKeyUp(Key) && InGamePlayManager.instance.isPlaying)
          {
              buttonEffect.SetActive(false);
              buttonImage.sprite = upImage;
