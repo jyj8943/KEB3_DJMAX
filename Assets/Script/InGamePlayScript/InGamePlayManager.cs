@@ -73,7 +73,7 @@ public class InGamePlayManager : MonoBehaviour
         DisplayTempCombo();
         DisplayTempScore();
         
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPlaying)
             {
