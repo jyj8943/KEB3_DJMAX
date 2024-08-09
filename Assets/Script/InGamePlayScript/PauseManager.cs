@@ -54,7 +54,7 @@ public class PauseManager : MonoBehaviour
 
     public void Restart()
     {
-
+        SceneManager.LoadScene("InGamePlay");
     }
 
     public void TrackSelect()

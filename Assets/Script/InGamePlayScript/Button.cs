@@ -216,6 +216,7 @@ public class Button : MonoBehaviour
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("PERFECT");
               
+              GM.GetJudgeCount("PERFECT");
               GM.PlusTempCombo();
               GM.GetTempScore(1f);
           }
@@ -224,6 +225,7 @@ public class Button : MonoBehaviour
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("GREAT");
               
+              GM.GetJudgeCount("GREAT");
               GM.PlusTempCombo();
               GM.GetTempScore(0.9f);
           }
@@ -232,6 +234,7 @@ public class Button : MonoBehaviour
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("GOOD");
               
+              GM.GetJudgeCount("GOOD");
               GM.PlusTempCombo();
               GM.GetTempScore(0.8f);
           }
@@ -239,6 +242,7 @@ public class Button : MonoBehaviour
           {
               Debug.Log("MISS");
               
+              GM.GetJudgeCount("MISS");
               GM.ResetTempCombo();
           }
       }
