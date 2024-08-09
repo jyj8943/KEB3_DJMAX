@@ -53,7 +53,7 @@ public class PlayerData : SaveData
     public int bestScore;
     public int bestCombo;
 
-    public PlayerData(string _filename, string _directory) : base(_filename, _directory)
+    public PlayerData(string _filename, string _directory) : base(_filename + "_PlayData", _directory)
     {
         
     }

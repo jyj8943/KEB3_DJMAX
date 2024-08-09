@@ -273,6 +273,7 @@ public class InGamePlayManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         
         TM.SetTempScoreAndCombo(Mathf.RoundToInt(tempScore), tempHighestCombo);
+        TM.SetAccuracyCount(perfectCount, greatCount, goodCount, missCount);
         
         Debug.Log("Game Finish!");
         SceneManager.LoadScene("Result");

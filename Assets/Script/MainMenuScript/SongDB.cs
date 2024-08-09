@@ -90,6 +90,14 @@ public class SongDB : MonoBehaviour
         }
     }
 
+    public void ReloadPlayerData()
+    {
+        foreach (var tempSong in songs)
+        {
+            LoadPlayerDataJson(tempSong);
+        }
+    }
+    
     private void LoadPlayerDataJson(SongInfo songInfo)
     {
         string dir = Path.Combine(Application.persistentDataPath, "PlayData");
@@ -114,6 +122,7 @@ public class SongDB : MonoBehaviour
 
             songInfo.songBestScore = playerData.bestScore;
             songInfo.songBestCombo = playerData.bestCombo;
+            Debug.Log(songInfo.songBestScore + "/" + songInfo.songBestCombo);
         }
     }
 }

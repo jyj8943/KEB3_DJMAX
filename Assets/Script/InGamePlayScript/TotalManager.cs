@@ -23,8 +23,13 @@ public class TotalManager : MonoBehaviour
     // PlayerData를 위한 데이터들
     public string tempSongName;
     public string tempSongArtist;
+    
     public int tempSongBestScore;
     public int tempSongBestCombo;
+    public int tempPerfectCount;
+    public int tempGreatCount;
+    public int tempGoodCount;
+    public int tempMissCount;
 
     private void Awake()
     {
@@ -67,5 +72,21 @@ public class TotalManager : MonoBehaviour
     {
         tempSongBestScore = tempScore;
         tempSongBestCombo = tempCombo;
+    }
+
+    public void InitAccuracyCount()
+    {
+        tempPerfectCount = 0;
+        tempGreatCount = 0;
+        tempGoodCount = 0;
+        tempMissCount = 0;
+    }
+    
+    public void SetAccuracyCount(int perfectCount, int greatCount, int goodCount, int missCount)
+    {
+        tempPerfectCount = perfectCount;
+        tempGreatCount = greatCount;
+        tempGoodCount = goodCount;
+        tempMissCount = missCount;
     }
 }
