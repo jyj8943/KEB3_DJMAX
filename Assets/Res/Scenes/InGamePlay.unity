@@ -1352,10 +1352,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 912674051}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 930, y: -464}
-  m_SizeDelta: {x: 381.35, y: 110.45}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -199.6, y: 64.1}
+  m_SizeDelta: {x: 381.34998, y: 110.45001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &722388547
 MonoBehaviour:
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3745,6 +3745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802f33958eea57a409ae96dfef03808a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TM: {fileID: 0}
   judgeBar: {fileID: 2118928555}
   video: {fileID: 449730304}
   inGameCamera: {fileID: 519420031}
@@ -3762,6 +3763,7 @@ MonoBehaviour:
   countdownTime: 3
   maxCombo: 0
   tempCombo: 0
+  tempHighestCombo: 0
   maxScore: 1000000
   tempScore: 0
   scoreOfOneNote: 0
