@@ -6,6 +6,7 @@ using TMPro;
 
 public class TrackInfo : MonoBehaviour
 {
+    public GameObject backgroundImage;
     public Image albumImage;
     public TextMeshProUGUI trackTitle;
     public TextMeshProUGUI trackArtist;
@@ -20,6 +21,7 @@ public class TrackInfo : MonoBehaviour
         string imagePath = "AlbumImage/" + trackTitle.text + "_" + trackArtist.text;
         Sprite imageSprite = Resources.Load<Sprite>(imagePath);
         albumImage.sprite = imageSprite;
+        backgroundImage.GetComponent<SpriteRenderer>().sprite = imageSprite;
 
         if (TrackSelector.level > 0 && TrackSelector.level < 3)
         {
@@ -41,3 +43,4 @@ public class TrackInfo : MonoBehaviour
         }
     }
 }
+

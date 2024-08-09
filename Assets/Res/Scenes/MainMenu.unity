@@ -1091,8 +1091,8 @@ RectTransform:
   - {fileID: 1359761783}
   - {fileID: 1570006589}
   - {fileID: 1083430240}
-  - {fileID: 66282033}
   - {fileID: 1954201691}
+  - {fileID: 66282033}
   m_Father: {fileID: 31705027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3057,7 +3057,7 @@ GameObject:
   - component: {fileID: 926405953}
   - component: {fileID: 926405952}
   m_Layer: 5
-  m_Name: ESC
+  m_Name: F10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3378,7 +3378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1083430240}
   m_Layer: 5
-  m_Name: Play
+  m_Name: Play_Keys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3402,7 +3402,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -905, y: -48.999985}
+  m_AnchoredPosition: {x: -938, y: -48.999985}
   m_SizeDelta: {x: 108.21167, y: 108.2117}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1093130471
@@ -4202,7 +4202,7 @@ GameObject:
   - component: {fileID: 1413225077}
   - component: {fileID: 1413225076}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: Editor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4247,7 +4247,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Edit
+  m_text: 'Editor
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5776,7 +5778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1954201691}
   m_Layer: 5
-  m_Name: Editor
+  m_Name: Editor_Keys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5800,7 +5802,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7, y: 0}
+  m_AnchoredPosition: {x: -26, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1961462849
