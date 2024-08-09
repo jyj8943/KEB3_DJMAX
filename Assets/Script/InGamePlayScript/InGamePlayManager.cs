@@ -28,7 +28,7 @@ public class InGamePlayManager : MonoBehaviour
     public TextMeshProUGUI tempScoreText;
     public GameObject readyPanel;
     public TextMeshProUGUI countDown;
-    
+    public GameObject comboPanel;
     public bool isPlaying = false;
     private bool isPassed = true;
     public bool isEmpty = false;
@@ -195,9 +195,25 @@ public class InGamePlayManager : MonoBehaviour
         else
         {
             tempComboText.gameObject.SetActive(true);
-            tempComboText.SetText(tempCombo.ToString());
+            string comboStr = tempCombo.ToString();
+            string comboSpriteString = ConvertComboToSpriteString(comboStr);
+            tempComboText.SetText(comboSpriteString);
         }
     }
+
+    private string ConvertComboToSpriteString(string inputStr)
+    {
+        string spriteString = "";
+        foreach (char digit in inputStr)
+        {
+            if (char.IsDigit(digit))
+            {
+                spriteString += $"<sprite={digit - '0'}>";
+            }
+        }
+        return spriteString;
+    }
+
 
     public void PlusTempCombo()
     {
@@ -216,7 +232,22 @@ public class InGamePlayManager : MonoBehaviour
 
     public void DisplayTempScore()
     {
-        tempScoreText.SetText(Mathf.Round(tempScore).ToString());
+        string scoreStr = Mathf.Round(tempScore).ToString();
+        string scoreSpriteString = ConvertScoreToSpriteString(scoreStr);
+        tempScoreText.SetText(scoreSpriteString);
+    }
+
+    private string ConvertScoreToSpriteString(string scoreStr)
+    {
+        string spriteString = "";
+        foreach (char digit in scoreStr)
+        {
+            if (char.IsDigit(digit))
+            {
+                spriteString += $"<sprite={digit - '0'}>";
+            }
+        }
+        return spriteString;
     }
 
     public void GetTempScore(float accuracyRate)
@@ -264,7 +295,7 @@ public class InGamePlayManager : MonoBehaviour
 
         readyPanel.gameObject.SetActive(false);
         countDown.gameObject.SetActive(false);
-
+        comboPanel.SetActive(true);
         isPlaying = true;
     }
 
