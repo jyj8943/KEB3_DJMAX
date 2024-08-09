@@ -56,8 +56,8 @@ public class ChartReader : MonoBehaviour
         data.songRunningTime = (float)videoPlayer.length; // 노래 시간 가져와야함
         data.bpm = 120; // 해당 노래 bpm 가져와야함
         data.difficulty = int.Parse(fileDifficulty.text);
-        data.bestScore = 0;
-        data.bestCombo = 0;
+        //data.bestScore = 0;
+        //data.bestCombo = 0;
         
         var noteData = new SongData.NoteData[tempNoteList.noteList.Count];
 

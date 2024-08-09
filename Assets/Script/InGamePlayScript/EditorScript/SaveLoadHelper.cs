@@ -60,4 +60,14 @@ public class SaveLoadHelper : MonoBehaviour
 
         return data;
     }
+
+    public static T LoadPlayerData<T>(string dir) where T : SaveData
+    {
+        var json = File.ReadAllText(dir);
+        var data = JsonUtility.FromJson<T>(json);
+
+        Debug.Log("Player Data is Loaded");
+
+        return data;
+    }
 }
