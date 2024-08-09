@@ -79,12 +79,27 @@ public class SongDB : MonoBehaviour
             songInfo.songTitle = songData.songName;
             songInfo.songArtist = songData.songArtist;
             songInfo.songLevel = songData.difficulty;
+            
+            //LoadPlayerDataJson(songInfo);
             songInfo.songBestScore = songData.bestScore;
             songInfo.songBestCombo = songData.bestCombo;
             
             songs.Add(songInfo);
         }
     }
+
+    // private void LoadPlayerDataJson(SongInfo songInfo)
+    // {
+    //     string dir = Path.Combine(Application.persistentDataPath, "PlayData");
+    //
+    //     if (!Directory.Exists(dir))
+    //     {
+    //         Directory.CreateDirectory(dir);
+    //         Debug.Log("PlayData 폴더가 생성되었습니다: " + dir);
+    //     }
+    //     
+    //     
+    // }
 }
 
 public class SongInfo

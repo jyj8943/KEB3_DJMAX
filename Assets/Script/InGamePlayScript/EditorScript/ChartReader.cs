@@ -40,22 +40,12 @@ public class ChartReader : MonoBehaviour
             nameCanvas.SetActive(true);
             volume.SetActive(true);
         }
-        
     }
-
     
     public void OnInputFieldEndEdit(string input)
     {
-        
         ConfirmSaveData();
-        
     }
-
-    // void Start()
-    // {
-    //     fileName.onEndEdit.AddListener(OnInputFieldEndEdit);
-    //     fileDifficulty.onEndEdit.AddListener(OnInputFieldEndEdit);
-    // }
     
     public void ConfirmSaveData()
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,6 +11,8 @@ using Unity.VisualScripting;
 
 public class Selector : MonoBehaviour
 {
+    public TotalManager TM;
+    
     public SpeedSelect speedSelect;
 
     public TextMeshProUGUI trackTitle;
@@ -22,6 +25,11 @@ public class Selector : MonoBehaviour
     public GameObject speedSelector;
     public Image backImage;
     public Image askPanel;
+
+    private void Start()
+    {
+        TM = TotalManager.instance;
+    }
 
     void Update()
     {
@@ -54,6 +62,9 @@ public class Selector : MonoBehaviour
         selectedTrackTitle = trackTitle.text;
         selectedTrackArtist = trackArtist.text;
         selectedTrack = trackTitle.text+trackArtist.text+".json";
+        
+        TM.SetTempSong(selectedTrackTitle, selectedTrackArtist);
+        
         Debug.Log(selectedTrack);
         Debug.Log(SpeedSelect.finalSpeed);
 

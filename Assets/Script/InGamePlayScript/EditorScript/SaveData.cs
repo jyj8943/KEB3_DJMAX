@@ -45,3 +45,16 @@ public class SongData : SaveData
         public float noteHoldingTime; // 롱노트에서 노트를 끝까지 눌러야할 시간
     }
 }
+
+public class PlayerData : SaveData
+{
+    public string songName;
+    public string songArtist;
+    public int bestScore;
+    public int bestCombo;
+
+    public PlayerData(string _filename, string _directory) : base(_filename, _directory)
+    {
+        
+    }
+}

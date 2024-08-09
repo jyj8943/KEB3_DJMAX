@@ -13,6 +13,8 @@ using UnityEngine.UI;
 
 public class InGamePlayManager : MonoBehaviour
 {
+    public TotalManager TM;
+    
     public static InGamePlayManager instance;
 
     public GameObject judgeBar;
@@ -34,6 +36,7 @@ public class InGamePlayManager : MonoBehaviour
     public int countdownTime = 3;
     public int maxCombo = 0;
     public int tempCombo = 0;
+    public int tempHighestCombo = 0;
     
     public float maxScore = 1000000f;
     public float tempScore = 0f;
@@ -60,6 +63,8 @@ public class InGamePlayManager : MonoBehaviour
 
     private void Start()
     {
+        TM = TotalManager.instance;
+        
         if (maxCombo != 0)
         {
             scoreOfOneNote = maxScore / maxCombo;
@@ -197,6 +202,11 @@ public class InGamePlayManager : MonoBehaviour
     public void PlusTempCombo()
     {
         tempCombo += 1;
+
+        if (tempCombo >= tempHighestCombo)
+        {
+            tempHighestCombo = tempCombo;
+        }
     }
 
     public void ResetTempCombo()
@@ -261,6 +271,8 @@ public class InGamePlayManager : MonoBehaviour
     private IEnumerator GameFinish()
     {
         yield return new WaitForSeconds(3f);
+        
+        TM.SetTempScoreAndCombo(Mathf.RoundToInt(tempScore), tempHighestCombo);
         
         Debug.Log("Game Finish!");
         SceneManager.LoadScene("Result");

@@ -20,6 +20,12 @@ public class TotalManager : MonoBehaviour
 
     public int songTime = 80;
 
+    // PlayerData를 위한 데이터들
+    public string tempSongName;
+    public string tempSongArtist;
+    public int tempSongBestScore;
+    public int tempSongBestCombo;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -36,5 +42,30 @@ public class TotalManager : MonoBehaviour
     {
         userChartSpeed += speed;
         finalChartSpeed = defaultChartSpeed * userChartSpeed;
+    }
+
+    // PlayerData의 데이터들을 저장하거나 초기화하는 함수들
+    public void InitTempSong()
+    {
+        tempSongName = null;
+        tempSongArtist = null;
+    }
+    
+    public void SetTempSong(string songName, string songArtist)
+    {
+        tempSongName = songName;
+        tempSongArtist = songArtist;
+    }
+
+    public void InitTempScoreAndCombo()
+    {
+        tempSongBestScore = 0;
+        tempSongBestCombo = 0;
+    }
+
+    public void SetTempScoreAndCombo(int tempScore, int tempCombo)
+    {
+        tempSongBestScore = tempScore;
+        tempSongBestCombo = tempCombo;
     }
 }
