@@ -7,6 +7,7 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public InGamePlayManager GM;
+    public Animator animator;
     public Image rank;
     public TextMeshProUGUI score;
     public TextMeshProUGUI combo;
@@ -19,11 +20,19 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         score.text = GM.tempScore.ToString("F0");
-        combo.text = GM.maxCombo.ToString("F0");
+        combo.text = GM.tempHighestCombo.ToString("F0");
 
         string rankPath = "Rank/rank";
         Sprite imageSprite = LoadSprite(rankPath, RankJudge(GM.tempScore));
         rank.sprite = imageSprite;
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetTrigger("MoveRight");
+        }
     }
 
     string RankJudge(float score)
