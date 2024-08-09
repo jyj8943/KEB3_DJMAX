@@ -1,0 +1,349 @@
+fileFormatVersion: 2
+guid: 6c30af19e7af2b5418751c350fb1c953
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3227216311411200362
+    second: blue-3d-numbers-0-to-9-free-png_0
+  - first:
+      213: -2786615210703261689
+    second: blue-3d-numbers-0-to-9-free-png_1
+  - first:
+      213: 5573736754229235286
+    second: blue-3d-numbers-0-to-9-free-png_2
+  - first:
+      213: -825220715478819739
+    second: blue-3d-numbers-0-to-9-free-png_3
+  - first:
+      213: 8643876870443387300
+    second: blue-3d-numbers-0-to-9-free-png_4
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_2
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 510
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 798140b0fa1f5ef4c979bdb6a81ee569
+      internalID: 526066562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_3
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 509
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc4ffed458ed6834bac26f65a78502c7
+      internalID: -1201737553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_4
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 508
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7306f6b94009d0948bff33c52f55af80
+      internalID: -1520239987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_7
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 38
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ac3ffcd05a9b742a40ed9d0646473a
+      internalID: -1334256610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_8
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 38
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8721c5bb7dba45d4db5719c6b03da46f
+      internalID: -657641299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_5
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 507
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 518385fb30dea2a42ba5f4de5cc220d6
+      internalID: 938528573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_6
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 36
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2999485bdccbe14189a679a14837b90
+      internalID: 400929860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_9
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 37
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 540315dece8dd23499e5e3c52c100d54
+      internalID: -1598177006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_0
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 37
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e08c2caf8be4ea4fb2693c127e3e4eb
+      internalID: 1904178395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue-3d-numbers-0-to-9-free-png_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 510
+        width: 263
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42f65e9340a18c408e03ef4ca993dc7
+      internalID: -907268248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: db4f35c5225fb9542bf4e06fdc8e79f5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      blue-3d-numbers-0-to-9-free-png_0: 1904178395
+      blue-3d-numbers-0-to-9-free-png_1: -907268248
+      blue-3d-numbers-0-to-9-free-png_2: 526066562
+      blue-3d-numbers-0-to-9-free-png_3: -1201737553
+      blue-3d-numbers-0-to-9-free-png_4: -1520239987
+      blue-3d-numbers-0-to-9-free-png_5: 938528573
+      blue-3d-numbers-0-to-9-free-png_6: 400929860
+      blue-3d-numbers-0-to-9-free-png_7: -1334256610
+      blue-3d-numbers-0-to-9-free-png_8: -657641299
+      blue-3d-numbers-0-to-9-free-png_9: -1598177006
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
