@@ -46,7 +46,7 @@ public class InGamePlayManager : MonoBehaviour
     public int greatCount = 0;
     public int goodCount = 0;
     public int missCount = 0;
-    
+    public static string judgeResult = "";
     
     public List<GameObject> noteList = new();
     public List<ShortNote>[] noteListinRail = new List<ShortNote>[]{
@@ -172,6 +172,8 @@ public class InGamePlayManager : MonoBehaviour
                         ResetTempCombo();
                     }
                 }
+                //Button.isJudged = true;
+                //judgeResult = "MISS";
             }
         }
     }

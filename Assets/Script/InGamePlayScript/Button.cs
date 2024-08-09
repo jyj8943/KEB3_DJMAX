@@ -27,6 +27,9 @@ public class Button : MonoBehaviour
     public Sprite upImage;
     public Sprite downImage;
 
+    public static string judgeResult = "";
+    public static bool isJudged = false;
+    
     private static Dictionary<KeyCode, int> keyCodeToNum = new()
     {
         { KeyCode.A, 0 },
@@ -219,6 +222,7 @@ public class Button : MonoBehaviour
               GM.GetJudgeCount("PERFECT");
               GM.PlusTempCombo();
               GM.GetTempScore(1f);
+              judgeResult = "PERFECT";
           }
           else if (judgeTime >= noteTime - 0.14f && judgeTime <= noteTime + 0.14f)
           {
@@ -228,6 +232,7 @@ public class Button : MonoBehaviour
               GM.GetJudgeCount("GREAT");
               GM.PlusTempCombo();
               GM.GetTempScore(0.9f);
+              judgeResult = "GREAT";
           }
           else if (judgeTime >= noteTime - 0.24f && judgeTime <= noteTime + 0.24f)
           {
@@ -237,6 +242,7 @@ public class Button : MonoBehaviour
               GM.GetJudgeCount("GOOD");
               GM.PlusTempCombo();
               GM.GetTempScore(0.8f);
+              judgeResult = "GOOD";
           }
           else
           {
@@ -244,7 +250,9 @@ public class Button : MonoBehaviour
               
               GM.GetJudgeCount("MISS");
               GM.ResetTempCombo();
+              judgeResult = "MISS";
           }
+          isJudged = true;
       }
       
       private float GetJudgeTime()
