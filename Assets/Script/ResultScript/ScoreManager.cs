@@ -7,6 +7,8 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public InGamePlayManager GM;
+    public TotalManager TM;
+    
     public Animator animator;
     public Image rank;
     public TextMeshProUGUI score;
@@ -15,6 +17,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         GM = InGamePlayManager.instance;
+        TM = TotalManager.instance;
     }
 
     void Start()
@@ -57,5 +60,4 @@ public class ScoreManager : MonoBehaviour
         }
         return null;
     }
-
 }

@@ -61,6 +61,19 @@ public class SaveLoadHelper : MonoBehaviour
         return data;
     }
 
+    public static void SavePlayerData<T>(T playData) where T : SaveData
+    {
+        if (!Directory.Exists(playData.GetDriectory()))
+        {
+            Directory.CreateDirectory(playData.GetDriectory());
+        }
+
+        var json = JsonUtility.ToJson(playData);
+        File.WriteAllText(playData.GetFullPath(), json);
+        
+        Debug.Log("PlayerData is Saved: " + playData.GetFullPath());
+    }
+    
     public static T LoadPlayerData<T>(string dir) where T : SaveData
     {
         var json = File.ReadAllText(dir);
