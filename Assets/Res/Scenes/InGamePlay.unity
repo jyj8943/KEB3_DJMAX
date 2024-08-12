@@ -153,6 +153,7 @@ MonoBehaviour:
   greatSprite: {fileID: -7980772567291914239, guid: 41d2ab5765cd76048ace6d1bcd119970, type: 3}
   goodSprite: {fileID: -8065137392439791527, guid: 41d2ab5765cd76048ace6d1bcd119970, type: 3}
   missSprite: {fileID: -3543773047615977005, guid: 41d2ab5765cd76048ace6d1bcd119970, type: 3}
+  comboImage: {fileID: 1796079928}
 --- !u!4 &42547061
 Transform:
   m_ObjectHideFlags: 0
@@ -1851,7 +1852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &838026457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2125,7 +2126,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &857503843
 RectTransform:
@@ -4491,7 +4492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2125336622
 MonoBehaviour:
   m_ObjectHideFlags: 0

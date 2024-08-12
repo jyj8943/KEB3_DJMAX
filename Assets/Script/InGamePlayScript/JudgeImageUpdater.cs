@@ -8,19 +8,24 @@ public class JudgeImageUpdater : MonoBehaviour
     public Sprite greatSprite;
     public Sprite goodSprite;
     public Sprite missSprite;
+    public Image comboImage;
     
     private float timer;
     private const float inactiveTime = 1.0f;
-    
+
+    public static string judgeResult;
     private void Start()
     {
         judgeImage.enabled = false;
+        comboImage.enabled = false;
     }
     private void Update()
     {
         if (Button.isJudged)
         {
-            string judgeResult = Button.judgeResult;
+            comboImage.enabled = true;
+           
+            judgeResult = Button.judgeResult;
 
             switch (judgeResult)
             {
@@ -43,6 +48,16 @@ public class JudgeImageUpdater : MonoBehaviour
             }
             timer = 0.0f;
             Button.isJudged = false;
+        }
+        else if (InGamePlayManager.isNoteMiss)
+        {
+            comboImage.enabled = true;
+            
+            judgeImage.sprite = missSprite;
+            judgeImage.enabled = true;
+            
+            timer = 0.0f;
+            InGamePlayManager.isNoteMiss = false;
         }
         else
         {

@@ -33,6 +33,8 @@ public class InGamePlayManager : MonoBehaviour
     private bool isPassed = true;
     public bool isEmpty = false;
     
+    public static bool isNoteMiss=false;
+    
     public int countdownTime = 3;
     public int maxCombo = 0;
     public int tempCombo = 0;
@@ -172,8 +174,8 @@ public class InGamePlayManager : MonoBehaviour
                         ResetTempCombo();
                     }
                 }
-                //Button.isJudged = true;
-                //judgeResult = "MISS";
+                isNoteMiss = true;
+                
             }
         }
     }
