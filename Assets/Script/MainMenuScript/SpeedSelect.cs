@@ -17,11 +17,6 @@ public class SpeedSelect : MonoBehaviour
     private float timer = 0f;
     private bool isHoldingUp = false;
     private bool isHoldingDown = false;
-    
-    // private float keyHoldTime = 0.0f;
-    // private bool isKeyHeld = false;
-    // public float trackSpeed = 1.0f;
-    // public static float finalSpeed;
 
     void Start()
     {
@@ -92,72 +87,11 @@ public class SpeedSelect : MonoBehaviour
         TM.userChartSpeed = Mathf.Round(TM.userChartSpeed * 10f) / 10f;
         
         speed.text = "Track Speed: x " + TM.userChartSpeed.ToString("F1");
-        
-        // if (Input.GetKey(KeyCode.UpArrow))
-        // {
-        //     if (!isKeyHeld)
-        //     {
-        //         trackSpeed += 0.1f;
-        //         isKeyHeld = true;
-        //         keyHoldTime = 0.0f;
-        //     }
-        //     else
-        //     {
-        //         keyHoldTime += Time.deltaTime;
-        //         if (keyHoldTime >= 1.0f)
-        //         {
-        //             trackSpeed += 0.1f * Time.deltaTime * 20;
-        //         }
-        //     }
-        //
-        //     if (Mathf.Round(trackSpeed * 10.0f) / 10.0f > 7.0f)
-        //     {
-        //         trackSpeed = 1.0f;
-        //     }
-        //
-        //     trackSpeed = Mathf.Round(trackSpeed * 10.0f) / 10.0f;
-        //
-        //     speed.text = "Track Speed: x " + trackSpeed.ToString("F1");
-        // }
-        // else if (Input.GetKey(KeyCode.DownArrow))
-        // {
-        //     if (!isKeyHeld)
-        //     {
-        //         trackSpeed -= 0.1f;
-        //         isKeyHeld = true;
-        //         keyHoldTime = 0.0f;
-        //     }
-        //     else
-        //     {
-        //         keyHoldTime += Time.deltaTime;
-        //         if (keyHoldTime >= 1.0f)
-        //         {
-        //             trackSpeed -= 0.1f * Time.deltaTime * 20;
-        //         }
-        //     }
-        //
-        //     if (Mathf.Round(trackSpeed * 10.0f) / 10.0f < 1.0f)
-        //     {
-        //         trackSpeed = 7.0f;
-        //     }
-        //
-        //     trackSpeed = Mathf.Round(trackSpeed * 10.0f) / 10.0f;
-        //
-        //     speed.text = "Track Speed: x " + trackSpeed.ToString("F1");
-        // }
-        // else
-        // {
-        //     keyHoldTime = 0.0f;
-        //     isKeyHeld = false;
-        // }
-        //
-        // finalSpeed = trackSpeed;
     }
 
     public void ResetSpeed()
     {
         TM.userChartSpeed = 1.0f;
         speed.text = "Track Speed: x " + TM.userChartSpeed.ToString("F1");
-        //finalSpeed = trackSpeed;
     }
 }

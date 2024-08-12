@@ -45,6 +45,9 @@ public class TotalManager : MonoBehaviour
     public void ChangeSpeed(float speed)
     {
         userChartSpeed += speed;
+        
+        userChartSpeed = Mathf.Round(userChartSpeed * 10f) / 10f;
+        
         finalChartSpeed = defaultChartSpeed * userChartSpeed;
     }
 
