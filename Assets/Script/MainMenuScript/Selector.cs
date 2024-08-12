@@ -66,9 +66,9 @@ public class Selector : MonoBehaviour
         TM.SetTempSong(selectedTrackTitle, selectedTrackArtist);
         
         Debug.Log(selectedTrack);
-        Debug.Log(SpeedSelect.finalSpeed);
+        //Debug.Log(SpeedSelect.finalSpeed);
 
-        TotalManager.instance.userChartSpeed = SpeedSelect.finalSpeed;
+        //TotalManager.instance.userChartSpeed = SpeedSelect.finalSpeed;
         SceneManager.LoadScene("InGamePlay");
     }
 

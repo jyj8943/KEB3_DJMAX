@@ -2937,8 +2937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825d2beff67296848860bc7fa25494ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TM: {fileID: 0}
   speed: {fileID: 599968269}
-  trackSpeed: 1
 --- !u!4 &1049653464
 Transform:
   m_ObjectHideFlags: 0
@@ -2986,7 +2986,7 @@ MonoBehaviour:
   defaultChartSpeed: 2
   userChartSpeed: 1
   finalChartSpeed: 2
-  maxUserChartSpeed: 5
+  maxUserChartSpeed: 7
   minNotePosY: -3
   minNotePosX: -2
   maxNotePosX: 2
@@ -2995,6 +2995,10 @@ MonoBehaviour:
   tempSongArtist: 
   tempSongBestScore: 0
   tempSongBestCombo: 0
+  tempPerfectCount: 0
+  tempGreatCount: 0
+  tempGoodCount: 0
+  tempMissCount: 0
 --- !u!4 &1060722559
 Transform:
   m_ObjectHideFlags: 0
