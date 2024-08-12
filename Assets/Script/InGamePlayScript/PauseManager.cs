@@ -43,6 +43,8 @@ public class PauseManager : MonoBehaviour
             else if(!isPause && GM.isPlaying)
             {
                 pausePanel.gameObject.SetActive(false);
+                GM.countdownTime = 3;
+                StartCoroutine(GM.StartChart());
             }
         }
     }

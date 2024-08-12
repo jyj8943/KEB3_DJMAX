@@ -286,8 +286,15 @@ public class InGamePlayManager : MonoBehaviour
         }
     }
 
-    private IEnumerator StartChart()
+    public IEnumerator StartChart()
     {
+        readyPanel.gameObject.SetActive(true);
+        countDown.gameObject.SetActive(true);
+        comboPanel.SetActive(false);
+        isPlaying = false;
+        
+        Debug.Log("countdown");
+        
         while (countdownTime > 0)
         {
             countDown.text = countdownTime.ToString();
