@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 public class TotalManager : MonoBehaviour
@@ -46,6 +45,9 @@ public class TotalManager : MonoBehaviour
     public void ChangeSpeed(float speed)
     {
         userChartSpeed += speed;
+        
+        userChartSpeed = Mathf.Round(userChartSpeed * 10f) / 10f;
+        
         finalChartSpeed = defaultChartSpeed * userChartSpeed;
     }
 

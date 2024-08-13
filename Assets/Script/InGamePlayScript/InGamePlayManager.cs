@@ -290,8 +290,15 @@ public class InGamePlayManager : MonoBehaviour
         }
     }
 
-    private IEnumerator StartChart()
+    public IEnumerator StartChart()
     {
+        readyPanel.gameObject.SetActive(true);
+        countDown.gameObject.SetActive(true);
+        comboPanel.SetActive(false);
+        isPlaying = false;
+        
+        Debug.Log("countdown");
+        
         while (countdownTime > 0)
         {
             countDown.text = countdownTime.ToString();
@@ -346,5 +353,38 @@ public class InGamePlayManager : MonoBehaviour
                 Debug.LogError("Video doesn't Exist in Local Folder!");
             }
         }
+    }
+
+    public void ChangeChartSpeed()
+    {
+        foreach (var tempNoteList in noteListinRail)
+        {
+            for (int i = tempNoteList.Count - 1; i >= 0; i--)
+            {
+                var tempNote = tempNoteList[i];
+
+                if (tempNote.noteID == 0)
+                {
+                    tempNote.transform.position = new Vector3(tempNote.transform.position.x,
+                        TM.minNotePosY + tempNote.GetComponent<ShortNote>().noteStartingTime *
+                        TM.finalChartSpeed, tempNote.transform.position.z);
+                }
+                else if (tempNote.noteID == 1)
+                {
+                    tempNote.transform.position = new Vector3(tempNote.transform.position.x,
+                        TM.minNotePosY + tempNote.GetComponent<LongNote>().noteStartingTime * TM.finalChartSpeed,
+                        tempNote.transform.position.z);
+
+                    tempNote.transform.localScale = new Vector3(1f, 
+                        ( tempNote.GetComponent<LongNote>().noteHoldingTime ) * TM.finalChartSpeed, 1f);
+                }
+            }
+        }
+        
+        Debug.Log((float)video.time);
+        Debug.Log(TM.userChartSpeed);
+        
+        inGameCamera.transform.position = new Vector3(inGameCamera.transform.position.x,
+            TM.finalChartSpeed * (float)video.time, inGameCamera.transform.position.z);
     }
 }

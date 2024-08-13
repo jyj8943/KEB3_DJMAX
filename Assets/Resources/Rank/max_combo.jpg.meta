@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1cf6feb686a24564885855c1260aecea
+guid: 88c79d1d0468b9242ba0bbadb7a7d83d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4660406960409562620
-    second: "\u2014Pngtree\u2014metal gradient rhythm background_934937_0"
+      213: 6528131021947484709
+    second: max_combo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u2014Pngtree\u2014metal gradient rhythm background_934937_0"
+      name: max_combo_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1280
-        height: 720
+        x: 104
+        y: 25
+        width: 352
+        height: 376
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cfd48f740771da040800000000000000
-      internalID: 4660406960409562620
+      spriteID: 52a3362b394989a50800000000000000
+      internalID: 6528131021947484709
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u2014Pngtree\u2014metal gradient rhythm background_934937_0": 4660406960409562620
+      max_combo_0: 6528131021947484709
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -16,6 +16,7 @@ public class InGameChartReader : MonoBehaviour
     public GameObject shortNotePrefab; // 프리팹 이름 수정
     public GameObject longNotePrefab;
     public InGamePlayManager GM;
+    public TotalManager TM;
 
     private SongData data;
 
@@ -27,6 +28,7 @@ public class InGameChartReader : MonoBehaviour
     private void Start()
     {
         GM = InGamePlayManager.instance;
+        TM = TotalManager.instance;
         
         jsonFileName = Selector.selectedTrack;
         jsonTitle = Selector.selectedTrackTitle;
@@ -37,7 +39,30 @@ public class InGameChartReader : MonoBehaviour
         
         InGamePlayManager.instance.DivideList();
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (TM.userChartSpeed < TM.maxUserChartSpeed)
+            {
+                TM.ChangeSpeed(0.1f);
+                
+                GM.ChangeChartSpeed();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (TM.userChartSpeed > 1f)
+            {
+                TM.ChangeSpeed(-0.1f);
+                
+                GM.ChangeChartSpeed();
+            }
+        }
+    }
+
     private void LoadData()
     {
         // 파일 탐색기를 사용하지 않고 지정된 파일 이름과 경로를 사용하여 JSON 파일을 로드

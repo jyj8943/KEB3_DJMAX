@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 using TMPro;
 
 public class ScoreManager : MonoBehaviour
@@ -22,6 +23,9 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI good;
     public TextMeshProUGUI miss;
 
+    public Image maxCombo;
+    public GameObject newRecord;
+
     private void Awake()
     {
         GM = InGamePlayManager.instance;
@@ -41,6 +45,16 @@ public class ScoreManager : MonoBehaviour
         string rankPath = "Rank/rank";
         Sprite imageSprite = LoadSprite(rankPath, RankJudge(GM.tempScore));
         rank.sprite = imageSprite;
+
+        if(GM.tempHighestCombo == GM.maxCombo)
+        {
+            maxCombo.transform.gameObject.SetActive(true);
+        }
+
+        if(GM.tempScore > CheckRecord())
+        {
+            newRecord.transform.gameObject.SetActive(true);
+        }
     }
 
     void Update()
@@ -82,5 +96,19 @@ public class ScoreManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    int CheckRecord()
+    {
+        var data = new PlayerData(TM.tempSongName, "PlayData");
+
+        data.songName = TM.tempSongName;
+        data.songArtist = TM.tempSongArtist;
+        
+        string dir = Path.Combine(Application.persistentDataPath, "PlayData");
+        string playerDataPath = Path.Combine(dir, $"{TM.tempSongName}_PlayData.json");
+        var recordedData = SaveLoadHelper.LoadPlayerData<PlayerData>(playerDataPath);
+
+        return recordedData.bestScore;
     }
 }
