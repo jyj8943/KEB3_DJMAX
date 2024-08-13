@@ -51,7 +51,9 @@ public class ScoreManager : MonoBehaviour
             maxCombo.transform.gameObject.SetActive(true);
         }
 
-        if(GM.tempScore > CheckRecord())
+        int highscore = CheckRecord();
+
+        if(GM.tempScore > highscore)
         {
             newRecord.transform.gameObject.SetActive(true);
         }
@@ -107,8 +109,13 @@ public class ScoreManager : MonoBehaviour
         
         string dir = Path.Combine(Application.persistentDataPath, "PlayData");
         string playerDataPath = Path.Combine(dir, $"{TM.tempSongName}_PlayData.json");
-        var recordedData = SaveLoadHelper.LoadPlayerData<PlayerData>(playerDataPath);
 
+        if (!File.Exists(playerDataPath))
+        {
+            return 0;
+        }
+        
+        var recordedData = SaveLoadHelper.LoadPlayerData<PlayerData>(playerDataPath);
         return recordedData.bestScore;
     }
 }

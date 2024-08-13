@@ -11,12 +11,15 @@ using UnityEditor.PackageManager;
 public class PauseManager : MonoBehaviour
 {
     public InGamePlayManager GM;
+    public TotalManager TM;
+
     public GameObject pausePanel;
     public bool isPause = false;
 
     private void Start()
     {
         GM = InGamePlayManager.instance;
+        TM = TotalManager.instance;
     }
 
     void Update()
@@ -66,6 +69,11 @@ public class PauseManager : MonoBehaviour
 
     public void Exit()
     {
+        TM.SetTempScoreAndCombo(Mathf.RoundToInt(GM.tempScore), GM.tempHighestCombo);
+        TM.SetAccuracyCount(GM.perfectCount, GM.greatCount, GM.goodCount, GM.missCount);
+        
+        Debug.Log("Game Finish!");
+
         SceneManager.LoadScene("Result");
     }
 }

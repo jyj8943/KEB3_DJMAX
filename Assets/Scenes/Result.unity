@@ -1673,7 +1673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00074768, y: -325.4914}
+  m_AnchoredPosition: {x: 0.00074768066, y: -325.4914}
   m_SizeDelta: {x: 300, y: -44.8253}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &549058838
@@ -4215,6 +4215,8 @@ MonoBehaviour:
   great: {fileID: 892088263}
   good: {fileID: 844517154}
   miss: {fileID: 1419292249}
+  maxCombo: {fileID: 1268452030}
+  newRecord: {fileID: 549058836}
 --- !u!4 &1699680597
 Transform:
   m_ObjectHideFlags: 0
@@ -4414,6 +4416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a14216ae0a194aa03e190ac75330e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxCombo: {fileID: 0}
+  newRecord: {fileID: 0}
 --- !u!4 &1999336887
 Transform:
   m_ObjectHideFlags: 0
