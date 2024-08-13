@@ -49,6 +49,8 @@ public class InGamePlayManager : MonoBehaviour
     public int goodCount = 0;
     public int missCount = 0;
     public static string judgeResult = "";
+
+    public Animator comboAnimator;
     
     public List<GameObject> noteList = new();
     public List<ShortNote>[] noteListinRail = new List<ShortNote>[]{
@@ -222,7 +224,7 @@ public class InGamePlayManager : MonoBehaviour
     public void PlusTempCombo()
     {
         tempCombo += 1;
-
+        comboAnimator.SetTrigger("Combo");
         if (tempCombo >= tempHighestCombo)
         {
             tempHighestCombo = tempCombo;
