@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4b3b5db4ecc300c47a74a3c32a50df3e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Electric_circle_blue.prefab
+  uploadId: 411444

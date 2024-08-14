@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e8b5ea0d216859d4c8d5678c72a3deab
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Broken_Wall.prefab
+  uploadId: 411444

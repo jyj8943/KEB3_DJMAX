@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5ce26433cb337e24fb313424f1005d12
+timeCreated: 1560061257
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/VFX_Mobile-Particle-Add-Revised.shader
+  uploadId: 411444

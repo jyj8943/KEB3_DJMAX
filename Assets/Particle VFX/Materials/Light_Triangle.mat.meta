@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8fb9e5a6689bd434ba5ab0599007290a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/Light_Triangle.mat
+  uploadId: 411444

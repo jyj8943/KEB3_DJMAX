@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7783038dbf9dd04459365ad8a51d3ce2
+timeCreated: 1560110636
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/VFX_Acid_puddle_2_mat.mat
+  uploadId: 411444

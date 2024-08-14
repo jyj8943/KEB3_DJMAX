@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b0c43f967728b0d49bc91f0837d53818
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Water_puddle.prefab
+  uploadId: 411444

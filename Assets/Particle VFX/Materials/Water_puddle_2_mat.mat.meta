@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e68fa93e45048d74da9f50c21f032597
+timeCreated: 1560110636
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/Water_puddle_2_mat.mat
+  uploadId: 411444

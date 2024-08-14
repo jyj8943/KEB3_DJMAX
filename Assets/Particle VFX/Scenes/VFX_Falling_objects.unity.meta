@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: adcd85b0c1cdd51498cc9b845dd50585
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Scenes/VFX_Falling_objects.unity
+  uploadId: 411444

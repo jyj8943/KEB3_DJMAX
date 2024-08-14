@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3f4d73338d060e44a87007ec69578fb6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Portal.prefab
+  uploadId: 411444

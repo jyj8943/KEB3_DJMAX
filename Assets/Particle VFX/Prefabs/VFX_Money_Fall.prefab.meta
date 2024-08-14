@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0483ce1ce365b414b809d1bddf16ab8f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Money_Fall.prefab
+  uploadId: 411444

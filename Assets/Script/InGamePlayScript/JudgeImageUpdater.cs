@@ -10,6 +10,8 @@ public class JudgeImageUpdater : MonoBehaviour
     public Sprite missSprite;
     public Image comboImage;
     
+    public Animator judgeAnimator;
+    
     private float timer;
     private const float inactiveTime = 1.0f;
 
@@ -46,6 +48,7 @@ public class JudgeImageUpdater : MonoBehaviour
                     judgeImage.enabled = true;
                     break;
             }
+            judgeAnimator.SetTrigger("Judge");
             timer = 0.0f;
             Button.isJudged = false;
         }
@@ -55,7 +58,7 @@ public class JudgeImageUpdater : MonoBehaviour
             
             judgeImage.sprite = missSprite;
             judgeImage.enabled = true;
-            
+            judgeAnimator.SetTrigger("Judge");
             timer = 0.0f;
             InGamePlayManager.isNoteMiss = false;
         }

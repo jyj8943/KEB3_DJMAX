@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9e8e03d00b5db1a41a83322e0718f9cd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Orbital.prefab
+  uploadId: 411444

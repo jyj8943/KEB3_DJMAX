@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f8f020f279e91a94e97b350aeaa09fcd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Star_Fall.prefab
+  uploadId: 411444

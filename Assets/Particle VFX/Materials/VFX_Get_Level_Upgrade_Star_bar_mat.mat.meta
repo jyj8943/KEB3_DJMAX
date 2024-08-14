@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e95953f0a5d774a4fa1c65cb168bc36c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/VFX_Get_Level_Upgrade_Star_bar_mat.mat
+  uploadId: 411444

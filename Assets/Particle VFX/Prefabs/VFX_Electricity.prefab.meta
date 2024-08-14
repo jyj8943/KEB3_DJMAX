@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5ac0b752141925b47a8a16ad70ad790b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Electricity.prefab
+  uploadId: 411444

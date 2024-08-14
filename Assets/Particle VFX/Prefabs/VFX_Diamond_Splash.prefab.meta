@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cabe632922c0c6b4da79d70b27616706
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Diamond_Splash.prefab
+  uploadId: 411444

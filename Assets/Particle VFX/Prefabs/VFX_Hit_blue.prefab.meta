@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e81099ea5a0ad6446b2d34244e88d99e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Hit_blue.prefab
+  uploadId: 411444

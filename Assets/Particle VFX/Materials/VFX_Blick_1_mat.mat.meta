@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c8d1e55619806af40a4c4a9951a6348a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/VFX_Blick_1_mat.mat
+  uploadId: 411444

@@ -30,7 +30,8 @@ public class Button : MonoBehaviour
     public static string judgeResult = "";
     public static bool isJudged = false;
     AudioSource audioSoure;
-    
+
+    public ParticleSystem judgeParticle;
     private static Dictionary<KeyCode, int> keyCodeToNum = new()
     {
         { KeyCode.A, 0 },
@@ -42,6 +43,7 @@ public class Button : MonoBehaviour
     private void Awake()
     {
         clickedRailNum = keyCodeToNum[Key];
+        
     }
 
     private void Start()
@@ -226,6 +228,8 @@ public class Button : MonoBehaviour
               GM.PlusTempCombo();
               GM.GetTempScore(1f);
               judgeResult = "PERFECT";
+              //if(!judgeParticle.isPlaying)
+              judgeParticle.Play();
           }
           else if (judgeTime >= noteTime - 0.14f && judgeTime <= noteTime + 0.14f)
           {
@@ -236,6 +240,8 @@ public class Button : MonoBehaviour
               GM.PlusTempCombo();
               GM.GetTempScore(0.9f);
               judgeResult = "GREAT";
+              //if(!judgeParticle.isPlaying)
+              judgeParticle.Play();
           }
           else if (judgeTime >= noteTime - 0.24f && judgeTime <= noteTime + 0.24f)
           {
@@ -246,6 +252,8 @@ public class Button : MonoBehaviour
               GM.PlusTempCombo();
               GM.GetTempScore(0.8f);
               judgeResult = "GOOD";
+              //if(!judgeParticle.isPlaying)
+                  judgeParticle.Play();
           }
           else
           {
@@ -254,9 +262,12 @@ public class Button : MonoBehaviour
               GM.GetJudgeCount("MISS");
               GM.ResetTempCombo();
               judgeResult = "MISS";
+              
           }
           isJudged = true;
       }
+      
+      
       
       private float GetJudgeTime()
       {

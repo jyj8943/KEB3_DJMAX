@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 86f0b4331ca4900469ca987bac2bbecc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Star_Splash.prefab
+  uploadId: 411444

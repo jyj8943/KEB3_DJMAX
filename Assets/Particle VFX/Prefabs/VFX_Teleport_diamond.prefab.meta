@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c35a306731415ab4082c4ec955be4a11
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Teleport_diamond.prefab
+  uploadId: 411444

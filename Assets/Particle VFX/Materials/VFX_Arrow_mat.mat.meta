@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bedb0c2b7b6a947469d7739ddc813c5f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/VFX_Arrow_mat.mat
+  uploadId: 411444

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bf76576479b56ed419d4e2631595d5cd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Hit_orange.prefab
+  uploadId: 411444

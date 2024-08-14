@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b22e98900a57fb14287d685b326a70de
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/VFX_Getting_Weapon_Empty_mat.mat
+  uploadId: 411444

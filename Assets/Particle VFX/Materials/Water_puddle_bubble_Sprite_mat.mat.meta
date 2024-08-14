@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 13cd9629f60c4cb428c6e00948d87344
+timeCreated: 1560110636
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/Water_puddle_bubble_Sprite_mat.mat
+  uploadId: 411444

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9c34c9c0ce6d2554f9cf64c8cafbdbea
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Teleport_rectangle.prefab
+  uploadId: 411444

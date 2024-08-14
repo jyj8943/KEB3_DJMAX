@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a796e824ce3c8dc41b6905fb3af07018
+timeCreated: 1560112592
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Materials/VFX_Acid_puddle_bubble_Sprite_mat.mat
+  uploadId: 411444

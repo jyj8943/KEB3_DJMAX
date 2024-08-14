@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c29876e444a0b4f49b5007e576d1c393
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Confetti.prefab
+  uploadId: 411444

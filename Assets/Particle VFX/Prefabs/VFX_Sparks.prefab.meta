@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2efe3c1ab162768428520e50da5c559d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Sparks.prefab
+  uploadId: 411444

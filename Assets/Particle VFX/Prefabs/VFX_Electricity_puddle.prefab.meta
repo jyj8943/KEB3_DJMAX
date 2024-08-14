@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: eddd5d4172de27c4e827c725ff03a9eb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Electricity_puddle.prefab
+  uploadId: 411444

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 872e1f06e6f546a40ab2f4a4ca368213
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Glow_Confetti.prefab
+  uploadId: 411444

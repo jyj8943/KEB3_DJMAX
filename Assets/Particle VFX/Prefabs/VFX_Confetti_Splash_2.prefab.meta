@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c6c4e2f41d1c1b348806004d993e9fd4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 164190
+  packageName: Particle VFX
+  packageVersion: 1.2
+  assetPath: Assets/Particle VFX/Prefabs/VFX_Confetti_Splash_2.prefab
+  uploadId: 411444
