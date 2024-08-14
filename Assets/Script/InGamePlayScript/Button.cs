@@ -232,7 +232,6 @@ public class Button : MonoBehaviour
               GM.PlusTempCombo();
               GM.GetTempScore(1f);
               judgeResult = "PERFECT";
-              //if(!judgeParticle.isPlaying)
               judgeParticle.Play();
           }
           else if (judgeTime >= noteTime - 0.14f && judgeTime <= noteTime + 0.14f)
@@ -244,7 +243,6 @@ public class Button : MonoBehaviour
               GM.PlusTempCombo();
               GM.GetTempScore(0.9f);
               judgeResult = "GREAT";
-              //if(!judgeParticle.isPlaying)
               judgeParticle.Play();
           }
           else if (judgeTime >= noteTime - 0.24f && judgeTime <= noteTime + 0.24f)
@@ -256,8 +254,7 @@ public class Button : MonoBehaviour
               GM.PlusTempCombo();
               GM.GetTempScore(0.8f);
               judgeResult = "GOOD";
-              //if(!judgeParticle.isPlaying)
-                  judgeParticle.Play();
+              judgeParticle.Play();
           }
           else
           {
