@@ -47,6 +47,9 @@ public class JudgeImageUpdater : MonoBehaviour
                     judgeImage.sprite = missSprite;
                     judgeImage.enabled = true;
                     break;
+                case "PASS":
+                    judgeImage.enabled = true;
+                    break;
             }
             judgeAnimator.SetTrigger("Judge");
             timer = 0.0f;

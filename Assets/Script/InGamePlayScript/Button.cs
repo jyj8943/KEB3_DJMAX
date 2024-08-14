@@ -166,12 +166,16 @@ public class Button : MonoBehaviour
           if (isHolding)
           {
               Debug.Log("PASS");
+              judgeResult = "PASS";
           }
           else
           {
               Debug.Log("LongNote Holding MISS");
+              judgeResult = "MISS";
               GM.ResetTempCombo();
           }
+
+          isJudged = true;
       }
 
       private void ScalingLongNote()

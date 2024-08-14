@@ -148,6 +148,7 @@ public class InGamePlayManager : MonoBehaviour
                     
                     ResetTempCombo();
                     missCount++;
+                    isNoteMiss = true;
                 }
                 else if (noteList[0].noteID == 1)
                 {
@@ -160,6 +161,7 @@ public class InGamePlayManager : MonoBehaviour
                         missCount++;
                         
                         ResetTempCombo();
+                        isNoteMiss = true;
                     }
                     
                     if (video.time >= noteList[0].noteStartingTime + noteList[0].noteHoldingTime + 0.25f)
@@ -174,9 +176,10 @@ public class InGamePlayManager : MonoBehaviour
                         missCount++;
                         
                         ResetTempCombo();
+                        isNoteMiss = true;
                     }
                 }
-                isNoteMiss = true;
+                //isNoteMiss = true;
                 
             }
         }
