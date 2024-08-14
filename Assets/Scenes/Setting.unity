@@ -6553,7 +6553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2003373457}
-  - component: {fileID: 2003373456}
+  - component: {fileID: 2003373458}
   m_Layer: 0
   m_Name: GameSettingManager
   m_TagString: Untagged
@@ -6561,25 +6561,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2003373456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003373455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e8ec3a64c0678c439d43eb832a28e97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TM: {fileID: 0}
-  syncBtn: {fileID: 690579122}
-  sync: {fileID: 242951743}
-  sync_: 1
-  trackSpeedBtn: {fileID: 288627940}
-  trackSpeed: {fileID: 47537036}
-  trackSpeed_: 1
 --- !u!4 &2003373457
 Transform:
   m_ObjectHideFlags: 0
@@ -6595,6 +6576,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2003373458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003373455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e876e1290cf1b4cac50b5b9f86e385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TM: {fileID: 0}
+  syncBtn: {fileID: 690579122}
+  syncText: {fileID: 242951743}
+  trackSpeedBtn: {fileID: 288627940}
+  trackSpeedText: {fileID: 47537036}
+  sync_: 0
+  trackSpeed_: 0
 --- !u!1 &2095668897
 GameObject:
   m_ObjectHideFlags: 0
