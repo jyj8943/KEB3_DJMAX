@@ -29,7 +29,7 @@ public class Button : MonoBehaviour
 
     public static string judgeResult = "";
     public static bool isJudged = false;
-    AudioSource audioSoure;
+    AudioSource audioSource;
 
     public ParticleSystem judgeParticle;
     private static Dictionary<KeyCode, int> keyCodeToNum = new()
@@ -49,7 +49,7 @@ public class Button : MonoBehaviour
     private void Start()
     {
         GM = InGamePlayManager.instance;
-        audioSoure = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -95,7 +95,7 @@ public class Button : MonoBehaviour
              Debug.Log("Key: " + Key + ", Time: " + GM.video.time);
              isHolding = true;
              JudgeNotes();
-             audioSoure.Play();
+             audioSource.Play();
          }
          
          if (Input.GetKeyUp(Key) && InGamePlayManager.instance.isPlaying)

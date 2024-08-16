@@ -16,6 +16,9 @@ public class PauseManager : MonoBehaviour
     public GameObject pausePanel;
     public bool isPause = false;
 
+    public AudioSource audioSource;
+    public AudioClip buttonClip;
+    public AudioClip sceneClip;
     private void Start()
     {
         GM = InGamePlayManager.instance;
@@ -28,12 +31,21 @@ public class PauseManager : MonoBehaviour
         {
             Pause();
         }
+
+        if (isPause)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                audioSource.PlayOneShot(buttonClip);
+            }
+        }
     }
 
     void Pause()
     {
         if(GM.countdownTime == 0)
         {
+            audioSource.PlayOneShot(sceneClip);
             isPause = !isPause;
             GM.isPlaying = !GM.isPlaying;
 
@@ -59,11 +71,13 @@ public class PauseManager : MonoBehaviour
 
     public void Restart()
     {
+        audioSource.PlayOneShot(sceneClip);
         SceneManager.LoadScene("InGamePlay");
     }
 
     public void TrackSelect()
     {
+        audioSource.PlayOneShot(sceneClip);
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -73,7 +87,7 @@ public class PauseManager : MonoBehaviour
         TM.SetAccuracyCount(GM.perfectCount, GM.greatCount, GM.goodCount, GM.missCount);
         
         Debug.Log("Game Finish!");
-
+        audioSource.PlayOneShot(sceneClip);
         SceneManager.LoadScene("Result");
     }
 }

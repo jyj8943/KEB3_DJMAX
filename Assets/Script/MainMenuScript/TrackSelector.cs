@@ -28,6 +28,8 @@ public class TrackSelector : MonoBehaviour
     private float lastScrollTime = 0f;
     private bool isKeyHeld = false;
 
+    public AudioSource audioSource;
+    public AudioClip drrClip;
     void Start()
     {
         selectedButton = contentPanel.transform.GetChild(0).gameObject;
@@ -39,12 +41,14 @@ public class TrackSelector : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            audioSource.PlayOneShot(drrClip);
             ScrollDown();
             lastScrollTime = Time.time;
             isKeyHeld = true;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            audioSource.PlayOneShot(drrClip);
             ScrollUp();
             lastScrollTime = Time.time;
             isKeyHeld = true;

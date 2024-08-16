@@ -18,6 +18,10 @@ public class SpeedSelect : MonoBehaviour
     private bool isHoldingUp = false;
     private bool isHoldingDown = false;
 
+    public AudioSource audioSource;
+    public AudioClip upClip;
+    public AudioClip downClip;
+    
     void Start()
     {
         TM = TotalManager.instance;
@@ -35,6 +39,7 @@ public class SpeedSelect : MonoBehaviour
             }
             isHoldingUp = true;
             timer = 0f;
+            audioSource.PlayOneShot(upClip);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -44,12 +49,13 @@ public class SpeedSelect : MonoBehaviour
             }
             isHoldingDown = true;
             timer = 0f;
+            audioSource.PlayOneShot(downClip);
         }
         
         if (Input.GetKey(KeyCode.UpArrow) && isHoldingUp)
         {
             timer += Time.deltaTime;
-
+            
             if (timer >= holdingTime)
             {
                 if (TM.userChartSpeed < TM.maxUserChartSpeed)

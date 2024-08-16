@@ -26,6 +26,9 @@ public class Selector : MonoBehaviour
     public Image backImage;
     public Image askPanel;
 
+    public AudioSource audioSource;
+    public AudioClip sceneClip;
+    public AudioClip buttonClip;
     private void Start()
     {
         TM = TotalManager.instance;
@@ -35,22 +38,26 @@ public class Selector : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F10))
         {
+            audioSource.PlayOneShot(sceneClip);
             SceneManager.LoadScene("Editor");
         }
         else if(Input.GetKeyDown(KeyCode.Return))
         {
+            audioSource.PlayOneShot(buttonClip);
             trackSelect.gameObject.SetActive(false);
             selector.gameObject.SetActive(false);
             AskPlay();
         }
         else if(Input.GetKeyDown(KeyCode.Escape))
         {
+            audioSource.PlayOneShot(sceneClip);
             SceneManager.LoadScene("TitleMenu");
         }
     }
 
     public void AskPlay()
     {
+        
         backImage.gameObject.SetActive(true);
         speedSelector.gameObject.SetActive(true);
         var selected = askPanel.transform.GetChild(2).gameObject;
@@ -59,6 +66,7 @@ public class Selector : MonoBehaviour
 
     public void Play()
     {
+        audioSource.PlayOneShot(buttonClip);
         selectedTrackTitle = trackTitle.text;
         selectedTrackArtist = trackArtist.text;
         selectedTrack = trackTitle.text+trackArtist.text+".json";
@@ -69,11 +77,13 @@ public class Selector : MonoBehaviour
         //Debug.Log(SpeedSelect.finalSpeed);
 
         //TotalManager.instance.userChartSpeed = SpeedSelect.finalSpeed;
+        audioSource.PlayOneShot(sceneClip);
         SceneManager.LoadScene("InGamePlay");
     }
 
     public void Not()
     {
+        audioSource.PlayOneShot(buttonClip);
         Debug.Log("other track");
         speedSelect.ResetSpeed();
 

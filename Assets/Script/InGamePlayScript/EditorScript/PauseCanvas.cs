@@ -20,6 +20,9 @@ public class PauseCanvas : MonoBehaviour
     public static bool isPauseCanvasOn = false;
     public static bool isHelpCanvasOn = false;
 
+    public AudioSource audioSource;
+    public AudioClip clip1;
+    public AudioClip clip2;
     void Start()
     {
         pauseCanvas.SetActive(false);
@@ -67,8 +70,7 @@ public class PauseCanvas : MonoBehaviour
 
     private void ActivatePauseCanvas()
     {
-        
-        
+        audioSource.PlayOneShot(clip1);
         volume.SetActive(true); // 블러 활성화
         pauseCanvas.SetActive(true);
         Time.timeScale = 0f;
@@ -78,6 +80,7 @@ public class PauseCanvas : MonoBehaviour
 
     public void OnClickContinueBtn()
     {
+        audioSource.PlayOneShot(clip1);
         pauseCanvas.SetActive(false);
         volume.SetActive(false); // 블러 비활성화
         Time.timeScale = 1f;
@@ -89,6 +92,7 @@ public class PauseCanvas : MonoBehaviour
     {
         if (helpCanvas != null)
         {
+            audioSource.PlayOneShot(clip1);
             helpCanvas.SetActive(true);
             if (pauseCanvas != null)
             {
@@ -105,6 +109,7 @@ public class PauseCanvas : MonoBehaviour
     {
         if (helpCanvas != null)
         {
+            audioSource.PlayOneShot(clip2);
             helpCanvas.SetActive(false);
             if (pauseCanvas != null)
             {
@@ -117,19 +122,21 @@ public class PauseCanvas : MonoBehaviour
 
     public void OnclickNextPageBtn()
     {
+        audioSource.PlayOneShot(clip2);
         firstPanel.SetActive(false);
         secondPanel.SetActive(true);
     }
     
     public void OnclickPrevPageBtn()
     {
+        audioSource.PlayOneShot(clip2);
         secondPanel.SetActive(false);
         firstPanel.SetActive(true);
     }
 
     public void OnClickExitBtn()
     {
-        // Exit 버튼 클릭 시 메인메뉴로 가게끔 구현 예정
+        audioSource.PlayOneShot(clip1);
         SceneManager.LoadScene("TitleMenu");
     }
 }

@@ -8,30 +8,47 @@ using UnityEngine.SceneManagement;
 public class SelectMenu : MonoBehaviour
 {
     public Canvas canvas;
-
+    public AudioSource audioSource;
+    public AudioClip sceneClip;
+    public AudioClip buttonClip;
+    public AudioClip playClip;
     void Start()
     {
         var select = canvas.transform.GetChild(2).gameObject;
         EventSystem.current.SetSelectedGameObject(select.gameObject);
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            audioSource.PlayOneShot(buttonClip);
+        }
+    }
 
     public void Play()
     {
+        audioSource.PlayOneShot(playClip);
         SceneManager.LoadScene("MainMenu");
     }
 
     public void Editor()
     {
+        audioSource.PlayOneShot(sceneClip);
         SceneManager.LoadScene("Editor");
     }
 
     public void Setting()
     {
+        audioSource.PlayOneShot(sceneClip);
         SceneManager.LoadScene("Setting");
     }
 
     public void Quit()
     {
-        SceneManager.LoadScene("TitleScreen");
+        audioSource.PlayOneShot(sceneClip);
+        Application.Quit();
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 }

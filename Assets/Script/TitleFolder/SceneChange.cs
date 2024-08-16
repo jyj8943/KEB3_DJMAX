@@ -13,7 +13,7 @@ public class SceneChange : MonoBehaviour
     float time = 0f;
     float F_time = 1f;
     public string SceneToLoad;
-
+    public AudioSource audioSource;
     void Start()
     {
         textBlink = Text.GetComponent<TextBlink>();
@@ -52,6 +52,7 @@ public class SceneChange : MonoBehaviour
             Text.color = textAlpha;
             yield return null;
         }
+        audioSource.Play();
         SceneManager.LoadScene(SceneToLoad);
     }    
 }

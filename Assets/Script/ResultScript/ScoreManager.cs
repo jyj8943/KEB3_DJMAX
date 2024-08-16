@@ -26,6 +26,8 @@ public class ScoreManager : MonoBehaviour
     public Image maxCombo;
     public GameObject newRecord;
 
+    public AudioSource audioSource;
+    public AudioClip resultClip;
     private void Awake()
     {
         GM = InGamePlayManager.instance;
@@ -63,8 +65,10 @@ public class ScoreManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            audioSource.PlayOneShot(resultClip);
             if(!isRight)
             {
+                
                 scoreAnimator.SetTrigger("MoveRight");
                 detailAnimator.SetTrigger("FadeIn");
             }
