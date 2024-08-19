@@ -897,6 +897,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497023483}
   m_CullTransparentMesh: 1
+--- !u!1 &1015986492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1015986494}
+  - component: {fileID: 1015986493}
+  m_Layer: 0
+  m_Name: Total Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1015986493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015986492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6303a71869e056f408a30f292399e66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultChartSpeed: 2
+  userChartSpeed: 1
+  userChartSpeedSetting: 1
+  finalChartSpeed: 0
+  maxUserChartSpeed: 7
+  userSync: 1
+  maxUserSync: 3
+  minNotePosY: -3
+  minNotePosX: -2
+  maxNotePosX: 2
+  songTime: 80
+  tempSongName: 
+  tempSongArtist: 
+  tempSongBestScore: 0
+  tempSongBestCombo: 0
+  tempPerfectCount: 0
+  tempGreatCount: 0
+  tempGoodCount: 0
+  tempMissCount: 0
+--- !u!4 &1015986494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015986492}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1453.1289, y: 696.5283, z: 2.3905492}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1053812330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,6 +2157,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1015986494}
   - {fileID: 1864364776}
   - {fileID: 308746337}
   - {fileID: 2052636930}

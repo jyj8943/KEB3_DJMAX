@@ -326,7 +326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50%
+  m_text: '%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50%
+  m_text: '%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -799,13 +799,13 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1383538548}
         m_TargetAssemblyTypeName: SoundSettingManager, Assembly-CSharp
-        m_MethodName: SetBgmVolume
+        m_MethodName: SetMainVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2113,7 +2113,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4036,7 +4036,7 @@ GameObject:
   - component: {fileID: 1068662516}
   - component: {fileID: 1068662515}
   m_Layer: 5
-  m_Name: GamePlay
+  m_Name: MainVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4264,7 +4264,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4337,7 +4337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50%
+  m_text: '%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4507,7 +4507,7 @@ GameObject:
   - component: {fileID: 1251282436}
   - component: {fileID: 1251282435}
   m_Layer: 5
-  m_Name: BGMVolume
+  m_Name: TrackVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4704,6 +4704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60e3992dc08a9c41b1755137db8c44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TM: {fileID: 0}
   startSetting: {fileID: 690579122}
 --- !u!4 &1294294570
 Transform:
@@ -4786,12 +4787,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TM: {fileID: 0}
-  bgm: {fileID: 1461444999}
-  bgmLevel: {fileID: 31847506}
-  bgmSlider: {fileID: 92916960}
+  mainBtn: {fileID: 1880895671}
+  main: {fileID: 1461444999}
+  mainLevel: {fileID: 31847506}
+  mainSlider: {fileID: 92916960}
+  trackBtn: {fileID: 1844630230}
   track: {fileID: 0}
   trackLevel: {fileID: 1206650242}
   trackSlider: {fileID: 551025659}
+  sfxBtn: {fileID: 741865921}
   sfx: {fileID: 0}
   sfxLevel: {fileID: 25390831}
   sfxSlider: {fileID: 1139499066}
@@ -4942,7 +4946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BGM VOLUME
+  m_text: TRACK VOLUME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5556,7 +5560,7 @@ GameObject:
   - component: {fileID: 1671981548}
   - component: {fileID: 1671981547}
   m_Layer: 5
-  m_Name: BGMVolumeSelect
+  m_Name: TrackVolumeSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5973,7 +5977,7 @@ GameObject:
   - component: {fileID: 1844630233}
   - component: {fileID: 1844630232}
   m_Layer: 5
-  m_Name: BGMVolume_
+  m_Name: TrackVolume_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6231,7 +6235,7 @@ GameObject:
   - component: {fileID: 1880895674}
   - component: {fileID: 1880895673}
   m_Layer: 5
-  m_Name: GamePlayVolume
+  m_Name: MainVolume_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6397,7 +6401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAMEPLAY VOLUME
+  m_text: MAIN VOLUME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6585,7 +6589,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2003373455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7e876e1290cf1b4cac50b5b9f86e385, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e8ec3a64c0678c439d43eb832a28e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TM: {fileID: 0}
@@ -6593,8 +6597,6 @@ MonoBehaviour:
   syncText: {fileID: 242951743}
   trackSpeedBtn: {fileID: 288627940}
   trackSpeedText: {fileID: 47537036}
-  sync_: 0
-  trackSpeed_: 0
 --- !u!1 &2095668897
 GameObject:
   m_ObjectHideFlags: 0
@@ -6757,7 +6759,7 @@ GameObject:
   - component: {fileID: 2113016479}
   - component: {fileID: 2113016478}
   m_Layer: 5
-  m_Name: BGMSelect
+  m_Name: MainVolumeSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

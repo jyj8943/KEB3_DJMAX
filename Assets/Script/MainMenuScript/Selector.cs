@@ -32,6 +32,7 @@ public class Selector : MonoBehaviour
     private void Start()
     {
         TM = TotalManager.instance;
+        TM.prevScene = "MainMenu";
     }
 
     void Update()
@@ -52,6 +53,11 @@ public class Selector : MonoBehaviour
         {
             audioSource.PlayOneShot(sceneClip);
             SceneManager.LoadScene("TitleMenu");
+        }
+        else if(Input.GetKeyDown(KeyCode.F11))
+        {
+            audioSource.PlayOneShot(sceneClip);
+            SceneManager.LoadScene("Setting");
         }
     }
 

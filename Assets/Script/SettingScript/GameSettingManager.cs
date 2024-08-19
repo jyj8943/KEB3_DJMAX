@@ -1,84 +1,188 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using TMPro;
-// using UnityEngine;
-// using UnityEngine.EventSystems;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.Mathematics;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
-// public class GameSettingManager : MonoBehaviour
-// {
-//     public TotalManager TM;
+public class GameSettingManager : MonoBehaviour
+{
+    public TotalManager TM;
 
-//     public GameObject syncBtn;
-//     public TextMeshProUGUI sync;
-//     private float sync_ = 1.0f;
+    public GameObject syncBtn;
+    public TextMeshProUGUI syncText;
 
-//     public GameObject trackSpeedBtn;
-//     public TextMeshProUGUI trackSpeed;
-//     private float trackSpeed_ = 1.0f;
+    public GameObject trackSpeedBtn;
+    public TextMeshProUGUI trackSpeedText;
 
-//     private float holdingTime = 0.15f;
-//     private float timer = 0f;
-//     private bool isHoldingUp = false;
-//     private bool isHoldingDown = false;
+    private float holdingTime = 0.15f;
+    private float timer = 0f;
+    private bool isHoldingRight = false;
+    private bool isHoldingLeft = false;
 
-//     void Awake()
-//     {
-//         TM = TotalManager.instance;
-//     }
+    private float sync;
+    private float trackSpeed;
 
-//     void Start()
-//     {
-//         sync.text = sync_.ToString("F1");
-//         trackSpeed.text = trackSpeed_.ToString("F1");
-//     }
+    private void Awake()
+    {
+        TM = TotalManager.instance;
+    }
 
-//     void Update()
-//     {
-//         GameObject selectedObj = EventSystem.current.currentSelectedGameObject;
+    void Start()
+    {
+        sync = TM.userSync;
+        trackSpeed = TM.userChartSpeedSetting;
+        
+        syncText.text = TM.userSync.ToString("F1");
+        trackSpeedText.text = TM.userChartSpeedSetting.ToString("F1");
+    }
 
-//         if(Input.GetKeyDown(KeyCode.RightArrow))
-//         {
-//             if(selectedObj == syncBtn)
-//             {
-//                 SetSyncUp();
-//             }
-//             else if(selectedObj == trackSpeedBtn)
-//             {
-                
-//             }
-//         }
-//         else if(Input.GetKeyDown(KeyCode.LeftArrow))
-//         {
-//             if(selectedObj == syncBtn)
-//             {
-//                 SetSyncDown();
-//             }
-//             else if(selectedObj == trackSpeedBtn)
-//             {
-//                 trackSpeed_ -= 0.1f;
-//                 trackSpeed.text = trackSpeed_.ToString("F1");
-//             }
-//         }
-//     }
+    void Update()
+    {
+        GameObject selectedObj = EventSystem.current.currentSelectedGameObject;
+        
+        if (selectedObj == syncBtn)
+        {
+            SyncUpdate();
+        }
+        else if (selectedObj == trackSpeedBtn)
+        {
+            SpeedUpdate();
+        }
 
-//     void SetSyncUp()
-//     {
-//         sync_ += 1f;
-//         sync.text = sync_.ToString("F1");
-//     }
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            TM.SetSyncTrackSpeed(sync, trackSpeed);
+            SceneManager.LoadScene(TM.prevScene);
+        }
+    }
 
-//     void SetSyncDown()
-//     {
-//         sync_ -= 1f;
-//         sync.text = sync_.ToString("F1");
-//     }
+    void SyncUpdate()
+    {
+        if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if(sync < TM.maxUserSync)
+            {
+                sync += 0.1f;
+            }
+            isHoldingRight = true;
+            timer = 0f;
+        }
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if(sync > 1f)
+            {
+                sync -= 0.1f;
+            }
+            isHoldingLeft = true;
+            timer = 0f;
+        }
 
-//     void SetTrackSpeedUp()
-//     {
-//     }
+        if(Input.GetKey(KeyCode.RightArrow) && isHoldingRight)
+        {
+            timer += Time.deltaTime;
 
-//     void SetTrackSpeedDown()
-//     {
-//     }
+            if(timer >= holdingTime)
+            {
+                if(sync < TM.maxUserSync)
+                {
+                    sync += 0.1f;
+                }
+                timer = 0f;
+            }
+        }
+        if(Input.GetKey(KeyCode.LeftArrow) && isHoldingLeft)
+        {
+            timer += Time.deltaTime;
 
-// }
+            if(timer >= holdingTime)
+            {
+                if(sync > 1f)
+                {
+                    sync -= 0.1f;
+                }
+                timer = 0f;
+            }
+        }
+
+        if(Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            isHoldingRight = false;
+            timer = 0f;
+        }
+        if(Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            isHoldingLeft = false;
+            timer = 0f;
+        }
+
+        sync = Mathf.Round(sync * 10f) / 10f;
+
+        syncText.text = sync.ToString("F1");
+    }
+
+    void SpeedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (trackSpeed < TM.maxUserChartSpeed)
+            {
+                trackSpeed += 0.1f;
+            }
+            isHoldingRight = true;
+            timer = 0f;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (trackSpeed > 1f)
+            {
+                trackSpeed -= 0.1f;
+            }
+            isHoldingLeft = true;
+            timer = 0f;
+        }
+        
+        if (Input.GetKey(KeyCode.RightArrow) && isHoldingRight)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= holdingTime)
+            {
+                if (trackSpeed < TM.maxUserChartSpeed)
+                {
+                    trackSpeed += 0.1f;
+                }
+                timer = 0f;
+            }
+        }
+        if (Input.GetKey(KeyCode.LeftArrow) && isHoldingLeft)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= holdingTime)
+            {
+                if (trackSpeed > 1f)
+                {
+                    trackSpeed -= 0.1f;
+                }
+                timer = 0f;
+            }
+        }
+        
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            isHoldingRight = false;
+            timer = 0f;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            isHoldingLeft = false;
+            timer = 0f;
+        }
+
+        trackSpeed = Mathf.Round(trackSpeed * 10f) / 10f;
+        
+        trackSpeedText.text = trackSpeed.ToString("F1");
+    }
+}
