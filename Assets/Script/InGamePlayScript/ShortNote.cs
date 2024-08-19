@@ -8,7 +8,7 @@ public class ShortNote : MonoBehaviour {
     public float posY;
 
     public int railNum;
-    public int noteID; //noteid는 일반노트가 0, 롱노트가 1
+    public int noteID;              //noteid는 일반노트가 0, 롱노트가 1
     public float noteStartingTime; // 노트를 눌러야할 시간
     public float noteHoldingTime; // 롱노트에서 노트를 끝까지 눌러야할 시간
     
