@@ -1468,8 +1468,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PLAY?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4bf87b825f5be1c4db6d7faa76231291, type: 2}
+  m_sharedMaterial: {fileID: -8078520144038465945, guid: 4bf87b825f5be1c4db6d7faa76231291, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3131,6 +3131,8 @@ MonoBehaviour:
   tempGreatCount: 0
   tempGoodCount: 0
   tempMissCount: 0
+  sync: 1
+  maxSync: 3
 --- !u!4 &1060722559
 Transform:
   m_ObjectHideFlags: 0
@@ -5417,8 +5419,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 4554953233225513698, guid: d65e584f6f87889439eeed169e0b832e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

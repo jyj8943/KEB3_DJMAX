@@ -107,7 +107,8 @@ public class Button : MonoBehaviour
              buttonImage.sprite = upImage;
 
              judgeTime = GetJudgeTime();
-             note.isInGame = true;
+             if (note != null)
+                 note.isInGame = true;
              
              // 롱노트의 마지막 입력 판정 처리
              if (note != null && note.noteID == 1)
@@ -131,8 +132,7 @@ public class Button : MonoBehaviour
          // 판정의 범위 제한 ( 필요시 조정 가능 )
          if (judgeTime <= note.noteStartingTime - 0.34f || judgeTime >= note.noteStartingTime + 0.34f)
              return;
-    
-         // note = GM.GetFirstNote(clickedRailNum);
+         
          switch (note.noteID)
          {
              case 0:
@@ -204,13 +204,8 @@ public class Button : MonoBehaviour
               note.isInGame = false;
               judgeTime = GetJudgeTime();
               
-              //var passTime = note.noteStartingTime + note.noteHoldingTime - judgeTime;
-              //note.transform.localScale = new Vector3(1f, passTime * TM.finalChartSpeed, 1f);
               note.transform.localScale -= new Vector3(0, Time.deltaTime * TM.finalChartSpeed, 0);
               
-              //note.transform.localScale =
-                  //new Vector3(1f, scaleOftempNote - (judgeTime - note.noteStartingTime) 
-                      //* TotalManager.instance.finalChartSpeed, 1f);
               note.transform.position = new Vector3(note.transform.position.x,
                   GM.judgeBar.transform.position.y, note.transform.position.z);
           }
@@ -248,9 +243,6 @@ public class Button : MonoBehaviour
       {
           if (judgeTime >= noteTime - 0.06f && judgeTime <= noteTime + 0.06f)
           {
-              Debug.Log("noteTime: " + noteTime);
-              Debug.Log("PERFECT");
-              
               GM.GetJudgeCount("PERFECT");
               GM.PlusTempCombo();
               GM.GetTempScore(1f);
@@ -259,9 +251,6 @@ public class Button : MonoBehaviour
           }
           else if (judgeTime >= noteTime - 0.12f && judgeTime <= noteTime + 0.12f)
           {
-              Debug.Log("noteTime: " + noteTime);
-              Debug.Log("GREAT");
-              
               GM.GetJudgeCount("GREAT");
               GM.PlusTempCombo();
               GM.GetTempScore(0.9f);
@@ -270,9 +259,6 @@ public class Button : MonoBehaviour
           }
           else if (judgeTime >= noteTime - 0.18f && judgeTime <= noteTime + 0.18f)
           {
-              Debug.Log("noteTime: " + noteTime);
-              Debug.Log("GOOD");
-              
               GM.GetJudgeCount("GOOD");
               GM.PlusTempCombo();
               GM.GetTempScore(0.8f);
@@ -281,12 +267,9 @@ public class Button : MonoBehaviour
           }
           else
           {
-              Debug.Log("MISS");
-              
               GM.GetJudgeCount("MISS");
               GM.ResetTempCombo();
               judgeResult = "MISS";
-              
           }
           isJudged = true;
       }
