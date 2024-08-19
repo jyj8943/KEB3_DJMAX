@@ -10,6 +10,8 @@ using UnityEngine.tvOS;
 public class Button : MonoBehaviour
 {
     public InGamePlayManager GM;
+    public TotalManager TM;
+    
     public GameObject buttonEffect;
     public KeyCode Key;
     private int clickedRailNum;
@@ -48,6 +50,7 @@ public class Button : MonoBehaviour
 
     private void Start()
     {
+        TM = TotalManager.instance;
         GM = InGamePlayManager.instance;
         audioSource = GetComponent<AudioSource>();
     }
@@ -68,24 +71,6 @@ public class Button : MonoBehaviour
          }
          
          judgeTime = GetJudgeTime();
-         if (note != null && note.noteID == 1)
-         {
-             if (judgeTime >= note.noteStartingTime && judgeTime <= note.noteHoldingTime + note.noteStartingTime)
-             {
-                 judgeInterval += Time.deltaTime;
-             }
-             
-             if (isHolding) ScalingLongNote();
-             
-             if (judgeInterval >= 0.5f)
-             {
-                 Debug.Log("JudgeInterval: " + judgeInterval);
-                 // 롱노트 첫 입력 이후 홀드 시의 판정 처리
-                 JudgeLongNoteHolding();
-                 judgeInterval = 0f;
-             }
-         }
-         
          // 인게임에 비디오를 구현해놨으니 비디오의 time(현재 재생 시간) 속성을 활용하여 정확도를 판별하도록 구현 예정
          if (Input.GetKeyDown(Key) && InGamePlayManager.instance.isPlaying)
          {
@@ -96,6 +81,24 @@ public class Button : MonoBehaviour
              isHolding = true;
              JudgeNotes();
              audioSource.Play();
+         }
+         
+         if (note != null && note.noteID == 1)
+         {
+             if (judgeTime >= note.noteStartingTime && judgeTime <= note.noteHoldingTime + note.noteStartingTime)
+             {
+                 judgeInterval += Time.deltaTime;
+             }
+             
+             if (isHolding) ScalingLongNote();
+             
+             if (judgeInterval >= 0.1f)
+             {
+                 Debug.Log("JudgeInterval: " + judgeInterval);
+                 // 롱노트 첫 입력 이후 홀드 시의 판정 처리
+                 JudgeLongNoteHolding();
+                 judgeInterval = 0f;
+             }
          }
          
          if (Input.GetKeyUp(Key) && InGamePlayManager.instance.isPlaying)
@@ -167,6 +170,7 @@ public class Button : MonoBehaviour
           {
               Debug.Log("PASS");
               judgeResult = "PASS";
+              judgeParticle.Play();
           }
           else
           {
@@ -185,11 +189,14 @@ public class Button : MonoBehaviour
           // 버튼을 누르고 있으면 롱노트가 계속 줄어들도록 연출
           if (judgeTime >= note.noteStartingTime && judgeTime < note.noteStartingTime + note.noteHoldingTime)
           {
-              note.transform.localScale =
-                  new Vector3(1f, scaleOftempNote - (judgeTime - note.noteStartingTime) 
-                      * TotalManager.instance.finalChartSpeed, 1f);
+              var passTime = note.noteStartingTime + note.noteHoldingTime - judgeTime;
+              note.transform.localScale = new Vector3(1f, passTime * TM.finalChartSpeed, 1f);
+              
+              //note.transform.localScale =
+                  //new Vector3(1f, scaleOftempNote - (judgeTime - note.noteStartingTime) 
+                      //* TotalManager.instance.finalChartSpeed, 1f);
               note.transform.position = new Vector3(note.transform.position.x,
-                  GM.judgeBar.transform.position.y, note.transform.position.z);
+                  TM.finalChartSpeed * ( judgeTime + Time.deltaTime )- 3, note.transform.position.z);
           }
 
           if (judgeTime >= (note.noteStartingTime + note.noteHoldingTime))
@@ -223,7 +230,7 @@ public class Button : MonoBehaviour
       // PASS: longNote가 judgeInterval때 눌렸는지 아닌지 판정
       private void GetNoteAccuracy(float noteTime)
       {
-          if (judgeTime >= noteTime - 0.04f && judgeTime <= noteTime + 0.04f)
+          if (judgeTime >= noteTime - 0.06f && judgeTime <= noteTime + 0.06f)
           {
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("PERFECT");
@@ -234,7 +241,7 @@ public class Button : MonoBehaviour
               judgeResult = "PERFECT";
               judgeParticle.Play();
           }
-          else if (judgeTime >= noteTime - 0.14f && judgeTime <= noteTime + 0.14f)
+          else if (judgeTime >= noteTime - 0.12f && judgeTime <= noteTime + 0.12f)
           {
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("GREAT");
@@ -245,7 +252,7 @@ public class Button : MonoBehaviour
               judgeResult = "GREAT";
               judgeParticle.Play();
           }
-          else if (judgeTime >= noteTime - 0.24f && judgeTime <= noteTime + 0.24f)
+          else if (judgeTime >= noteTime - 0.18f && judgeTime <= noteTime + 0.18f)
           {
               Debug.Log("noteTime: " + noteTime);
               Debug.Log("GOOD");
