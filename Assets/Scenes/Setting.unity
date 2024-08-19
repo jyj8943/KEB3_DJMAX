@@ -4036,7 +4036,7 @@ GameObject:
   - component: {fileID: 1068662516}
   - component: {fileID: 1068662515}
   m_Layer: 5
-  m_Name: BGM
+  m_Name: GamePlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4507,7 +4507,7 @@ GameObject:
   - component: {fileID: 1251282436}
   - component: {fileID: 1251282435}
   m_Layer: 5
-  m_Name: TrackVolume
+  m_Name: BGMVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4804,7 +4804,7 @@ Transform:
   m_GameObject: {fileID: 1383538547}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1360.0471, y: 555.7767, z: 2.0613377}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4942,7 +4942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TRACK VOLUME
+  m_text: BGM VOLUME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5556,7 +5556,7 @@ GameObject:
   - component: {fileID: 1671981548}
   - component: {fileID: 1671981547}
   m_Layer: 5
-  m_Name: TrackVolumeSelect
+  m_Name: BGMVolumeSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5973,7 +5973,7 @@ GameObject:
   - component: {fileID: 1844630233}
   - component: {fileID: 1844630232}
   m_Layer: 5
-  m_Name: TrackVolume_
+  m_Name: BGMVolume_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6231,7 +6231,7 @@ GameObject:
   - component: {fileID: 1880895674}
   - component: {fileID: 1880895673}
   m_Layer: 5
-  m_Name: BGM_
+  m_Name: GamePlayVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6397,7 +6397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BGM VOLUME
+  m_text: GAMEPLAY VOLUME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6570,7 +6570,7 @@ Transform:
   m_GameObject: {fileID: 2003373455}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1453.239, y: 247.0292, z: 0.7764839}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
