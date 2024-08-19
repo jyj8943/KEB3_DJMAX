@@ -107,6 +107,7 @@ public class Button : MonoBehaviour
              buttonImage.sprite = upImage;
 
              judgeTime = GetJudgeTime();
+             note.isInGame = true;
              
              // 롱노트의 마지막 입력 판정 처리
              if (note != null && note.noteID == 1)
@@ -148,6 +149,13 @@ public class Button : MonoBehaviour
              case 1:
              {
                  JudgeNoteStart();
+                 if (judgeTime > note.noteStartingTime)
+                 {
+                     var noteScaleY = note.transform.localScale.y;
+                     note.transform.localScale = new Vector3(1f,
+                         noteScaleY - (judgeTime - note.noteStartingTime) * TM.finalChartSpeed, 1f);
+
+                 }
                  
                  break;
              }
@@ -170,7 +178,10 @@ public class Button : MonoBehaviour
           {
               Debug.Log("PASS");
               judgeResult = "PASS";
-              judgeParticle.Play();
+              if (GM.isPlaying)
+              {
+                judgeParticle.Play();
+              }
           }
           else
           {
@@ -187,16 +198,21 @@ public class Button : MonoBehaviour
           if (note == null) return;
           
           // 버튼을 누르고 있으면 롱노트가 계속 줄어들도록 연출
-          if (judgeTime >= note.noteStartingTime && judgeTime < note.noteStartingTime + note.noteHoldingTime)
+          if (judgeTime >= note.noteStartingTime && judgeTime < note.noteStartingTime + note.noteHoldingTime
+              && GM.isPlaying)
           {
-              var passTime = note.noteStartingTime + note.noteHoldingTime - judgeTime;
-              note.transform.localScale = new Vector3(1f, passTime * TM.finalChartSpeed, 1f);
+              note.isInGame = false;
+              judgeTime = GetJudgeTime();
+              
+              //var passTime = note.noteStartingTime + note.noteHoldingTime - judgeTime;
+              //note.transform.localScale = new Vector3(1f, passTime * TM.finalChartSpeed, 1f);
+              note.transform.localScale -= new Vector3(0, Time.deltaTime * TM.finalChartSpeed, 0);
               
               //note.transform.localScale =
                   //new Vector3(1f, scaleOftempNote - (judgeTime - note.noteStartingTime) 
                       //* TotalManager.instance.finalChartSpeed, 1f);
               note.transform.position = new Vector3(note.transform.position.x,
-                  TM.finalChartSpeed * ( judgeTime + Time.deltaTime )- 3, note.transform.position.z);
+                  GM.judgeBar.transform.position.y, note.transform.position.z);
           }
 
           if (judgeTime >= (note.noteStartingTime + note.noteHoldingTime))

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class JudgeImageUpdater : MonoBehaviour
 {
+    public InGamePlayManager GM;
+    
     public Image judgeImage; // UI 이미지 컴포넌트
     public Sprite perfectSprite;
     public Sprite greatSprite;
@@ -18,12 +20,14 @@ public class JudgeImageUpdater : MonoBehaviour
     public static string judgeResult;
     private void Start()
     {
+        GM = InGamePlayManager.instance;
+        
         judgeImage.enabled = false;
         comboImage.enabled = false;
     }
     private void Update()
     {
-        if (Button.isJudged)
+        if (Button.isJudged && GM.isPlaying)
         {
             comboImage.enabled = true;
            

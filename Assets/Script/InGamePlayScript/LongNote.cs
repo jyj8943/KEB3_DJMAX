@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LongNote : ShortNote
 {
-    //public float upPosY; // 롱노트의 제일 윗부분의 Y값 = PosY + scale.y
-
+    
     public override void InitNote(float tempUpPos)
     {
         posX = transform.position.x;

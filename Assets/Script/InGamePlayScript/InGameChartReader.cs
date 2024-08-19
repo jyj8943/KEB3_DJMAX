@@ -122,6 +122,7 @@ public class InGameChartReader : MonoBehaviour
                 shortNote.transform.SetParent(transform.GetChild(0).transform, false);
                 
                 shortNote.GetComponent<ShortNote>().SetNoteData(railNum, noteID, noteStartingTime, noteHoldingTime);
+                shortNote.GetComponent<ShortNote>().isInGame = true;
 
                 InGamePlayManager.instance.noteList.Add(shortNote);
 
@@ -138,6 +139,7 @@ public class InGameChartReader : MonoBehaviour
                 var distUpPosY = (pos.y + longNote.GetComponent<LongNote>().noteHoldingTime);
 
                 longNote.GetComponent<LongNote>().SetNoteData(railNum, noteID, noteStartingTime, noteHoldingTime);
+                longNote.GetComponent<LongNote>().isInGame = true;
                 
                 InGamePlayManager.instance.noteList.Add(longNote);
 

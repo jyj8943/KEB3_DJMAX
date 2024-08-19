@@ -1,17 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class ShortNote : MonoBehaviour {
+public class ShortNote : MonoBehaviour
+{
+    public TotalManager TM;
+    public InGamePlayManager GM;
+    
     public float posX;
     public float posY;
+
+    public bool isInGame = false;
 
     public int railNum;
     public int noteID;              //noteid는 일반노트가 0, 롱노트가 1
     public float noteStartingTime; // 노트를 눌러야할 시간
     public float noteHoldingTime; // 롱노트에서 노트를 끝까지 눌러야할 시간
-    
+
+    public void Start()
+    {
+        TM = TotalManager.instance;
+        GM = InGamePlayManager.instance;
+    }
+
+    public void Update()
+    {
+        if (isInGame && GM.isPlaying)
+        {
+            transform.Translate(Vector2.down * TM.finalChartSpeed * Time.deltaTime);
+        }
+    }
+
     public virtual void InitNote(float tempUpPos = 0f)
     {
         posX = transform.position.x;
