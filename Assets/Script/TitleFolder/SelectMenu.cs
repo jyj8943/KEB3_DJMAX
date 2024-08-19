@@ -14,6 +14,7 @@ public class SelectMenu : MonoBehaviour
     public AudioClip playClip;
     void Start()
     {
+        TotalManager.instance.prevScene = "TitleMenu";
         var select = canvas.transform.GetChild(2).gameObject;
         EventSystem.current.SetSelectedGameObject(select.gameObject);
     }

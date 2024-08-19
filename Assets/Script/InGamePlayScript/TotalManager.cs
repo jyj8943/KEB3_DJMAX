@@ -9,9 +9,11 @@ public class TotalManager : MonoBehaviour
 
     public float defaultChartSpeed = 2f;
     public float userChartSpeed = 1f;
+    public float userChartSpeedSetting = 1f;
     public float finalChartSpeed;
-
     public float maxUserChartSpeed = 7f;
+    public float userSync = 1f;
+    public float maxUserSync = 3f;
 
     public float minNotePosY = -3f;
     public float minNotePosX = -2f;
@@ -30,13 +32,22 @@ public class TotalManager : MonoBehaviour
     public int tempGoodCount;
     public int tempMissCount;
 
-    public float sync = 1f;
-    public float maxSync = 3f;
+    public string prevScene = "TitleMenu";
+
+    public float mainVolume = 0.5f;
+    public float trackVolume = 0.5f;
+    public float sfxVolume = 0.5f;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if(instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
+        DontDestroyOnLoad(gameObject);
         finalChartSpeed = defaultChartSpeed * userChartSpeed;
     }
 
@@ -93,5 +104,11 @@ public class TotalManager : MonoBehaviour
         tempGreatCount = greatCount;
         tempGoodCount = goodCount;
         tempMissCount = missCount;
+    }
+
+    public void SetSyncTrackSpeed(float sync_, float trackSpeed_)
+    {
+        userSync = sync_;
+        userChartSpeedSetting = trackSpeed_;
     }
 }

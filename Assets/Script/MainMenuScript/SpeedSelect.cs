@@ -26,6 +26,7 @@ public class SpeedSelect : MonoBehaviour
     {
         TM = TotalManager.instance;
         
+        TM.userChartSpeed = TM.userChartSpeedSetting;
         speed.text = "Track Speed: x " + TM.userChartSpeed.ToString("F1");
     }
 
@@ -97,7 +98,7 @@ public class SpeedSelect : MonoBehaviour
 
     public void ResetSpeed()
     {
-        TM.userChartSpeed = 1.0f;
+        TM.userChartSpeed = TM.userChartSpeedSetting;
         speed.text = "Track Speed: x " + TM.userChartSpeed.ToString("F1");
     }
 }
