@@ -30,6 +30,9 @@ public class TotalManager : MonoBehaviour
     public int tempGoodCount;
     public int tempMissCount;
 
+    public float sync = 1f;
+    public float maxSync = 3f;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
