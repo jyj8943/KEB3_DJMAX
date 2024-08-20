@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef8733683601da4f93b88f965877b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GM: {fileID: 0}
   judgeImage: {fileID: 838026457}
   perfectSprite: {fileID: -7569662823521131118, guid: 41d2ab5765cd76048ace6d1bcd119970, type: 3}
   greatSprite: {fileID: -7980772567291914239, guid: 41d2ab5765cd76048ace6d1bcd119970, type: 3}
@@ -673,6 +674,10 @@ PrefabInstance:
     - target: {fileID: 3843266001319068070, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843266001319068071, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3843266001319068071, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
       propertyPath: m_Materials.Array.size
@@ -1622,6 +1627,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3843266001319068071, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843266001319068071, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1966,6 +1975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b69f10892a75db45a05a3683f437d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TM: {fileID: 0}
+  GM: {fileID: 0}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3076,6 +3087,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3843266001319068071, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843266001319068071, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3651,6 +3666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
+  TM: {fileID: 0}
   buttonEffect: {fileID: 242392963}
   Key: 39
   isLongNoteClicked: 0
@@ -3890,6 +3906,10 @@ PrefabInstance:
     - target: {fileID: 3843266001319068070, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843266001319068071, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3843266001319068071, guid: e81099ea5a0ad6446b2d34244e88d99e, type: 3}
       propertyPath: m_Materials.Array.size
@@ -4596,6 +4616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
+  TM: {fileID: 0}
   buttonEffect: {fileID: 757100254}
   Key: 59
   isLongNoteClicked: 0
@@ -5095,6 +5116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
+  TM: {fileID: 0}
   buttonEffect: {fileID: 1700887910}
   Key: 97
   isLongNoteClicked: 0
@@ -5516,6 +5538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
+  TM: {fileID: 0}
   buttonEffect: {fileID: 74015453}
   Key: 115
   isLongNoteClicked: 0

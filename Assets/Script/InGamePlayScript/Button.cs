@@ -156,7 +156,16 @@ public class Button : MonoBehaviour
                          noteScaleY - (judgeTime - note.noteStartingTime) * TM.finalChartSpeed, 1f);
                      note.transform.localScale -= new Vector3(0, Time.deltaTime * TM.finalChartSpeed, 0);
                  }
-                 
+                 else
+                 {
+                     Debug.Log("1234");
+                     
+                     var noteScaleY = note.transform.localScale.y;
+                     note.transform.localScale = new Vector3(1f,
+                         noteScaleY + ( note.noteStartingTime - judgeTime) * TM.finalChartSpeed, 1f);
+                     note.transform.localScale -= new Vector3(0, Time.deltaTime * TM.finalChartSpeed, 0);
+                 }
+                 note.isInGame = false;
                  break;
              }
          }
@@ -198,13 +207,14 @@ public class Button : MonoBehaviour
           if (note == null) return;
           
           // 버튼을 누르고 있으면 롱노트가 계속 줄어들도록 연출
-          if (judgeTime >= note.noteStartingTime && judgeTime < note.noteStartingTime + note.noteHoldingTime
+          if (judgeTime >= note.noteStartingTime - 0.14f && judgeTime < note.noteStartingTime + note.noteHoldingTime + 0.14f
               && GM.isPlaying)
           {
-              note.isInGame = false;
               judgeTime = GetJudgeTime();
               
               note.transform.localScale -= new Vector3(0, Time.deltaTime * TM.finalChartSpeed, 0);
+              // note.transform.localScale = new Vector3(1f,
+              //     (note.noteStartingTime + note.noteHoldingTime - judgeTime) * TM.finalChartSpeed, 1f);
               
               note.transform.position = new Vector3(note.transform.position.x,
                   GM.judgeBar.transform.position.y, note.transform.position.z);

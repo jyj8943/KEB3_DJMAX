@@ -931,7 +931,7 @@ MonoBehaviour:
   userChartSpeedSetting: 1
   finalChartSpeed: 0
   maxUserChartSpeed: 7
-  userSync: 1
+  userSync: 0
   maxUserSync: 3
   minNotePosY: -3
   minNotePosX: -2
@@ -945,6 +945,10 @@ MonoBehaviour:
   tempGreatCount: 0
   tempGoodCount: 0
   tempMissCount: 0
+  prevScene: TitleMenu
+  mainVolume: 0.5
+  trackVolume: 0.5
+  sfxVolume: 0.5
 --- !u!4 &1015986494
 Transform:
   m_ObjectHideFlags: 0

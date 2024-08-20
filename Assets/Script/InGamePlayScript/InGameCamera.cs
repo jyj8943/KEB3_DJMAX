@@ -12,6 +12,8 @@ public class InGameCamera : MonoBehaviour
     {
         TM = TotalManager.instance;
         GM = InGamePlayManager.instance;
+
+        transform.position = new Vector3(0f, 0f - TM.userSync, 0f);
     }
 
     void Update()
