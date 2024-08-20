@@ -53,11 +53,11 @@ public class SoundSettingManager : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.RightArrow))
         {
-            mainSlider.value += 0.1f * Time.deltaTime;
+            mainSlider.value += 0.1f * Time.deltaTime * 2;
         }
         if(Input.GetKey(KeyCode.LeftArrow))
         {
-            mainSlider.value -= 0.1f * Time.deltaTime;
+            mainSlider.value -= 0.1f * Time.deltaTime * 2;
         }
     }
 
@@ -65,11 +65,11 @@ public class SoundSettingManager : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.RightArrow))
         {
-            trackSlider.value += 0.1f * Time.deltaTime;
+            trackSlider.value += 0.1f * Time.deltaTime * 2;
         }
         if(Input.GetKey(KeyCode.LeftArrow))
         {
-            trackSlider.value -= 0.1f * Time.deltaTime;
+            trackSlider.value -= 0.1f * Time.deltaTime * 2;
         }
     }
 
@@ -77,17 +77,17 @@ public class SoundSettingManager : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.RightArrow))
         {
-            sfxSlider.value += 0.1f * Time.deltaTime;
+            sfxSlider.value += 0.1f * Time.deltaTime * 2;
         }
         if(Input.GetKey(KeyCode.LeftArrow))
         {
-            sfxSlider.value -= 0.1f * Time.deltaTime;
+            sfxSlider.value -= 0.1f * Time.deltaTime * 2;
         }
     }
 
     public void SetMainVolume(float volume)
     {
-        main.volume = volume;
+        main.volume = TM.mainVolume;
         mainLevel.text = (volume*100).ToString("F0") + '%';
         TM.mainVolume = volume;
     }

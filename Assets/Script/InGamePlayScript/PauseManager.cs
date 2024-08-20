@@ -22,6 +22,8 @@ public class PauseManager : MonoBehaviour
     {
         GM = InGamePlayManager.instance;
         TM = TotalManager.instance;
+
+        audioSource.volume = TM.sfxVolume;
     }
 
     void Update()
@@ -88,5 +90,12 @@ public class PauseManager : MonoBehaviour
         Debug.Log("Game Finish!");
         audioSource.PlayOneShot(sceneClip);
         SceneManager.LoadScene("Result");
+    }
+
+    public void Setting()
+    {
+        TM.prevScene = "InGamePlay";
+        audioSource.PlayOneShot(sceneClip);
+        SceneManager.LoadScene("Setting");
     }
 }

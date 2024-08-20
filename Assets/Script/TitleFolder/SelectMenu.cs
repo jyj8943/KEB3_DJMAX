@@ -9,11 +9,14 @@ public class SelectMenu : MonoBehaviour
 {
     public Canvas canvas;
     public AudioSource audioSource;
+    public AudioSource background;
     public AudioClip sceneClip;
     public AudioClip buttonClip;
     public AudioClip playClip;
     void Start()
     {
+        audioSource.volume = TotalManager.instance.sfxVolume;
+        background.volume = TotalManager.instance.mainVolume;
         TotalManager.instance.prevScene = "TitleMenu";
         var select = canvas.transform.GetChild(2).gameObject;
         EventSystem.current.SetSelectedGameObject(select.gameObject);

@@ -84,6 +84,7 @@ public class InGamePlayManager : MonoBehaviour
         DisplayTempCombo();
         DisplayTempScore();
         
+        video.SetDirectAudioVolume(0, TotalManager.instance.trackVolume);
         if (isPlaying) video.Play();
         else if (!isPlaying) video.Pause();
         

@@ -1264,6 +1264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 308746336}
   audioSource: {fileID: 1817795318}
+  background: {fileID: 1857830608}
   sceneClip: {fileID: 8300000, guid: 0d54653003bc3524ab6b64cac060bd52, type: 3}
   buttonClip: {fileID: 8300000, guid: 44a5d716536c11248a09ee1a54d5d168, type: 3}
   playClip: {fileID: 8300000, guid: ddd16025d5ef32249bf91ac485f99fd8, type: 3}
