@@ -32,6 +32,7 @@ public class TrackSelector : MonoBehaviour
     public AudioClip drrClip;
     void Start()
     {
+        audioSource.volume = TotalManager.instance.sfxVolume;
         selectedButton = contentPanel.transform.GetChild(0).gameObject;
         EventSystem.current.SetSelectedGameObject(selectedButton.gameObject);
         InfoUpdate();

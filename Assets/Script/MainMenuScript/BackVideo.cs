@@ -24,6 +24,7 @@ public class BackVideo : MonoBehaviour
             tempTitle = title.text;
             
             PlayVideo();
+            video.SetDirectAudioVolume(0,TotalManager.instance.mainVolume);
         }
     }
 

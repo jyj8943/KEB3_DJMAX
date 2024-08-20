@@ -7,6 +7,7 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    public AudioSource background;
     public InGamePlayManager GM;
     public TotalManager TM;
     
@@ -36,6 +37,9 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
+        audioSource.volume = TotalManager.instance.sfxVolume;
+        background.volume = TM.mainVolume;
+    
         score.text = GM.tempScore.ToString("F0");
         combo.text = GM.tempHighestCombo.ToString("F0");
 
