@@ -154,7 +154,7 @@ public class Button : MonoBehaviour
                      var noteScaleY = note.transform.localScale.y;
                      note.transform.localScale = new Vector3(1f,
                          noteScaleY - (judgeTime - note.noteStartingTime) * TM.finalChartSpeed, 1f);
-
+                     note.transform.localScale -= new Vector3(0, Time.deltaTime * TM.finalChartSpeed, 0);
                  }
                  
                  break;
