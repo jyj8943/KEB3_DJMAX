@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using UnityEditor.Timeline;
 using Unity.VisualScripting;
 
 public class Selector : MonoBehaviour

@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.Video;
-using UnityEditor.PackageManager;
 
 public class PauseManager : MonoBehaviour
 {

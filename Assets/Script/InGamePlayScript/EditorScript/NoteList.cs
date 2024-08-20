@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class NoteList : MonoBehaviour
